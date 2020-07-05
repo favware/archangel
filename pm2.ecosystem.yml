@@ -1,0 +1,10 @@
+apps:
+  script: "./dist/ArchAngel.js"
+  name: "ArchAngel"
+  vizion: false
+  env:
+    DEV: false
+    NODE_ENV: production
+  env_development:
+    DEV: true
+    NODE_ENV: development

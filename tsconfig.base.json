@@ -1,0 +1,6 @@
+{
+	"extends": "@favware/ts-config",
+	"compilerOptions": {
+		"target": "ESNext"
+	}
+}

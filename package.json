@@ -1,0 +1,72 @@
+{
+  "name": "arcangel",
+  "version": "1.0.0",
+  "description": "Private bot for PopulousGaming",
+  "author": "Jeroen Claassens <support@favware.tech>",
+  "license": "Apache-2.0",
+  "main": "dist/ArcAngel.js",
+  "private": true,
+  "scripts": {
+    "pm2:delete": "pm2 delete ArchAngel",
+    "pm2:logs": "pm2 logs ArchAngel --lines=200",
+    "pm2:restart": "pm2 restart ArchAngel",
+    "pm2:start": "pm2 start pm2.ecosystem.yml",
+    "pm2:dev": "yarn pm2:start --env development",
+    "pm2:stop": "pm2 stop ArchAngel",
+    "start": "node dist/ArchAngel.js",
+    "lint": "eslint src tests --ext ts --fix",
+    "style": "prettier --write src/**/*.{ts,json}",
+    "update": "yarn upgrade-interactive --latest",
+    "build": "tsc -b src",
+    "watch": "tsc -b src -w",
+    "dev": "yarn build && yarn start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/favware/archangel.git"
+  },
+  "keywords": [
+    "@klasa/core",
+    "klasa",
+    "bot",
+    "standalone",
+    "private",
+    "populous_gaming"
+  ],
+  "bugs": {
+    "url": "https://github.com/favware/archangel/issues"
+  },
+  "dependencies": {
+    "@klasa/console": "^0.0.3",
+    "@klasa/core": "github:dirigeants/core#build",
+    "@klasa/utils": "^0.0.8",
+    "@skyra/decorators": "^2.2.0",
+    "canvas-constructor": "^3.2.0",
+    "canvas": "^2.6.1",
+    "klasa": "github:dirigeants/klasa#build",
+    "module-alias": "^2.2.2",
+    "reflect-metadata": "^0.1.13",
+    "ws": "^7.3.0",
+    "zlib-sync": "^0.1.7"
+  },
+  "devDependencies": {
+    "@favware/eslint-config": "^5.1.0",
+    "@favware/ts-config": "^3.0.2",
+    "@klasa/dapi-types": "^0.2.1",
+    "@types/module-alias": "^2.0.0",
+    "@types/node": "^14.0.14",
+    "@types/ws": "^7.2.5",
+    "chokidar": "^3.4.0",
+    "typescript": "^3.9.6"
+  },
+  "_moduleAliases": {
+    "@utils": "dist/lib/util",
+    "@lib": "dist/lib",
+    "@root": "dist"
+  },
+  "resolutions": {
+    "acorn": "^7.3.1",
+    "minimist": "^1.2.2",
+    "kind-of": "^6.0.3"
+  }
+}
