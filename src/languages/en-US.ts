@@ -5,6 +5,7 @@ import { VERSION } from '@root/config';
 import { Emojis } from '@utils/constants';
 import friendlyDuration, { DurationFormatAssetsTime, TimeTypes } from '@utils/FriendlyDuration';
 import { LanguageHelp } from '@utils/LanguageHelp';
+import { createPick } from '@utils/util';
 import { Language } from 'klasa';
 
 const LOADING = Emojis.Loading;
@@ -345,6 +346,7 @@ export default class extends Language {
 				['messageIds', 'The message ID or message IDs to include in the quote']
 			]
 		}),
+		COMMAND_QUOTE_NO_MESSAGES: `${REDCROSS} I'm sorry, but I was unable to find any messages to quote`,
 
 		/**
 		 * #################################
@@ -402,6 +404,14 @@ export default class extends Language {
 			`Sent the result as a file.${type !== undefined && time !== undefined ? `\n**Type**:${type}\n${time}` : ''}`,
 		SYSTEM_EXCEEDED_LENGTH_OUTPUT_HASTEBIN: (url, time, type) =>
 			`Sent the result to hastebin: ${url}${type !== undefined && time !== undefined ? `\n**Type**:${type}\n${time}` : ''}`,
-		SYSTEM_EXCEEDED_LENGTH_CHOOSE_OUTPUT: (options) => `Choose one of the following options: ${this.list(options, 'or')}`
+		SYSTEM_EXCEEDED_LENGTH_CHOOSE_OUTPUT: (options) => `Choose one of the following options: ${this.list(options, 'or')}`,
+		SYSTEM_LOADING: createPick([
+			`${LOADING} Flying to heaven and back...`,
+			`${LOADING} Man this tunnel sure is long...`,
+			`${LOADING} Stichy there, stichy here, we'll get your result soon...`,
+			`${LOADING} Brb, I just need to get a drink...`,
+			`${LOADING} Let me finish this match...`,
+			`${LOADING} Just give me a moment...`
+		])
 	};
 }

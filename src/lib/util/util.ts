@@ -37,6 +37,20 @@ export function validateChannelAccess(channel: GuildChannel, user: GuildMember) 
 }
 
 /**
+ * Creates an array picker function
+ * @param array The array to create a pick function from
+ * @example
+ * const picker = createPick([1, 2, 3, 4]);
+ * picker(); // 2
+ * picker(); // 1
+ * picker(); // 4
+ */
+export function createPick<T>(array: T[]): () => T {
+	const { length } = array;
+	return () => array[Math.floor(Math.random() * length)];
+}
+
+/**
  * Split a string by its latest space character in a range from the character 0 to the selected one.
  * @param str The text to split.
  * @param length The length of the desired string.

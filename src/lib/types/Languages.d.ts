@@ -186,6 +186,7 @@ export interface LanguageKeys {
 	 */
 	COMMAND_QUOTE_DESCRIPTION: string;
 	COMMAND_QUOTE_EXTENDED: string;
+	COMMAND_QUOTE_NO_MESSAGES: string;
 
 	/**
 	 * #################################
@@ -220,4 +221,5 @@ export interface LanguageKeys {
 	SYSTEM_EXCEEDED_LENGTH_OUTPUT_FILE: (time?: string, type?: string) => string;
 	SYSTEM_EXCEEDED_LENGTH_OUTPUT_HASTEBIN: (url: string, time?: string, type?: string) => string;
 	SYSTEM_EXCEEDED_LENGTH_CHOOSE_OUTPUT: (output: string[]) => string;
+	SYSTEM_LOADING: () => string;
 }

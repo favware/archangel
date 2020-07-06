@@ -1,57 +1,61 @@
-import { Attachment, TextChannel } from '@klasa/core';
+import { Attachment, Embed, TextChannel } from '@klasa/core';
 import { APIUserFlags } from '@klasa/dapi-types';
+import { isThenable } from '@klasa/utils';
 import { ArchAngelCommand, ArchAngelCommandOptions } from '@lib/structures/ArchAngelCommand';
 import { PermissionLevels } from '@lib/types/Enums';
-import { ApplyOptions, CreateResolvers } from '@skyra/decorators';
+import { ApplyOptions } from '@skyra/decorators';
+import { BrandingColors } from '@utils/constants';
 import { discordMessageGenerator, discordMessagesGenerator, htmlGenerator } from '@utils/HtmlGenerator';
-import { KlasaMessage } from 'klasa';
+import { KlasaMessage, Possible } from 'klasa';
 import imageGenerator from 'node-html-to-image';
 
 @ApplyOptions<ArchAngelCommandOptions>({
 	description: (language) => language.tget('COMMAND_QUOTE_DESCRIPTION'),
 	extendedHelp: (language) => language.tget('COMMAND_QUOTE_EXTENDED'),
 	permissionLevel: PermissionLevels.Everyone,
-	usage: '[channel:channel] [messageIds:messageIds]',
-	usageDelim: ' '
+	usage: '[messages:quotablemessages]',
+	usageDelim: ' ',
+	flagSupport: true
 })
-@CreateResolvers([
-	[
-		'channel',
-		(arg, _possible, message) => {
-			if (!arg) return message.channel;
-			return message.client.arguments.get('textchannelname')!.run(arg, _possible, message);
-		}
-	],
-	[
-		'messageIds',
-		(arg, _possible, message) => {
-			if (!arg) {
-				const lastMessage = message.channel.messages.lastValue;
-				if (lastMessage) return [lastMessage];
-				throw message.language.tget('RESOLVER_INVALID_MESSAGE', arg);
-			}
-
-			return message.client.arguments.get('...message')!.run(arg, _possible, message);
-		}
-	]
-])
 export default class extends ArchAngelCommand {
-	public async run(message: KlasaMessage, [channel, quoteMessages]: [TextChannel, KlasaMessage[]]) {
+	private readonly kPossible = new Possible([]);
+
+	public async run(message: KlasaMessage, [messages]: [KlasaMessage[] | undefined]) {
+		// Ensure there are quotable messages
+		if (!messages || !messages.length) throw message.language.tget('COMMAND_QUOTE_NO_MESSAGES');
+
+		// Send a loading message
+		const [loadingMessage] = await message.channel.send((mb) =>
+			mb.setEmbed(new Embed().setDescription(message.language.tget('SYSTEM_LOADING')).setColor(BrandingColors.Primary))
+		);
+
 		const content: string[] = [];
 
-		for (const quoteMessage of quoteMessages) {
-			content.push(await this.messageToHtml(message.channel as TextChannel, quoteMessage.id));
+		// Resolve the target channel
+		let targetChannel = Reflect.has(message.flagArgs, 'targetchannel')
+			? (this.client.arguments.get('textchannelname')!.run(message.flagArgs.targetchannel, this.kPossible, message) as Promise<TextChannel>)
+			: (message.channel as TextChannel);
+
+		// If the targetChannel comes from argument resolve then resolve the promise
+		if (isThenable(targetChannel)) targetChannel = await targetChannel;
+
+		// For every quotable message generate the HTML
+		for (const quoteMessage of messages) {
+			content.push(await this.messageToHtml(quoteMessage));
 		}
 
+		// Generate the HTML
 		const html = htmlGenerator(
 			discordMessagesGenerator({
 				content: content.join('\n')
 			})
 		);
 
+		// Generate the image
 		const buffer = await imageGenerator({ html });
 
-		return channel.send(async (mb) =>
+		// Send the image
+		await targetChannel.send(async (mb) =>
 			mb.addFile(
 				await new Attachment()
 					.setName('quote.png')
@@ -59,19 +63,19 @@ export default class extends ArchAngelCommand {
 					.resolve()
 			)
 		);
+
+		// Cleanup the loading message
+		return loadingMessage.nuke();
 	}
 
-	private async messageToHtml(channel: TextChannel, messageId: string): Promise<string> {
-		const message = (await channel.messages.fetch({ around: messageId, limit: 1 })).firstValue!;
-		const roleColor = message.member?.roles.highest?.color;
-
+	private async messageToHtml(message: KlasaMessage): Promise<string> {
 		return discordMessageGenerator({
-			author: message.member?.displayName ?? message.author.tag,
-			avatar: message.author.displayAvatarURL({ dynamic: true, extension: 'png', size: 128 })!,
+			author: message.author.tag,
+			avatar: message.author.displayAvatarURL({ dynamic: false, extension: 'png', size: 128 })!,
 			bot: message.author.bot,
 			verified: message.author.flags === APIUserFlags.VerifiedBot,
 			edited: Boolean(message.editedAt),
-			roleColor: roleColor?.toString(16) ?? '#259EEE',
+			roleColor: message.member?.roles.highest?.color.toString(16) ?? '#259EEE',
 			content: message.content,
 			timestamp: message.createdAt
 		});
