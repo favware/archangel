@@ -1,8 +1,6 @@
 // Import all dependencies
 import { VERSION } from '@root/config';
 import { KlasaClient, KlasaClientOptions } from 'klasa';
-// Import setup files
-import './setup/Canvas';
 
 export class ArchAngelClient extends KlasaClient {
 	/**

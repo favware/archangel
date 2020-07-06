@@ -131,8 +131,10 @@ export default class extends Language {
 		 * #################################
 		 */
 
+		RESOLVER_CHANNEL_NOT_IN_GUILD: 'I am sorry, but that command can only be ran in a server.',
 		RESOLVER_INVALID_BOOL: (name) => `${name} must be true or false.`,
 		RESOLVER_INVALID_CHANNEL: (name) => `${name} must be a channel tag or valid channel id.`,
+		RESOLVER_INVALID_CHANNELNAME: (name) => `${name} must be a valid channel name, id, or tag.`,
 		RESOLVER_INVALID_CUSTOM: (name, type) => `${name} must be a valid ${type}.`,
 		RESOLVER_INVALID_DATE: (name) => `${name} must be a valid date.`,
 		RESOLVER_INVALID_DURATION: (name) => `${name} must be a valid duration string.`,
@@ -277,7 +279,7 @@ export default class extends Language {
 
 		/**
 		 * #################################
-		 * #        SYSTEM COMMANDS        #
+		 * #        ADMIN COMMANDS         #
 		 * #################################
 		 */
 
@@ -308,6 +310,47 @@ export default class extends Language {
 		COMMAND_ECHO_EXTENDED: builder.display('echo', {
 			extendedHelp: 'This should be very obvious...'
 		}),
+		COMMAND_SAMPLE_DESCRIPTION: 'Testing command',
+		COMMAND_SAMPLE_EXTENDED: builder.display('sample', {
+			extendedHelp: 'Generates a hardcoded sample image using the image generator. This is for testing purposes'
+		}),
+
+		/**
+		 * #################################
+		 * #    CONFIGURATION COMMANDS     #
+		 * #################################
+		 */
+		COMMAND_SETPREFIX_DESCRIPTION: "Set Skyra's prefix.",
+		COMMAND_SETPREFIX_EXTENDED: builder.display('setPrefix', {
+			extendedHelp: `This command helps you setting up Skyra's prefix. A prefix is an affix that is added in front of the word, in this case, the message.
+					It allows bots to distinguish between a regular message and a command. By nature, the prefix between should be different to avoid conflicts. If
+					you forget Skyra's prefix, simply mention her with nothing else and she will tell you the current prefix. Alternatively, you can take advantage
+					of Skyra's NLP (Natural Language Processing) and prefix the commands with her name and a comma. For example, "Skyra, ping".`,
+			explainedUsage: [['prefix', `The prefix to set. Default one in Skyra is "${this.client.options.commands.prefix}".`]],
+			reminder: 'Your prefix should only contain characters everyone can write and type.',
+			examples: ['&', '=']
+		}),
+		COMMAND_SETPREFIX_SET: (prefix) => `Successfully set the prefix to ${prefix}. Use ${prefix}setPrefix <prefix> to change it again.`,
+
+		/**
+		 * #################################
+		 * #         CORE COMMANDS         #
+		 * #################################
+		 */
+		COMMAND_QUOTE_DESCRIPTION: 'Quotes one or more messages and outputs them in a channel',
+		COMMAND_QUOTE_EXTENDED: builder.display('quote', {
+			extendedHelp: "Ever wanted to quote Arc's misadventures in style? This is your chance!",
+			explainedUsage: [
+				['channel', 'The channel to output to, by default it will output to the current channel'],
+				['messageIds', 'The message ID or message IDs to include in the quote']
+			]
+		}),
+
+		/**
+		 * #################################
+		 * #        SYSTEM COMMANDS        #
+		 * #################################
+		 */
 		COMMAND_HELP_DESCRIPTION: 'Display help for a command.',
 		COMMAND_HELP_NO_EXTENDED: 'No extended help available.',
 		COMMAND_HELP_DM: '📥 | The list of commands you have access to has been sent to your DMs.',
@@ -346,27 +389,11 @@ export default class extends Language {
 
 		/**
 		 * #################################
-		 * #    CONFIGURATION COMMANDS     #
-		 * #################################
-		 */
-		COMMAND_SETPREFIX_DESCRIPTION: "Set Skyra's prefix.",
-		COMMAND_SETPREFIX_EXTENDED: builder.display('setPrefix', {
-			extendedHelp: `This command helps you setting up Skyra's prefix. A prefix is an affix that is added in front of the word, in this case, the message.
-					It allows bots to distinguish between a regular message and a command. By nature, the prefix between should be different to avoid conflicts. If
-					you forget Skyra's prefix, simply mention her with nothing else and she will tell you the current prefix. Alternatively, you can take advantage
-					of Skyra's NLP (Natural Language Processing) and prefix the commands with her name and a comma. For example, "Skyra, ping".`,
-			explainedUsage: [['prefix', `The prefix to set. Default one in Skyra is "${this.client.options.commands.prefix}".`]],
-			reminder: 'Your prefix should only contain characters everyone can write and type.',
-			examples: ['&', '=']
-		}),
-		COMMAND_SETPREFIX_SET: (prefix) => `Successfully set the prefix to ${prefix}. Use ${prefix}setPrefix <prefix> to change it again.`,
-
-		/**
-		 * #################################
 		 * #       ARCHANGEL SYSTEM        #
 		 * #################################
 		 */
 
+		SYSTEM_CANNOT_ACCESS_CHANNEL: 'I am sorry, but you do not have permission to see that channel.',
 		SYSTEM_EXCEEDED_LENGTH_OUTPUT: (output, time, type) =>
 			`**Output**:${output}${type !== undefined && time !== undefined ? `\n**Type**:${type}\n${time}` : ''}`,
 		SYSTEM_EXCEEDED_LENGTH_OUTPUT_CONSOLE: (time, type) =>

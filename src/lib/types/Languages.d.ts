@@ -1,5 +1,6 @@
 import { Embed, Piece } from '@klasa/core';
 import { StatsGeneral, StatsUptime, StatsUsage } from '@root/commands/System/stats';
+import { SpawnSyncOptionsWithStringEncoding } from 'child_process';
 
 export interface LanguageKeys {
 	/**
@@ -35,8 +36,10 @@ export interface LanguageKeys {
 	 * #################################
 	 */
 
+	RESOLVER_CHANNEL_NOT_IN_GUILD: string;
 	RESOLVER_INVALID_BOOL(name: string): string;
 	RESOLVER_INVALID_CHANNEL(name: string): string;
+	RESOLVER_INVALID_CHANNELNAME: (name: string) => string;
 	RESOLVER_INVALID_CUSTOM(name: string, type: string): string;
 	RESOLVER_INVALID_DATE(name: string): string;
 	RESOLVER_INVALID_DURATION(name: string): string;
@@ -153,7 +156,7 @@ export interface LanguageKeys {
 
 	/**
 	 * #################################
-	 * #        SYSTEM COMMANDS        #
+	 * #        ADMIN COMMANDS         #
 	 * #################################
 	 */
 
@@ -163,6 +166,32 @@ export interface LanguageKeys {
 	COMMAND_EVAL_ERROR: (time: string, output: string, type: string) => string;
 	COMMAND_ECHO_DESCRIPTION: string;
 	COMMAND_ECHO_EXTENDED: string;
+	COMMAND_SAMPLE_DESCRIPTION: string;
+	COMMAND_SAMPLE_EXTENDED: string;
+
+	/**
+	 * #################################
+	 * #    CONFIGURATION COMMANDS     #
+	 * #################################
+	 */
+
+	COMMAND_SETPREFIX_DESCRIPTION: string;
+	COMMAND_SETPREFIX_EXTENDED: string;
+	COMMAND_SETPREFIX_SET: (prefix: string) => string;
+
+	/**
+	 * #################################
+	 * #         CORE COMMANDS         #
+	 * #################################
+	 */
+	COMMAND_QUOTE_DESCRIPTION: string;
+	COMMAND_QUOTE_EXTENDED: string;
+
+	/**
+	 * #################################
+	 * #        SYSTEM COMMANDS        #
+	 * #################################
+	 */
 	COMMAND_HELP_DESCRIPTION: string;
 	COMMAND_HELP_NO_EXTENDED: string;
 	COMMAND_HELP_DM: string;
@@ -181,20 +210,11 @@ export interface LanguageKeys {
 
 	/**
 	 * #################################
-	 * #    CONFIGURATION COMMANDS     #
-	 * #################################
-	 */
-
-	COMMAND_SETPREFIX_DESCRIPTION: string;
-	COMMAND_SETPREFIX_EXTENDED: string;
-	COMMAND_SETPREFIX_SET: (prefix: string) => string;
-
-	/**
-	 * #################################
 	 * #       ARCHANGEL SYSTEM        #
 	 * #################################
 	 */
 
+	SYSTEM_CANNOT_ACCESS_CHANNEL: string;
 	SYSTEM_EXCEEDED_LENGTH_OUTPUT: (output: string, time?: string, type?: string) => string;
 	SYSTEM_EXCEEDED_LENGTH_OUTPUT_CONSOLE: (time?: string, type?: string) => string;
 	SYSTEM_EXCEEDED_LENGTH_OUTPUT_FILE: (time?: string, type?: string) => string;

@@ -1,4 +1,4 @@
-import { Message } from '@klasa/core';
+import { GuildChannel, GuildMember, Message, PermissionsFlags } from '@klasa/core';
 import { BrandingColors } from './constants';
 
 export function getColor(message: Message) {
@@ -23,6 +23,17 @@ export function roundNumber(num: number | string, scale = 0) {
 	}
 
 	return Number(`${Math.round(Number(`${Number(arr[0])}e${sig}${Number(arr[1]) + scale}`))}e-${scale}`);
+}
+
+/**
+ * Validates that a user has VIEW_CHANNEL permissions to a channel
+ * @param channel The TextChannel to check
+ * @param user The user for which to check permission
+ * @returns Whether the user has access to the channel
+ * @example validateChannelAccess(channel, message.author)
+ */
+export function validateChannelAccess(channel: GuildChannel, user: GuildMember) {
+	return (channel.guild !== null && channel.permissionsFor(user)?.has(PermissionsFlags.ViewChannel)) || false;
 }
 
 /**
