@@ -20,7 +20,7 @@ import imageGenerator from 'node-html-to-image';
 })
 export default class extends ArchAngelCommand {
 	private readonly kPossible = new Possible([]);
-	private kTimestamp = new Timestamp('DD/MM/YYYY');
+	private kTimestamp = new Timestamp('MM/DD/YYYY');
 
 	public async run(message: KlasaMessage, [messages]: [KlasaMessage[] | undefined]) {
 		// Ensure there are quotable messages
