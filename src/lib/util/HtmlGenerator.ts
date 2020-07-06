@@ -1,10 +1,11 @@
 import type { Components } from '@skyra/discord-components-core/dist/types/components';
 
-export const discordMessageGenerator = ({ author, avatar, bot, edited, roleColor, verified, content }: Partial<DiscordMessageOptions>) => `
+export const discordMessageGenerator = ({ author, avatar, bot, edited, roleColor, verified, timestamp, content }: Partial<DiscordMessageOptions>) => `
 <discord-message
 	author="${author}"
 	avatar="${avatar}"
-	roleColor="${roleColor ?? '#259EEE'}"
+	role-color="${roleColor ?? '#259EEE'}"
+	timestamp=${timestamp}
 	${edited ? 'edited' : ''}
 	${bot ? 'bot' : ''}
 	${verified ? 'verified' : ''}

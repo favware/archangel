@@ -1,5 +1,6 @@
 import { Attachment, Embed, TextChannel } from '@klasa/core';
 import { APIUserFlags } from '@klasa/dapi-types';
+import { Timestamp } from '@klasa/timestamp';
 import { isThenable } from '@klasa/utils';
 import { ArchAngelCommand, ArchAngelCommandOptions } from '@lib/structures/ArchAngelCommand';
 import { PermissionLevels } from '@lib/types/Enums';
@@ -19,6 +20,7 @@ import imageGenerator from 'node-html-to-image';
 })
 export default class extends ArchAngelCommand {
 	private readonly kPossible = new Possible([]);
+	private kTimestamp = new Timestamp('DD/MM/YYYY');
 
 	public async run(message: KlasaMessage, [messages]: [KlasaMessage[] | undefined]) {
 		// Ensure there are quotable messages
@@ -41,7 +43,7 @@ export default class extends ArchAngelCommand {
 
 		// For every quotable message generate the HTML
 		for (const quoteMessage of messages) {
-			content.push(await this.messageToHtml(quoteMessage));
+			content.push(await this.messageToHtml(quoteMessage, message));
 		}
 
 		// Generate the HTML
@@ -68,16 +70,18 @@ export default class extends ArchAngelCommand {
 		return loadingMessage.nuke();
 	}
 
-	private async messageToHtml(message: KlasaMessage): Promise<string> {
+	private async messageToHtml(message: KlasaMessage, commandMessage: KlasaMessage): Promise<string> {
+		const member = commandMessage.guild!.members.get(message.author.id);
+
 		return discordMessageGenerator({
-			author: message.author.tag,
+			author: member?.displayName ?? message.author.tag,
 			avatar: message.author.displayAvatarURL({ dynamic: false, extension: 'png', size: 128 })!,
 			bot: message.author.bot,
 			verified: message.author.flags === APIUserFlags.VerifiedBot,
 			edited: Boolean(message.editedAt),
-			roleColor: message.member?.roles.highest?.color.toString(16) ?? '#259EEE',
+			roleColor: `#${member?.roles.highest?.color?.toString(16)}` ?? '#259EEE',
 			content: message.content,
-			timestamp: message.createdAt
+			timestamp: this.kTimestamp.display(message.createdAt)
 		});
 	}
 }

@@ -4,9 +4,9 @@
 		"outDir": "../dist",
 		"rootDir": ".",
 		"baseUrl": ".",
-		"declaration": false,
-		"declarationMap": false,
-		"sourceMap": false,
+		"declaration": true,
+		"declarationMap": true,
+		"sourceMap": true,
 		"paths": {
 			"@utils/*": ["lib/util/*"],
 			"@lib/*": ["lib/*"],
