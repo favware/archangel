@@ -119,7 +119,7 @@ export default class extends ArchAngelCommand {
 		const commandsByCategory = await fetchCommands(message);
 		const prefix = message.guildSettings.get(GuildSettings.Prefix);
 
-		const display = new UserRichDisplay({ template: embed => embed.setColor(getColor(message)) });
+		const display = new UserRichDisplay({ template: (embed) => embed.setColor(getColor(message)) });
 		for (const [category, commands] of commandsByCategory) {
 			display.addPage((template) =>
 				template.setTitle(`${category} Commands`).setDescription(commands.map(this.formatCommand.bind(this, message, prefix, true)).join('\n'))

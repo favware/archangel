@@ -4,7 +4,7 @@ import { BrandingColors } from './constants';
 export const IMAGE_EXTENSION = /\.(bmp|jpe?g|png|gif|webp|tiff)$/i;
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
-export function noop() { }
+export function noop() {}
 
 export function getColor(message: Message) {
 	return (message.member && message.member.roles.highest?.color) ?? BrandingColors.Primary;
@@ -54,7 +54,7 @@ export interface ImageAttachment {
  */
 export function getAttachment(message: Message): ImageAttachment | null {
 	if (message.attachments.size) {
-		const attachment = message.attachments.findValue(att => IMAGE_EXTENSION.test(att.url));
+		const attachment = message.attachments.findValue((att) => IMAGE_EXTENSION.test(att.url));
 		if (attachment) {
 			return {
 				url: attachment.url,

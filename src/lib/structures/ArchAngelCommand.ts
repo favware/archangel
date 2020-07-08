@@ -1,7 +1,7 @@
 import { ChannelType } from '@klasa/dapi-types';
 import { mergeDefault } from '@klasa/utils';
-import { Command, CommandOptions, CommandStore, KlasaMessage } from 'klasa';
 import { PermissionLevels } from '@lib/types/Enums';
+import { Command, CommandOptions, CommandStore, KlasaMessage } from 'klasa';
 
 export abstract class ArchAngelCommand extends Command {
 	public constructor(store: CommandStore, directory: string, file: string[], options: ArchAngelCommandOptions = {}) {
