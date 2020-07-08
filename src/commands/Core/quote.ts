@@ -7,6 +7,7 @@ import { PermissionLevels } from '@lib/types/Enums';
 import { ApplyOptions } from '@skyra/decorators';
 import { BrandingColors } from '@utils/constants';
 import { discordMessageGenerator, discordMessagesGenerator, htmlGenerator } from '@utils/HtmlGenerator';
+import { getAttachment } from '@utils/util';
 import { KlasaMessage, Possible } from 'klasa';
 import imageGenerator from 'node-html-to-image';
 
@@ -72,6 +73,7 @@ export default class extends ArchAngelCommand {
 
 	private async messageToHtml(message: KlasaMessage, commandMessage: KlasaMessage): Promise<string> {
 		const member = commandMessage.guild!.members.get(message.author.id);
+		const attachment = getAttachment(message);
 
 		return discordMessageGenerator({
 			author: member?.displayName ?? message.author.tag,
@@ -81,7 +83,8 @@ export default class extends ArchAngelCommand {
 			edited: Boolean(message.editedAt),
 			roleColor: `#${member?.roles.highest?.color?.toString(16)}` ?? '#259EEE',
 			content: message.content,
-			timestamp: this.kTimestamp.display(message.createdAt)
+			timestamp: this.kTimestamp.display(message.createdAt),
+			image: attachment
 		});
 	}
 }

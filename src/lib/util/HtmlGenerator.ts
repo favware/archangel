@@ -1,21 +1,34 @@
 import type { Components } from '@skyra/discord-components-core/dist/types/components';
+import { getAttachment } from './util';
 
-export const discordMessageGenerator = ({ author, avatar, bot, edited, roleColor, verified, timestamp, content }: Partial<DiscordMessageOptions>) => `
+export const discordMessageGenerator = ({ author, avatar, bot, edited, roleColor, verified, timestamp, content, image }: Partial<DiscordMessageOptions>) => `
 <discord-message
 	author="${author}"
 	avatar="${avatar}"
 	role-color="${roleColor ?? '#259EEE'}"
 	timestamp=${timestamp}
-	${edited ? 'edited' : ''}
-	${bot ? 'bot' : ''}
-	${verified ? 'verified' : ''}
+	${edited ? 'edited' : null}
+	${bot ? 'bot' : null}
+	${verified ? 'verified' : null}
 >
 	${content}
+	${
+		image &&
+		[
+			`<discord-attachment
+						slot="attachments"
+						url="${image.proxyURL ?? image.url}"
+						height="${image.height}"
+						width="${image.width}"
+						alt="discord-attachment"
+				/>`
+		].join(' ')
+	}
 </discord-message>
 `;
 
 export const discordMessagesGenerator = ({ compactMode, lightTheme, content }: Partial<DiscordMessagesOptions>) => `
-<discord-messages ${compactMode ? 'compact-mode' : ''} ${lightTheme ? 'light-theme' : ''}>
+<discord-messages ${compactMode ? 'compact-mode' : null} ${lightTheme ? 'light-theme' : null}>
 	${content}
 </discord-messages>
 `;
@@ -26,7 +39,7 @@ export const htmlGenerator = (content: string) => `
 	<head>
 		<script
 			type="module"
-			src="https://cdn.jsdelivr.net/npm/@skyra/discord-components-core@1.1.4/dist/skyra-discord-components-core/skyra-discord-components-core.esm.js"
+			src="https://cdn.jsdelivr.net/npm/@skyra/discord-components-core/dist/skyra-discord-components-core/skyra-discord-components-core.esm.js"
 		></script>
 		<style>
 			/* Whitney font face to match Discord */
@@ -85,5 +98,12 @@ interface DiscordContent {
 	content: string;
 }
 
-type DiscordMessageOptions = DiscordContent & Components.DiscordMessage;
+interface DiscordMessageExtraData extends DiscordContent {
+	/**
+	 * The image to include in the message
+	 */
+	image: ReturnType<typeof getAttachment>;
+}
+
+type DiscordMessageOptions = DiscordMessageExtraData & Components.DiscordMessage;
 type DiscordMessagesOptions = DiscordContent & Components.DiscordMessages;

@@ -1,6 +1,8 @@
 import { GuildChannel, GuildMember, Message, PermissionsFlags } from '@klasa/core';
 import { BrandingColors } from './constants';
 
+export const IMAGE_EXTENSION = /\.(bmp|jpe?g|png|gif|webp|tiff)$/i;
+
 export function getColor(message: Message) {
 	return (message.member && message.member.roles.highest?.color) ?? BrandingColors.Primary;
 }
@@ -34,6 +36,52 @@ export function roundNumber(num: number | string, scale = 0) {
  */
 export function validateChannelAccess(channel: GuildChannel, user: GuildMember) {
 	return (channel.guild !== null && channel.permissionsFor(user)?.has(PermissionsFlags.ViewChannel)) || false;
+}
+
+export interface ImageAttachment {
+	url: string;
+	proxyURL: string;
+	height: number;
+	width: number;
+}
+
+/**
+ * Get a image attachment from a message.
+ * @param message The Message instance to get the image url from
+ */
+export function getAttachment(message: Message): ImageAttachment | null {
+	if (message.attachments.size) {
+		const attachment = message.attachments.findValue(att => IMAGE_EXTENSION.test(att.url));
+		if (attachment) {
+			return {
+				url: attachment.url,
+				proxyURL: attachment.proxy_url,
+				height: attachment.height!,
+				width: attachment.width!
+			};
+		}
+	}
+
+	for (const embed of message.embeds) {
+		if (embed.type === 'image') {
+			return {
+				url: embed.thumbnail!.url ?? '',
+				proxyURL: embed.thumbnail!.proxy_url!,
+				height: embed.thumbnail!.height!,
+				width: embed.thumbnail!.width!
+			};
+		}
+		if (embed.image) {
+			return {
+				url: embed.image.url ?? '',
+				proxyURL: embed.image.proxy_url!,
+				height: embed.image.height!,
+				width: embed.image.width!
+			};
+		}
+	}
+
+	return null;
 }
 
 /**
