@@ -40,7 +40,7 @@
 	"dependencies": {
 		"@klasa/cache": "^0.0.3",
 		"@klasa/console": "^0.0.3",
-		"@klasa/core": "github:dirigeants/core#build",
+		"@klasa/core": "dirigeants/core#build",
 		"@klasa/rest": "^0.5.3",
 		"@klasa/snowflake": "^0.0.1",
 		"@klasa/stopwatch": "^0.0.1",
@@ -48,10 +48,10 @@
 		"@klasa/type": "^0.0.1",
 		"@klasa/utils": "^0.0.8",
 		"@skyra/decorators": "^2.2.0",
-		"klasa": "github:dirigeants/klasa#build",
+		"klasa": "dirigeants/klasa#build",
 		"marked": "^1.1.0",
 		"module-alias": "^2.2.2",
-		"node-html-to-image": "github:favna/node-html-to-image#build",
+		"node-html-to-image": "favna/node-html-to-image#build",
 		"reflect-metadata": "^0.1.13",
 		"ws": "^7.3.0",
 		"zlib-sync": "^0.1.7"

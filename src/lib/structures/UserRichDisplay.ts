@@ -18,7 +18,7 @@ export class UserRichDisplay extends RichDisplay {
 
 		this.setAuthorizedFooter(message.guild?.me ?? null, message.channel);
 
-		options = {
+		const handler = await super.run(message, {
 			filter: ([, user]) => user.id === target,
 			idle: constants.MINUTE * 5,
 			onceDone: () => {
@@ -26,9 +26,7 @@ export class UserRichDisplay extends RichDisplay {
 				UserRichDisplay.handlers.delete(target);
 			},
 			...options
-		};
-
-		const handler = await super.run(message, options);
+		});
 
 		UserRichDisplay.messages.set(message.id, handler);
 		UserRichDisplay.handlers.set(target, handler);

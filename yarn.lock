@@ -65,9 +65,9 @@
     "@klasa/timestamp" "^0.0.1"
     "@klasa/utils" "^0.0.8"
 
-"@klasa/core@github:dirigeants/core#build":
+"@klasa/core@dirigeants/core#build":
   version "0.0.3"
-  resolved "https://codeload.github.com/dirigeants/core/tar.gz/5417d6e6ea18b56414b09f58f44ef8755963a370"
+  resolved "https://codeload.github.com/dirigeants/core/tar.gz/2bc4140a67aa2523c88cd7ba76966adabc701030"
   dependencies:
     "@klasa/bitfield" "^0.0.4"
     "@klasa/cache" "^0.0.3"
@@ -78,7 +78,7 @@
     "@klasa/timer-manager" "^0.0.1"
     "@klasa/utils" "^0.0.8"
     "@klasa/ws" "^0.0.14"
-    "@types/node" "^14.0.19"
+    "@types/node" "^14.0.20"
     "@types/node-fetch" "^2.5.7"
     fs-nextra "^0.5.1"
 
@@ -219,7 +219,7 @@
     "@types/node" "*"
     form-data "^3.0.0"
 
-"@types/node@*", "@types/node@^14.0.19":
+"@types/node@*", "@types/node@^14.0.19", "@types/node@^14.0.20":
   version "14.0.20"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.0.20.tgz#0da05cddbc761e1fa98af88a17244c8c1ff37231"
   integrity sha512-MRn/NP3dee8yL5QhbSA6riuwkS+UOcsPUMOIOG3KMUQpuor/2TopdRBu8QaaB4fGU+gz/bzyDWt0FtUbeJ8H1A==
@@ -908,7 +908,7 @@ kind-of@^6.0.3:
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.3.tgz#07c05034a6c349fa06e24fa35aa76db4580ce4dd"
   integrity sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==
 
-"klasa@github:dirigeants/klasa#build":
+klasa@dirigeants/klasa#build:
   version "0.6.0-dev"
   resolved "https://codeload.github.com/dirigeants/klasa/tar.gz/86deee0f9498601305d5f8763207c61ce00132e2"
   dependencies:
@@ -1020,7 +1020,7 @@ node-gyp-build@~3.7.0:
   resolved "https://registry.yarnpkg.com/node-gyp-build/-/node-gyp-build-3.7.0.tgz#daa77a4f547b9aed3e2aac779eaf151afd60ec8d"
   integrity sha512-L/Eg02Epx6Si2NXmedx+Okg+4UHqmaf3TNcxd50SF9NQGcJaON3AtU++kax69XV7YWz4tUspqZSAsVofhFKG2w==
 
-"node-html-to-image@github:favna/node-html-to-image#build":
+node-html-to-image@favna/node-html-to-image#build:
   version "3.0.0"
   resolved "https://codeload.github.com/favna/node-html-to-image/tar.gz/02b06dc6866413d5126afcb82563348547928621"
   dependencies:
