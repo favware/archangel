@@ -6,8 +6,8 @@ import { fetch, FetchMethods, FetchResultTypes } from '@utils/fetch';
 
 @ApplyOptions<CommandOptions>({
 	aliases: ['execute'],
-	description: language => language.get('COMMAND_EXEC_DESCRIPTION'),
-	extendedHelp: language => language.get('COMMAND_EXEC_EXTENDED'),
+	description: language => language.tget('COMMAND_EXEC_DESCRIPTION'),
+	extendedHelp: language => language.tget('COMMAND_EXEC_EXTENDED'),
 	guarded: true,
 	permissionLevel: 10,
 	usage: '<expression:string>',
@@ -22,7 +22,7 @@ export default class extends Command {
 		const outerr = result.stderr ? `**\`ERROR\`**${codeBlock('prolog', result.stderr)}` : '';
 		const joined = [output, outerr].join('\n') || 'No output';
 
-		return message.channel.send(mb => joined.length <= 2000
+		return message.reply(mb => joined.length <= 2000
 			? mb.setContent(joined)
 			: this.getHaste(joined)
 				.then(url => mb.setContent(url))

@@ -20,6 +20,6 @@ export default class extends ArchAngelCommand {
 			extraContext: { author: message.author.id }
 		});
 
-		return message.channel.send((mb) => mb.setContent(message.language.tget('COMMAND_SETPREFIX_SET', prefix)));
+		return message.replyLocale('COMMAND_SETPREFIX_SET', [prefix]);
 	}
 }

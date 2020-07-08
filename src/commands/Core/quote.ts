@@ -1,4 +1,4 @@
-import { Attachment, Embed, TextChannel } from '@klasa/core';
+import { Attachment, TextChannel } from '@klasa/core';
 import { APIUserFlags } from '@klasa/dapi-types';
 import { Timestamp } from '@klasa/timestamp';
 import { isThenable } from '@klasa/utils';
@@ -28,8 +28,8 @@ export default class extends ArchAngelCommand {
 		if (!messages || !messages.length) throw message.language.tget('COMMAND_QUOTE_NO_MESSAGES');
 
 		// Send a loading message
-		const [loadingMessage] = await message.channel.send((mb) =>
-			mb.setEmbed(new Embed().setDescription(message.language.tget('SYSTEM_LOADING')).setColor(BrandingColors.Primary))
+		const [loadingMessage] = await message.reply((mb) =>
+			mb.setEmbed((embed) => embed.setDescription(message.language.tget('SYSTEM_LOADING')).setColor(BrandingColors.Primary))
 		);
 
 		const content: string[] = [];

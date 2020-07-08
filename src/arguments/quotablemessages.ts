@@ -28,7 +28,7 @@ export default class extends Argument {
 		}
 
 		if (messages.length) return filterNullAndUndefined(messages);
-		throw message.language.get('RESOLVER_INVALID_MESSAGE', possible.name);
+		throw message.language.tget('RESOLVER_INVALID_MESSAGE', possible.name);
 	}
 }
 

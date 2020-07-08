@@ -307,6 +307,10 @@ export default class extends Language {
 		),
 		COMMAND_EVAL_TIMEOUT: (seconds) => `TIMEOUT: Took longer than ${seconds} seconds.`,
 		COMMAND_EVAL_ERROR: (time, output, type) => `**Error**:${output}\n**Type**:${type}\n${time}`,
+		COMMAND_EXEC_DESCRIPTION: 'Execute Order 66.',
+		COMMAND_EXEC_EXTENDED: builder.display('exec', {
+			extendedHelp: 'You better not know about this.'
+		}),
 		COMMAND_ECHO_DESCRIPTION: 'Make Skyra send a message to this (or another) channel.',
 		COMMAND_ECHO_EXTENDED: builder.display('echo', {
 			extendedHelp: 'This should be very obvious...'

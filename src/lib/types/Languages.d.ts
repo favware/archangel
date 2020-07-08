@@ -163,6 +163,8 @@ export interface LanguageKeys {
 	COMMAND_EVAL_EXTENDED: string;
 	COMMAND_EVAL_TIMEOUT: (seconds: number) => string;
 	COMMAND_EVAL_ERROR: (time: string, output: string, type: string) => string;
+	COMMAND_EXEC_DESCRIPTION: string;
+	COMMAND_EXEC_EXTENDED: string;
 	COMMAND_ECHO_DESCRIPTION: string;
 	COMMAND_ECHO_EXTENDED: string;
 	COMMAND_SAMPLE_DESCRIPTION: string;

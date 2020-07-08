@@ -8,7 +8,7 @@ export async function handleMessage<ED extends ExtraDataPartial>(message: KlasaM
 	switch (options.sendAs) {
 		case 'file': {
 			if (message.channel.attachable) {
-				return message.channel.send(async (mb) =>
+				return message.reply(async (mb) =>
 					mb.setContent(message.language.tget('SYSTEM_EXCEEDED_LENGTH_OUTPUT_FILE', options.time, options.footer)).addFile(
 						await new Attachment()
 							.setName(options.targetId ? `${options.targetId}.txt` : 'output.txt')
@@ -24,10 +24,7 @@ export async function handleMessage<ED extends ExtraDataPartial>(message: KlasaM
 		case 'haste':
 		case 'hastebin': {
 			if (!options.url) options.url = await getHaste(options.content ? options.content : options.result!, options.language ?? 'md').catch(() => null);
-			if (options.url)
-				return message.channel.send((mb) =>
-					mb.setContent(message.language.tget('SYSTEM_EXCEEDED_LENGTH_OUTPUT_HASTEBIN', options.url!, options.time, options.footer))
-				);
+			if (options.url) return message.replyLocale('SYSTEM_EXCEEDED_LENGTH_OUTPUT_HASTEBIN', [options.url, options.time, options.footer]);
 			options.hastebinUnavailable = true;
 			await getTypeOutput(message, options);
 			return handleMessage(message, options);
@@ -35,7 +32,7 @@ export async function handleMessage<ED extends ExtraDataPartial>(message: KlasaM
 		case 'console':
 		case 'log': {
 			message.client.emit(Events.Log, options.result);
-			return message.channel.send((mb) => mb.setContent(message.language.tget('SYSTEM_EXCEEDED_LENGTH_OUTPUT_CONSOLE', options.time, options.footer)));
+			return message.replyLocale('SYSTEM_EXCEEDED_LENGTH_OUTPUT_CONSOLE', [options.time, options.footer]);
 		}
 		case 'abort':
 		case 'none':
@@ -47,7 +44,7 @@ export async function handleMessage<ED extends ExtraDataPartial>(message: KlasaM
 			}
 
 			if (options.content) {
-				return message.channel.send((mb) =>
+				return message.reply((mb) =>
 					mb.setContent(
 						codeBlock(
 							'md',
@@ -56,16 +53,11 @@ export async function handleMessage<ED extends ExtraDataPartial>(message: KlasaM
 					)
 				);
 			}
-			return message.channel.send((mb) =>
-				mb.setContent(
-					message.language.tget(
-						options.success ? 'SYSTEM_EXCEEDED_LENGTH_OUTPUT' : 'COMMAND_EVAL_ERROR',
-						codeBlock(options.language!, options.result!),
-						options.time,
-						options.footer
-					)
-				)
-			);
+			return message.replyLocale(options.success ? 'SYSTEM_EXCEEDED_LENGTH_OUTPUT' : 'COMMAND_EVAL_ERROR', [
+				codeBlock(options.language!, options.result!),
+				options.time,
+				options.footer
+			]);
 		}
 	}
 }

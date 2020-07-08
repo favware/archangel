@@ -29,7 +29,7 @@ export default class extends ArchAngelCommand {
 
 			return mb;
 		});
-		if (channel !== message.channel) await message.channel.send((mb) => mb.setContent(`Message successfully sent to ${channel}`));
+		if (channel !== message.channel) await message.reply((mb) => mb.setContent(`Message successfully sent to ${channel}`));
 
 		return message;
 	}

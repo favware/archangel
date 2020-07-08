@@ -10,7 +10,7 @@ import { Extendable, ExtendableOptions } from 'klasa';
 })
 export default class extends Extendable {
 	public async prompt(this: Message, content: string, time = 30000) {
-		const [message] = await this.channel.send((mb) => mb.setContent(content));
+		const [message] = await this.reply((mb) => mb.setContent(content));
 		const responses = await this.channel.awaitMessages({ limit: 1, idle: time, filter: ([msg]) => msg.author === this.author });
 		message.nuke().catch((error: unknown) => this.client.emit(Events.ApiError, error));
 		if (responses.size === 0) throw this.language.tget('MESSAGE_PROMPT_TIMEOUT');

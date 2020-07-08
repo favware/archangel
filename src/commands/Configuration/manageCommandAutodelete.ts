@@ -40,9 +40,7 @@ export default class extends ArchAngelCommand {
 			if (channel) list.push(`${channel.name.padEnd(26)} :: ${message.language.duration(entry[1] / 60000)}`);
 		}
 		if (!list.length) throw message.language.tget('COMMAND_MANAGECOMMANDAUTODELETE_SHOW_EMPTY');
-		return message.channel.send((mb) =>
-			mb.setContent(message.language.tget('COMMAND_MANAGECOMMANDAUTODELETE_SHOW', codeBlock('asciidoc', list.join('\n'))))
-		);
+		return message.replyLocale('COMMAND_MANAGECOMMANDAUTODELETE_SHOW', [codeBlock('asciidoc', list.join('\n'))]);
 	}
 
 	public async add(message: KlasaMessage, [channel, duration]: [TextChannel, number]) {
@@ -61,7 +59,7 @@ export default class extends ArchAngelCommand {
 				extraContext: { author: message.author.id }
 			});
 		}
-		return message.channel.send((mb) => mb.setContent(message.language.tget('COMMAND_MANAGECOMMANDAUTODELETE_ADD', channel, duration)));
+		return message.replyLocale('COMMAND_MANAGECOMMANDAUTODELETE_ADD', [channel, duration]);
 	}
 
 	public async remove(message: KlasaMessage, [channel]: [TextChannel]) {
@@ -73,13 +71,13 @@ export default class extends ArchAngelCommand {
 				arrayIndex: index,
 				extraContext: { author: message.author.id }
 			});
-			return message.channel.send((mb) => mb.setContent(message.language.tget('COMMAND_MANAGECOMMANDAUTODELETE_REMOVE', channel)));
+			return message.replyLocale('COMMAND_MANAGECOMMANDAUTODELETE_REMOVE', [channel]);
 		}
 		throw message.language.tget('COMMAND_MANAGECOMMANDAUTODELETE_REMOVE_NOTSET', channel.toString());
 	}
 
 	public async reset(message: KlasaMessage) {
 		await message.guild!.settings.reset(GuildSettings.CommandAutodelete);
-		return message.channel.send((mb) => mb.setContent(message.language.tget('COMMAND_MANAGECOMMANDAUTODELETE_RESET')));
+		message.replyLocale('COMMAND_MANAGECOMMANDAUTODELETE_RESET');
 	}
 }
