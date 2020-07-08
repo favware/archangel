@@ -1,6 +1,5 @@
 import { Client, PresenceBuilder } from '@klasa/core';
 import { ActivityType } from '@klasa/dapi-types';
-import { Intents, IntentsFlags } from '@klasa/ws';
 import { KlasaClientOptions } from 'klasa';
 import { resolve } from 'path';
 
@@ -22,6 +21,7 @@ export type DeepPartial<T> = {
 export const CLIENT_OPTIONS: DeepPartial<KlasaClientOptions> = {
 	commands: {
 		editing: true,
+		logging: true,
 		messageLifetime: 200,
 		prefix: PREFIX,
 		prefixCaseInsensitive: true,
@@ -30,7 +30,9 @@ export const CLIENT_OPTIONS: DeepPartial<KlasaClientOptions> = {
 		typing: false,
 		prompts: { limit: 5 }
 	},
-	owners: ['268792781713965056'],
+	rest: {
+		offset: 0
+	},
 	console: { useColor: true, utc: true },
 	pieces: { createFolders: false },
 	cache: { limits: { messages: 20 } },
@@ -40,15 +42,14 @@ export const CLIENT_OPTIONS: DeepPartial<KlasaClientOptions> = {
 		default: 'json',
 		json: { baseDirectory: resolve(__dirname, '..', 'bwd', 'providers', 'json') }
 	},
-
 	readyMessage: (client: Client) =>
 		`${NAME} ${VERSION} ready! [${client.user!.tag}] [ ${client.guilds.size} [G]] [ ${client.guilds
 			.reduce((a, b) => a + (b.memberCount ?? 0), 0)
 			.toLocaleString()} [U]].`,
 	ws: {
-		intents: new Intents([IntentsFlags.GuildMessages, IntentsFlags.Guilds]),
+		shards: 'auto',
 		additionalOptions: {
-			presence: new PresenceBuilder().setGame((pg) => pg.setType(ActivityType.Listening).setName(DEV ? 'LuciferAngel, help' : 'Archangel, help'))
+			presence: new PresenceBuilder().setGame((pg) => pg.setType(ActivityType.Listening).setName(DEV ? '@Lucifer_#3132 help' : '@Archangel#2243 help'))
 		}
 	}
 };
