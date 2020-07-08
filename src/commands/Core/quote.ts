@@ -21,7 +21,7 @@ import imageGenerator from 'node-html-to-image';
 })
 export default class extends ArchAngelCommand {
 	private readonly kPossible = new Possible([]);
-	private kTimestamp = new Timestamp('MM/DD/YYYY');
+	private readonly kTimestamp = new Timestamp('MM/DD/YYYY');
 
 	public async run(message: KlasaMessage, [messages]: [KlasaMessage[] | undefined]) {
 		// Ensure there are quotable messages
@@ -79,7 +79,7 @@ export default class extends ArchAngelCommand {
 			author: member?.displayName ?? message.author.tag,
 			avatar: message.author.displayAvatarURL({ dynamic: false, extension: 'png', size: 128 })!,
 			bot: message.author.bot,
-			verified: message.author.flags === APIUserFlags.VerifiedBot,
+			verified: message.author.publicFlags === APIUserFlags.VerifiedBot,
 			edited: Boolean(message.editedAt),
 			roleColor: `#${member?.roles.highest?.color?.toString(16)}` ?? '#259EEE',
 			content: message.content,
