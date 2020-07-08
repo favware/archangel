@@ -3,6 +3,9 @@ import { BrandingColors } from './constants';
 
 export const IMAGE_EXTENSION = /\.(bmp|jpe?g|png|gif|webp|tiff)$/i;
 
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+export function noop() { }
+
 export function getColor(message: Message) {
 	return (message.member && message.member.roles.highest?.color) ?? BrandingColors.Primary;
 }
