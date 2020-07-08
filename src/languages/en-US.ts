@@ -321,6 +321,27 @@ export default class extends Language {
 		 * #    CONFIGURATION COMMANDS     #
 		 * #################################
 		 */
+		COMMAND_MANAGECOMMANDAUTODELETE_ADD: (channel, time) =>
+			`${GREENTICK} Success! All successful commands in ${channel} will be deleted after ${duration(time)}!`,
+		COMMAND_MANAGECOMMANDAUTODELETE_DESCRIPTION: 'Manage per-channel autodelete timer.',
+		COMMAND_MANAGECOMMANDAUTODELETE_EXTENDED: builder.display('manageCommandAutodelete', {
+			extendedHelp: "This command manages this guild's per-channel command autodelete timer, it serves well to leave a channel clean from commands.",
+			explainedUsage: [
+				['show', 'Show the autodelete timer for all channels.'],
+				['add [channel] <command>', 'Add an autodelete timer for the specified channel.'],
+				['remove [channel]', 'Remove the autotimer from the specified channel.'],
+				['reset', 'Clear all autodelete timers.']
+			],
+			reminder: "The channel argument is optional, defaulting to the message's channel, but it uses fuzzy search when possible.",
+			examples: ['show', 'add #general 4s', 'remove #general', 'reset']
+		}),
+		COMMAND_MANAGECOMMANDAUTODELETE_REMOVE_NOTSET: (channel) => `${REDCROSS} The channel ${channel} was not configured to automatically delete messages!`,
+		COMMAND_MANAGECOMMANDAUTODELETE_REMOVE: (channel) => `${GREENTICK} Success! Commands will not be automatically deleted in ${channel} anymore!`,
+		COMMAND_MANAGECOMMANDAUTODELETE_REQUIRED_DURATION: 'You must specify an amount of seconds for the command to be automatically deleted.',
+		COMMAND_MANAGECOMMANDAUTODELETE_RESET: 'All the command autodeletes have been reset.',
+		COMMAND_MANAGECOMMANDAUTODELETE_SHOW_EMPTY: 'There are no command autodelete configured right now.',
+		COMMAND_MANAGECOMMANDAUTODELETE_SHOW: (codeblock) => `All command autodeletes configured:${codeblock}`,
+		COMMAND_MANAGECOMMANDAUTODELETE_TEXTCHANNEL: 'You must input a valid text channel, people cannot use commands in a voice or a category channel!',
 		COMMAND_SETPREFIX_DESCRIPTION: "Set Skyra's prefix.",
 		COMMAND_SETPREFIX_EXTENDED: builder.display('setPrefix', {
 			extendedHelp: `This command helps you setting up Skyra's prefix. A prefix is an affix that is added in front of the word, in this case, the message.
@@ -331,7 +352,7 @@ export default class extends Language {
 			reminder: 'Your prefix should only contain characters everyone can write and type.',
 			examples: ['&', '=']
 		}),
-		COMMAND_SETPREFIX_SET: (prefix) => `Successfully set the prefix to ${prefix}. Use ${prefix}setPrefix <prefix> to change it again.`,
+		COMMAND_SETPREFIX_SET: (prefix) => `Successfully set the prefix to \`${prefix}\`. Use \`${prefix}setPrefix\` <prefix> to change it again.`,
 
 		/**
 		 * #################################

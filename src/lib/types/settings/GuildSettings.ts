@@ -5,5 +5,6 @@ import { T } from './Shared';
 export namespace GuildSettings {
 
 	export const Prefix = T<string>('prefix');
+	export const CommandAutodelete = T<readonly [string, number][]>('command-autodelete');
 
 }

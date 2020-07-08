@@ -2,6 +2,9 @@
 import { VERSION } from '@root/config';
 import { KlasaClient, KlasaClientOptions } from 'klasa';
 
+// Import all schemas
+import './schemas/Guild';
+
 export class ArchAngelClient extends KlasaClient {
 	/**
 	 * The version of Skyra

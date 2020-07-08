@@ -1,6 +1,5 @@
-import { Embed, Piece } from '@klasa/core';
+import { Embed, Piece, TextChannel } from '@klasa/core';
 import { StatsGeneral, StatsUptime, StatsUsage } from '@root/commands/System/stats';
-import { SpawnSyncOptionsWithStringEncoding } from 'child_process';
 
 export interface LanguageKeys {
 	/**
@@ -175,6 +174,16 @@ export interface LanguageKeys {
 	 * #################################
 	 */
 
+	COMMAND_MANAGECOMMANDAUTODELETE_ADD(channel: TextChannel, duration: number): string;
+	COMMAND_MANAGECOMMANDAUTODELETE_DESCRIPTION: string;
+	COMMAND_MANAGECOMMANDAUTODELETE_EXTENDED: string;
+	COMMAND_MANAGECOMMANDAUTODELETE_REMOVE_NOTSET(channelName: string): string;
+	COMMAND_MANAGECOMMANDAUTODELETE_REMOVE(channel: TextChannel): string;
+	COMMAND_MANAGECOMMANDAUTODELETE_REQUIRED_DURATION: string;
+	COMMAND_MANAGECOMMANDAUTODELETE_RESET: string;
+	COMMAND_MANAGECOMMANDAUTODELETE_SHOW_EMPTY: string;
+	COMMAND_MANAGECOMMANDAUTODELETE_SHOW(data: string): string;
+	COMMAND_MANAGECOMMANDAUTODELETE_TEXTCHANNEL: string;
 	COMMAND_SETPREFIX_DESCRIPTION: string;
 	COMMAND_SETPREFIX_EXTENDED: string;
 	COMMAND_SETPREFIX_SET: (prefix: string) => string;
