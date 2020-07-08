@@ -4,14 +4,14 @@ export const rootFolder = join(__dirname, '..', '..', '..');
 export const assetsFolder = join(rootFolder, 'assets');
 
 export const enum Emojis {
-	GreenTick = '<:greenTick:637706251253317669>',
-	Loading = '<a:sloading:656988867403972629>',
-	RedCross = '<:redCross:637706251257511973>'
+	GreenTick = '<:pass:730554364573384755>',
+	Loading = '<a:aaloading:730555789730775042>',
+	RedCross = '<:fail:730554364778774588>'
 }
 
 export const enum BrandingColors {
-	Primary = 0x1e88e5,
-	Secondary = 0xff9d01
+	Primary = 0x5b75b3,
+	Secondary = 0xfffeff
 }
 
 export const enum APIErrors {

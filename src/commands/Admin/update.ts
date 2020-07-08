@@ -1,5 +1,6 @@
 import type { Message } from '@klasa/core';
 import { codeBlock, exec, sleep } from '@klasa/utils';
+import { PermissionLevels } from '@lib/types/Enums';
 import { ApplyOptions } from '@skyra/decorators';
 import { cutText } from '@utils/util';
 import { remove } from 'fs-nextra';
@@ -11,7 +12,7 @@ import { Emojis, rootFolder } from '../../lib/util/constants';
 	aliases: ['pull'],
 	description: 'Update the bot',
 	guarded: true,
-	permissionLevel: 10,
+	permissionLevel: PermissionLevels.BotOwner,
 	usage: '[branch:string]'
 })
 export default class extends Command {

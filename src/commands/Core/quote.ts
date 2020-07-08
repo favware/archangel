@@ -1,9 +1,8 @@
-import { Attachment, TextChannel } from '@klasa/core';
+import { Attachment, GuildMember, TextChannel } from '@klasa/core';
 import { APIUserFlags } from '@klasa/dapi-types';
 import { Timestamp } from '@klasa/timestamp';
 import { isThenable } from '@klasa/utils';
 import { ArchAngelCommand, ArchAngelCommandOptions } from '@lib/structures/ArchAngelCommand';
-import { PermissionLevels } from '@lib/types/Enums';
 import { ApplyOptions } from '@skyra/decorators';
 import { BrandingColors } from '@utils/constants';
 import { discordMessageGenerator, discordMessagesGenerator, htmlGenerator } from '@utils/HtmlGenerator';
@@ -14,7 +13,6 @@ import imageGenerator from 'node-html-to-image';
 @ApplyOptions<ArchAngelCommandOptions>({
 	description: (language) => language.tget('COMMAND_QUOTE_DESCRIPTION'),
 	extendedHelp: (language) => language.tget('COMMAND_QUOTE_EXTENDED'),
-	permissionLevel: PermissionLevels.Everyone,
 	usage: '[messages:quotablemessages]',
 	usageDelim: ' ',
 	flagSupport: true
@@ -81,10 +79,28 @@ export default class extends ArchAngelCommand {
 			bot: message.author.bot,
 			verified: message.author.publicFlags === APIUserFlags.VerifiedBot,
 			edited: Boolean(message.editedAt),
-			roleColor: `#${member?.roles.highest?.color?.toString(16)}` ?? '#259EEE',
+			roleColor: this.getMemberColour(member),
 			content: message.content,
 			timestamp: this.kTimestamp.display(message.createdAt),
 			image: attachment
 		});
+	}
+
+	private getMemberColour(member?: GuildMember) {
+		if (!member || !member.roles.size || !member.roles.highest) return `#${BrandingColors.Primary.toString(16)}`;
+
+		const highestRole = member.roles.highest;
+		if (highestRole.color !== 0) return `#${highestRole.color.toString(16)}`;
+
+		let color = 0;
+		for (const role of member.roles.values()) {
+			if (role.color !== 0) {
+				color = role.color;
+				break;
+			}
+		}
+
+		if (color) return `#${color.toString(16)}`;
+		return `#${BrandingColors.Primary.toString(16)}`;
 	}
 }
