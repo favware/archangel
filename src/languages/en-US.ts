@@ -311,7 +311,7 @@ export default class extends Language {
 		COMMAND_EXEC_EXTENDED: builder.display('exec', {
 			extendedHelp: 'You better not know about this.'
 		}),
-		COMMAND_ECHO_DESCRIPTION: 'Make Skyra send a message to this (or another) channel.',
+		COMMAND_ECHO_DESCRIPTION: 'Make Archangel send a message to this (or another) channel.',
 		COMMAND_ECHO_EXTENDED: builder.display('echo', {
 			extendedHelp: 'This should be very obvious...'
 		}),
@@ -346,13 +346,13 @@ export default class extends Language {
 		COMMAND_MANAGECOMMANDAUTODELETE_SHOW_EMPTY: 'There are no command autodelete configured right now.',
 		COMMAND_MANAGECOMMANDAUTODELETE_SHOW: (codeblock) => `All command autodeletes configured:${codeblock}`,
 		COMMAND_MANAGECOMMANDAUTODELETE_TEXTCHANNEL: 'You must input a valid text channel, people cannot use commands in a voice or a category channel!',
-		COMMAND_SETPREFIX_DESCRIPTION: "Set Skyra's prefix.",
+		COMMAND_SETPREFIX_DESCRIPTION: "Set Archangel's prefix.",
 		COMMAND_SETPREFIX_EXTENDED: builder.display('setPrefix', {
-			extendedHelp: `This command helps you setting up Skyra's prefix. A prefix is an affix that is added in front of the word, in this case, the message.
+			extendedHelp: `This command helps you setting up Archangel's prefix. A prefix is an affix that is added in front of the word, in this case, the message.
 					It allows bots to distinguish between a regular message and a command. By nature, the prefix between should be different to avoid conflicts. If
-					you forget Skyra's prefix, simply mention her with nothing else and she will tell you the current prefix. Alternatively, you can take advantage
-					of Skyra's NLP (Natural Language Processing) and prefix the commands with her name and a comma. For example, "Skyra, ping".`,
-			explainedUsage: [['prefix', `The prefix to set. Default one in Skyra is "${this.client.options.commands.prefix}".`]],
+					you forget Archangel's prefix, simply mention her with nothing else and she will tell you the current prefix. Alternatively, you can take advantage
+					of Archangel's NLP (Natural Language Processing) and prefix the commands with her name and a comma. For example, "Archangel, ping".`,
+			explainedUsage: [['prefix', `The prefix to set. Default one in Archangel is "${this.client.options.commands.prefix}".`]],
 			reminder: 'Your prefix should only contain characters everyone can write and type.',
 			examples: ['&', '=']
 		}),

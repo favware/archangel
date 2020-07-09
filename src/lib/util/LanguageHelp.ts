@@ -45,9 +45,9 @@ export class LanguageHelp {
 
 		// Examples
 		if (examples.length) {
-			output.push(this.examples!, ...examples.map((example) => `→ Skyra, ${name}${example ? ` *${example}*` : ''}`), '');
+			output.push(this.examples!, ...examples.map((example) => `→ Archangel, ${name}${example ? ` *${example}*` : ''}`), '');
 		} else {
-			output.push(this.examples!, `→ Skyra, ${name}`, '');
+			output.push(this.examples!, `→ Archangel, ${name}`, '');
 		}
 
 		// Reminder
