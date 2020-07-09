@@ -1,21 +1,21 @@
 import type { Message } from '@klasa/core';
 import { codeBlock, exec, sleep } from '@klasa/utils';
+import { ArchAngelCommand, ArchAngelCommandOptions } from '@lib/structures/ArchAngelCommand';
 import { PermissionLevels } from '@lib/types/Enums';
 import { ApplyOptions } from '@skyra/decorators';
 import { cutText } from '@utils/util';
 import { remove } from 'fs-nextra';
-import { Command, CommandOptions } from 'klasa';
 import { resolve } from 'path';
 import { Emojis, rootFolder } from '../../lib/util/constants';
 
-@ApplyOptions<CommandOptions>({
+@ApplyOptions<ArchAngelCommandOptions>({
 	aliases: ['pull'],
 	description: 'Update the bot',
 	guarded: true,
 	permissionLevel: PermissionLevels.BotOwner,
 	usage: '[branch:string]'
 })
-export default class extends Command {
+export default class extends ArchAngelCommand {
 	public async run(message: Message, [branch = 'master']: [string?]) {
 		await this.fetch(message, branch);
 		await this.updateDependencies(message);

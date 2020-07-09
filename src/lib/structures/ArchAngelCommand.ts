@@ -1,22 +1,17 @@
 import { ChannelType } from '@klasa/dapi-types';
-import { mergeDefault } from '@klasa/utils';
 import { PermissionLevels } from '@lib/types/Enums';
 import { Command, CommandOptions, CommandStore, KlasaMessage } from 'klasa';
 
 export abstract class ArchAngelCommand extends Command {
 	public constructor(store: CommandStore, directory: string, file: string[], options: ArchAngelCommandOptions = {}) {
-		super(
-			store,
-			directory,
-			file,
-			mergeDefault(
-				{
-					runIn: [ChannelType.GuildText, ChannelType.GuildNews, ChannelType.GuildStore],
-					permissionLevel: PermissionLevels.Everyone
-				},
-				options
-			)
-		);
+		super(store, directory, file, {
+			runIn: [ChannelType.GuildText, ChannelType.GuildNews, ChannelType.GuildStore],
+			permissionLevel: PermissionLevels.Everyone,
+			deletable: true,
+			quotedStringSupport: true,
+			autoAliases: true,
+			...options
+		});
 	}
 
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars

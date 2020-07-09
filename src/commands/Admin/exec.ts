@@ -1,11 +1,11 @@
 import { Attachment, Message } from '@klasa/core';
 import { codeBlock, exec } from '@klasa/utils';
+import { ArchAngelCommand, ArchAngelCommandOptions } from '@lib/structures/ArchAngelCommand';
 import { PermissionLevels } from '@lib/types/Enums';
 import { ApplyOptions } from '@skyra/decorators';
 import { fetch, FetchMethods, FetchResultTypes } from '@utils/fetch';
-import { Command, CommandOptions } from 'klasa';
 
-@ApplyOptions<CommandOptions>({
+@ApplyOptions<ArchAngelCommandOptions>({
 	aliases: ['execute'],
 	description: (language) => language.tget('COMMAND_EXEC_DESCRIPTION'),
 	extendedHelp: (language) => language.tget('COMMAND_EXEC_EXTENDED'),
@@ -14,7 +14,7 @@ import { Command, CommandOptions } from 'klasa';
 	usage: '<expression:string>',
 	flagSupport: true
 })
-export default class extends Command {
+export default class extends ArchAngelCommand {
 	public async run(message: Message, [input]: [string]) {
 		const result = await exec(input, { timeout: 'timeout' in message.flagArgs ? Number(message.flagArgs.timeout) : 60000 }).catch((error) => ({
 			stdout: null,

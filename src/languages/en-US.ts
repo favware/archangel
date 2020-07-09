@@ -1,7 +1,6 @@
 import { Embed, PermissionsFlags } from '@klasa/core';
 import { codeBlock, toTitleCase } from '@klasa/utils';
 import { LanguageKeys } from '@lib/types/Languages';
-import { VERSION } from '@root/config';
 import { Emojis } from '@utils/constants';
 import friendlyDuration, { DurationFormatAssetsTime, TimeTypes } from '@utils/FriendlyDuration';
 import { LanguageHelp } from '@utils/LanguageHelp';
@@ -250,11 +249,11 @@ export default class extends Language {
 			].join('\n'),
 		COMMAND_INVITE_DESCRIPTION: 'Displays the invite link of the bot, to invite it to your guild.',
 		COMMAND_INFO: [
-			`ArchAngel ${VERSION} is a private discord bot for Populous Gaming.`,
+			`ArchAngel is a private discord bot for Populous Gaming.`,
 			'This bot uses the Klasa framework build on top of the @klasa/core library.',
 			'',
 			'ArchAngel features:',
-			"• Automatically and intelligently forwarding Arc's messages to his misadventures.",
+			"• Quoting messages in a rich and awesome way.",
 			'And more!'
 		].join('\n'),
 		COMMAND_INFO_DESCRIPTION: 'Provides some information about this bot.',

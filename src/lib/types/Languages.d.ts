@@ -1,4 +1,4 @@
-import { Embed, Piece, TextChannel } from '@klasa/core';
+import { Embed, TextChannel } from '@klasa/core';
 import { StatsGeneral, StatsUptime, StatsUsage } from '@root/commands/System/stats';
 
 export interface LanguageKeys {
@@ -49,7 +49,7 @@ export interface LanguageKeys {
 	RESOLVER_INVALID_LITERAL(name: string): string;
 	RESOLVER_INVALID_MEMBER(name: string): string;
 	RESOLVER_INVALID_MESSAGE(name: string): string;
-	RESOLVER_INVALID_PIECE(name: string, piece: Piece): string;
+	RESOLVER_INVALID_PIECE(name: string, piece: string): string;
 	RESOLVER_INVALID_REGEX_MATCH(name: string, pattern: RegExp): string;
 	RESOLVER_INVALID_ROLE(name: string): string;
 	RESOLVER_INVALID_STRING(name: string): string;
