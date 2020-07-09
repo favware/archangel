@@ -53,7 +53,10 @@ export default class extends ArchAngelCommand {
 		);
 
 		// Generate the image
-		const buffer = await imageGenerator({ html });
+		const buffer = await imageGenerator({
+			html,
+			puppeteerArgs: { args: ['--no-sandbox', '--disable-setuid-sandbox'], ignoreHTTPSErrors: true }
+		});
 
 		// Send the image
 		await targetChannel.send(async (mb) =>
