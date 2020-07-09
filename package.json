@@ -41,7 +41,7 @@
 		"@klasa/cache": "^0.0.3",
 		"@klasa/console": "^0.0.3",
 		"@klasa/core": "dirigeants/core#build",
-		"@klasa/rest": "^0.5.3",
+		"@klasa/rest": "^0.5.4",
 		"@klasa/snowflake": "^0.0.1",
 		"@klasa/stopwatch": "^0.0.1",
 		"@klasa/timestamp": "^0.0.1",
@@ -53,7 +53,7 @@
 		"module-alias": "^2.2.2",
 		"node-html-to-image": "favna/node-html-to-image#build",
 		"reflect-metadata": "^0.1.13",
-		"ws": "^7.3.0",
+		"ws": "^7.3.1",
 		"zlib-sync": "^0.1.7"
 	},
 	"devDependencies": {
@@ -63,9 +63,9 @@
 		"@skyra/discord-components-core": "^1.2.1",
 		"@types/marked": "^1.1.0",
 		"@types/module-alias": "^2.0.0",
-		"@types/node": "^14.0.19",
+		"@types/node": "^14.0.20",
 		"@types/puppeteer": "^3.0.1",
-		"@types/ws": "^7.2.5",
+		"@types/ws": "^7.2.6",
 		"typescript": "^3.9.6"
 	},
 	"_moduleAliases": {
