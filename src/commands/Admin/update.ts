@@ -27,13 +27,13 @@ export default class extends ArchAngelCommand {
 	private async compile(message: Message) {
 		const { stderr, code } = await this.exec('yarn build');
 		if (code !== 0 && stderr.length) throw stderr.trim();
-		return message.reply((mb) => mb.setContent(`${Emojis.GreenTick} Successfully compiled.`));
+		return message.channel.send((mb) => mb.setContent(`${Emojis.GreenTick} Successfully compiled.`));
 	}
 
 	private async cleanDist(message: Message) {
 		if (message.flagArgs.fullRebuild) {
 			await remove(resolve(rootFolder, 'dist'));
-			return message.reply((mb) => mb.setContent(`${Emojis.GreenTick} Successfully cleaned old dist directory.`));
+			return message.channel.send((mb) => mb.setContent(`${Emojis.GreenTick} Successfully cleaned old dist directory.`));
 		}
 
 		return;
@@ -42,7 +42,7 @@ export default class extends ArchAngelCommand {
 	private async updateDependencies(message: Message) {
 		const { stderr, code } = await this.exec('yarn install --frozen-lockfile');
 		if (code !== 0 && stderr.length) throw stderr.trim();
-		return message.reply((mb) => mb.setContent(`${Emojis.GreenTick} Successfully updated dependencies.`));
+		return message.channel.send((mb) => mb.setContent(`${Emojis.GreenTick} Successfully updated dependencies.`));
 	}
 
 	private async fetch(message: Message, branch: string) {
