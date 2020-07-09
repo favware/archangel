@@ -364,13 +364,23 @@ export default class extends Language {
 		 * #################################
 		 */
 		COMMAND_QUOTE_DESCRIPTION: 'Quotes one or more messages and outputs them in a channel',
-		COMMAND_QUOTE_EXTENDED: builder.display('quote', {
-			extendedHelp: "Ever wanted to quote Arc's misadventures in style? This is your chance!",
-			explainedUsage: [
-				['channel', 'The channel to output to, by default it will output to the current channel'],
-				['messageIds', 'The message ID or message IDs to include in the quote']
-			]
-		}),
+		COMMAND_QUOTE_EXTENDED: builder.display(
+			'quote',
+			{
+				extendedHelp: `Ever wanted to quote Arc's misadventures in style? This is your chance!
+				By default this command will look for messages in the current channel, as well as output to the current channel. This behaviour can be modified with flags.
+				Add \`--channel=<channelID>\` (or \`--sourcechannel=<channelID>\`) to get messages from another, given, channel
+				Add \`--targetchannel=<channelID>\` to output the quote to another message`,
+				explainedUsage: [['messageIds', 'The message ID or message IDs to include in the quote']],
+				examples: [
+					'quote 730445626705444947',
+					'quote 730445626705444947 726548049731518515',
+					'quote 730445626705444947 726548049731518515 --channel=512351625428336700',
+					'quote 730445626705444947 726548049731518515 --channel=512351625428336700 --targetchannel=512352714190225409'
+				]
+			},
+			true
+		),
 		COMMAND_QUOTE_NO_MESSAGES: `${REDCROSS} I'm sorry, but I was unable to find any messages to quote`,
 
 		/**
