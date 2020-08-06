@@ -16,7 +16,7 @@ import { Emojis, rootFolder } from '../../lib/util/constants';
 	usage: '[branch:string]'
 })
 export default class extends ArchAngelCommand {
-	public async run(message: Message, [branch = 'master']: [string?]) {
+	public async run(message: Message, [branch = 'main']: [string?]) {
 		await this.fetch(message, branch);
 		await this.updateDependencies(message);
 		await this.cleanDist(message);
