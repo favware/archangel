@@ -1,8 +1,8 @@
 import { Constructor, Message } from '@klasa/core';
-import { sleep } from '@klasa/utils';
 import { Events } from '@lib/types/Enums';
 import { ApplyOptions } from '@skyra/decorators';
 import { APIErrors } from '@utils/constants';
+import { sleep } from '@utils/sleep';
 import { Extendable, ExtendableOptions } from 'klasa';
 
 @ApplyOptions<ExtendableOptions>({

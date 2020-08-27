@@ -1,5 +1,5 @@
 import { Embed, PermissionsFlags } from '@klasa/core';
-import { codeBlock, toTitleCase } from '@klasa/utils';
+import { codeBlock, toTitleCase } from '@sapphire/utilities';
 import { LanguageKeys } from '@lib/types/Languages';
 import { Emojis } from '@utils/constants';
 import friendlyDuration, { DurationFormatAssetsTime, TimeTypes } from '@utils/FriendlyDuration';
@@ -253,7 +253,7 @@ export default class extends Language {
 			'This bot uses the Klasa framework build on top of the @klasa/core library.',
 			'',
 			'ArchAngel features:',
-			"• Quoting messages in a rich and awesome way.",
+			'• Quoting messages in a rich and awesome way.',
 			'And more!'
 		].join('\n'),
 		COMMAND_INFO_DESCRIPTION: 'Provides some information about this bot.',

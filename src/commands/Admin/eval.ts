@@ -1,11 +1,12 @@
 import { Stopwatch } from '@klasa/stopwatch';
 import { Type } from '@klasa/type';
-import { codeBlock, isThenable, sleep } from '@klasa/utils';
 import { ArchAngelCommand, ArchAngelCommandOptions } from '@lib/structures/ArchAngelCommand';
 import { Events, PermissionLevels } from '@lib/types/Enums';
+import { codeBlock, isThenable } from '@sapphire/utilities';
 import { ApplyOptions } from '@skyra/decorators';
 import { clean } from '@utils/clean';
 import { EvalExtraData, handleMessage } from '@utils/ExceededLengthParser';
+import { sleep } from '@utils/sleep';
 import { KlasaMessage } from 'klasa';
 import { inspect } from 'util';
 
@@ -103,7 +104,8 @@ export default class extends ArchAngelCommand {
 					: inspect(result, {
 							depth: message.flagArgs.depth ? parseInt(message.flagArgs.depth, 10) || 0 : 0,
 							showHidden: Boolean(message.flagArgs.showHidden)
-					});
+							// prettier-ignore
+					 	}); // eslint-disable-line
 		}
 		return { success, type: type!, time: this.formatTime(syncTime, asyncTime ?? ''), result: clean(result as string) };
 	}

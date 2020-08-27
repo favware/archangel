@@ -1,8 +1,8 @@
 import { TextBasedChannel, TextChannel } from '@klasa/core';
-import { codeBlock } from '@klasa/utils';
 import { ArchAngelCommand, ArchAngelCommandOptions } from '@lib/structures/ArchAngelCommand';
 import { PermissionLevels } from '@lib/types/Enums';
 import { GuildSettings } from '@lib/types/settings/GuildSettings';
+import { codeBlock } from '@sapphire/utilities';
 import { ApplyOptions, CreateResolvers } from '@skyra/decorators';
 import { KlasaMessage } from 'klasa';
 

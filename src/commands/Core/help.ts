@@ -1,10 +1,10 @@
 import { Cache } from '@klasa/cache';
 import { Embed, Message, Permissions, PermissionsFlags, TextChannel } from '@klasa/core';
 import { ChannelType } from '@klasa/dapi-types';
-import { isFunction, isNumber } from '@klasa/utils';
 import { ArchAngelCommand, ArchAngelCommandOptions } from '@lib/structures/ArchAngelCommand';
 import { UserRichDisplay } from '@lib/structures/UserRichDisplay';
 import { GuildSettings } from '@lib/types/settings/GuildSettings';
+import { isFunction, isNumber } from '@sapphire/utilities';
 import { ApplyOptions, CreateResolvers } from '@skyra/decorators';
 import { BrandingColors } from '@utils/constants';
 import { getColor, noop } from '@utils/util';

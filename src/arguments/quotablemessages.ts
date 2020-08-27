@@ -1,5 +1,5 @@
 import type { Message, TextChannel } from '@klasa/core';
-import { isThenable } from '@klasa/utils';
+import { isThenable } from '@sapphire/utilities';
 import { Argument, Possible } from 'klasa';
 
 export default class extends Argument {

@@ -1,8 +1,8 @@
 import { Attachment, GuildMember, TextChannel } from '@klasa/core';
 import { APIUserFlags } from '@klasa/dapi-types';
 import { Timestamp } from '@klasa/timestamp';
-import { isThenable } from '@klasa/utils';
 import { ArchAngelCommand, ArchAngelCommandOptions } from '@lib/structures/ArchAngelCommand';
+import { isThenable } from '@sapphire/utilities';
 import { ApplyOptions } from '@skyra/decorators';
 import { BrandingColors } from '@utils/constants';
 import { discordMessageGenerator, discordMessagesGenerator, htmlGenerator } from '@utils/HtmlGenerator';

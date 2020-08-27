@@ -1,8 +1,9 @@
 import { Attachment, Message } from '@klasa/core';
-import { codeBlock, exec } from '@klasa/utils';
 import { ArchAngelCommand, ArchAngelCommandOptions } from '@lib/structures/ArchAngelCommand';
 import { PermissionLevels } from '@lib/types/Enums';
+import { codeBlock } from '@sapphire/utilities';
 import { ApplyOptions } from '@skyra/decorators';
+import { exec } from '@utils/exec';
 import { fetch, FetchMethods, FetchResultTypes } from '@utils/fetch';
 
 @ApplyOptions<ArchAngelCommandOptions>({

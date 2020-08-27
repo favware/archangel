@@ -1,9 +1,9 @@
+import '@lib/schemas/Guild';
+import { CLIENT_OPTIONS, TOKEN } from '@root/config';
+import '@utils/initClean';
+import { KlasaClient, KlasaClientOptions } from 'klasa';
 import 'module-alias/register';
 import 'reflect-metadata';
-import '@lib/schemas/Guild';
-import '@utils/initClean';
-import { CLIENT_OPTIONS, TOKEN } from '@root/config';
-import { KlasaClient, KlasaClientOptions } from 'klasa';
 import { inspect } from 'util';
 inspect.defaultOptions.depth = 1;
 

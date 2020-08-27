@@ -1,6 +1,6 @@
 import { Cache } from '@klasa/cache';
 import { Message } from '@klasa/core';
-import { codeBlock } from '@klasa/utils';
+import { codeBlock } from '@sapphire/utilities';
 import { levenshtein } from './External/levenshtein';
 
 type FuzzySearchAccess<V> = (value: V) => string;

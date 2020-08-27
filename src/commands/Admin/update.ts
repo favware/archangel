@@ -1,8 +1,10 @@
 import type { Message } from '@klasa/core';
-import { codeBlock, exec, sleep } from '@klasa/utils';
 import { ArchAngelCommand, ArchAngelCommandOptions } from '@lib/structures/ArchAngelCommand';
 import { PermissionLevels } from '@lib/types/Enums';
+import { codeBlock } from '@sapphire/utilities';
 import { ApplyOptions } from '@skyra/decorators';
+import { exec } from '@utils/exec';
+import { sleep } from '@utils/sleep';
 import { cutText } from '@utils/util';
 import { remove } from 'fs-nextra';
 import { resolve } from 'path';
