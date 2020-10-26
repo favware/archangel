@@ -1,7 +1,7 @@
-import { Message, PermissionsFlags } from '@klasa/core';
-import { CustomUsageArgument, Possible } from 'klasa';
-import { LanguageKeys } from './Languages';
-import { CustomGet } from './settings/Shared';
+import type { Message, PermissionsFlags } from '@klasa/core';
+import type { CustomUsageArgument, Possible } from 'klasa';
+import type { LanguageKeys } from './Languages';
+import type { CustomGet } from './settings/Shared';
 
 declare module '@klasa/core/dist/src/lib/client/Client' {
 	interface ClientOptions {
@@ -14,6 +14,7 @@ declare module '@klasa/core/dist/src/lib/client/Client' {
 }
 
 declare module '@klasa/core/dist/src/lib/caching/structures/messages/Message' {
+	// eslint-disable-next-line
 	interface Message {
 		prompt(content: string, time?: number): Promise<Message>;
 		nuke(time?: number): Promise<Message>;
