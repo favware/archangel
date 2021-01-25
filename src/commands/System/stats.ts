@@ -16,7 +16,9 @@ import { cpus, uptime } from 'os';
 export default class extends ArchAngelCommand {
 	public async run(message: KlasaMessage) {
 		return message.reply((mb) =>
-			mb.setEmbed(message.language.tget('COMMAND_STATS', getColor(message), this.generalStatistics, this.uptimeStatistics, this.usageStatistics))
+			mb.setEmbed(
+				message.language.tget('COMMAND_STATS', getColor(message), this.generalStatistics, this.uptimeStatistics, this.usageStatistics)
+			)
 		);
 	}
 

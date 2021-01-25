@@ -1,5 +1,5 @@
-import { Cache } from '@klasa/cache';
-import { Message } from '@klasa/core';
+import type { Cache } from '@klasa/cache';
+import type { Message } from '@klasa/core';
 import { codeBlock } from '@sapphire/utilities';
 import { levenshtein } from './External/levenshtein';
 

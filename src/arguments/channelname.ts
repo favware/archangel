@@ -1,4 +1,4 @@
-import { GuildBasedChannel, GuildChannel } from '@klasa/core';
+import type { GuildBasedChannel, GuildChannel } from '@klasa/core';
 import { FuzzySearch } from '@utils/FuzzySearch';
 import { validateChannelAccess } from '@utils/util';
 import { Argument, CustomUsageArgument, KlasaGuild, KlasaMessage, Possible } from 'klasa';

@@ -2,7 +2,7 @@ import { Attachment, TextChannel } from '@klasa/core';
 import { ArchAngelCommand, ArchAngelCommandOptions } from '@lib/structures/ArchAngelCommand';
 import { PermissionLevels } from '@lib/types/Enums';
 import { ApplyOptions } from '@skyra/decorators';
-import { KlasaMessage } from 'klasa';
+import type { KlasaMessage } from 'klasa';
 
 @ApplyOptions<ArchAngelCommandOptions>({
 	aliases: ['talk'],

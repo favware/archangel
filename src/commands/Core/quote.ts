@@ -42,7 +42,7 @@ export default class extends ArchAngelCommand {
 
 		// For every quotable message generate the HTML
 		for (const quoteMessage of messages) {
-			content.push(await this.messageToHtml(quoteMessage, message));
+			content.push(this.messageToHtml(quoteMessage, message));
 		}
 
 		// Generate the HTML
@@ -72,7 +72,7 @@ export default class extends ArchAngelCommand {
 		return loadingMessage.nuke();
 	}
 
-	private async messageToHtml(message: KlasaMessage, commandMessage: KlasaMessage): Promise<string> {
+	private messageToHtml(message: KlasaMessage, commandMessage: KlasaMessage): string {
 		const member = commandMessage.guild!.members.get(message.author.id);
 		const attachment = getAttachment(message);
 

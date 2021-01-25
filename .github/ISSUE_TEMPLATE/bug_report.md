@@ -22,10 +22,10 @@ You likely won't receive any basic help here.
 
 **Further details:**
 
-- version:
-- Node.js version:
-- Operating system:
-- Priority this issue should have – please be realistic and elaborate if possible:
+-   version:
+-   Node.js version:
+-   Operating system:
+-   Priority this issue should have – please be realistic and elaborate if possible:
 
 <!--
 If this applies to you, please check the respective checkbox: [ ] becomes [x].
@@ -35,4 +35,4 @@ While it's not a requirement to test your issue on the staging branch, it would 
 the problem a lot easier for us, so please do so if possible.
 -->
 
-- [ ] I have also tested the issue on latest staging, commit hash:
+-   [ ] I have also tested the issue on latest staging, commit hash:

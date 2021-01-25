@@ -1,6 +1,8 @@
 {
-	"extends": "@favware/ts-config",
+	"extends": "@sapphire/ts-config",
 	"compilerOptions": {
-		"target": "ESNext"
+		"lib": ["ES2020", "DOM"],
+		"target": "ES2020",
+		"module": "ES2020"
 	}
 }

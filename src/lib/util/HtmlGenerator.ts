@@ -1,6 +1,6 @@
 import type { Components } from '@skyra/discord-components-core/dist/types/components';
 import markdownToHtml from 'marked';
-import { getAttachment } from './util';
+import type { getAttachment } from './util';
 
 markdownToHtml.setOptions({
 	breaks: false,

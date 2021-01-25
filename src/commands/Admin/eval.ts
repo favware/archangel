@@ -7,7 +7,7 @@ import { ApplyOptions } from '@skyra/decorators';
 import { clean } from '@utils/clean';
 import { EvalExtraData, handleMessage } from '@utils/ExceededLengthParser';
 import { sleep } from '@utils/sleep';
-import { KlasaMessage } from 'klasa';
+import type { KlasaMessage } from 'klasa';
 import { inspect } from 'util';
 
 @ApplyOptions<ArchAngelCommandOptions>({
@@ -105,7 +105,7 @@ export default class extends ArchAngelCommand {
 							depth: message.flagArgs.depth ? parseInt(message.flagArgs.depth, 10) || 0 : 0,
 							showHidden: Boolean(message.flagArgs.showHidden)
 							// prettier-ignore
-					 	}); // eslint-disable-line
+					  }); // eslint-disable-line
 		}
 		return { success, type: type!, time: this.formatTime(syncTime, asyncTime ?? ''), result: clean(result as string) };
 	}

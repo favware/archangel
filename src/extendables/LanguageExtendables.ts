@@ -1,6 +1,6 @@
-import { Constructor } from '@klasa/core';
-import { LanguageKeysComplex, LanguageKeysSimple } from '@lib/types/Augments';
-import { LanguageKeys } from '@lib/types/Languages';
+import type { Constructor } from '@klasa/core';
+import type { LanguageKeysComplex, LanguageKeysSimple } from '@lib/types/Augments';
+import type { LanguageKeys } from '@lib/types/Languages';
 import { ApplyOptions } from '@skyra/decorators';
 import { Extendable, ExtendableOptions, Language } from 'klasa';
 

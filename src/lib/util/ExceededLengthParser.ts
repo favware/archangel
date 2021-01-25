@@ -1,10 +1,13 @@
 import { Attachment, Message } from '@klasa/core';
 import { Events } from '@lib/types/Enums';
 import { codeBlock } from '@sapphire/utilities';
-import { KlasaMessage } from 'klasa';
+import type { KlasaMessage } from 'klasa';
 import { fetch, FetchMethods, FetchResultTypes } from './fetch';
 
-export async function handleMessage<ED extends ExtraDataPartial>(message: KlasaMessage, options: HandleMessageData<ED>): Promise<Message | Message[] | null> {
+export async function handleMessage<ED extends ExtraDataPartial>(
+	message: KlasaMessage,
+	options: HandleMessageData<ED>
+): Promise<Message | Message[] | null> {
 	switch (options.sendAs) {
 		case 'file': {
 			if (message.channel.attachable) {
@@ -23,7 +26,8 @@ export async function handleMessage<ED extends ExtraDataPartial>(message: KlasaM
 		}
 		case 'haste':
 		case 'hastebin': {
-			if (!options.url) options.url = await getHaste(options.content ? options.content : options.result!, options.language ?? 'md').catch(() => null);
+			if (!options.url)
+				options.url = await getHaste(options.content ? options.content : options.result!, options.language ?? 'md').catch(() => null);
 			if (options.url) return message.replyLocale('SYSTEM_EXCEEDED_LENGTH_OUTPUT_HASTEBIN', [options.url, options.time, options.footer]);
 			options.hastebinUnavailable = true;
 			await getTypeOutput(message, options);
@@ -48,7 +52,9 @@ export async function handleMessage<ED extends ExtraDataPartial>(message: KlasaM
 					mb.setContent(
 						codeBlock(
 							'md',
-							`${options.content}${options.content && options.attachments ? `\n\n\n=============\n${options.attachments}` : options.attachments}`
+							`${options.content}${
+								options.content && options.attachments ? `\n\n\n=============\n${options.attachments}` : options.attachments
+							}`
 						)
 					)
 				);

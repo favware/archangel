@@ -1,6 +1,6 @@
 import { Client, PresenceBuilder } from '@klasa/core';
 import { ActivityType } from '@klasa/dapi-types';
-import { KlasaClientOptions } from 'klasa';
+import type { KlasaClientOptions } from 'klasa';
 import { resolve } from 'path';
 
 // eslint-disable-next-line no-process-env
@@ -49,7 +49,9 @@ export const CLIENT_OPTIONS: DeepPartial<KlasaClientOptions> = {
 	ws: {
 		shards: 'auto',
 		additionalOptions: {
-			presence: new PresenceBuilder().setGame((pg) => pg.setType(ActivityType.Listening).setName(DEV ? '@Lucifer_#3132 help' : '@Archangel#2243 help'))
+			presence: new PresenceBuilder().setGame((pg) =>
+				pg.setType(ActivityType.Listening).setName(DEV ? '@Lucifer_#3132 help' : '@Archangel#2243 help')
+			)
 		}
 	}
 };

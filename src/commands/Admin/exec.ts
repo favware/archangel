@@ -35,7 +35,9 @@ export default class extends ArchAngelCommand {
 	}
 
 	private async getHaste(result: string) {
-		const { key } = (await fetch('https://hasteb.in/documents', { method: FetchMethods.Post, body: result }, FetchResultTypes.JSON)) as { key: string };
+		const { key } = (await fetch('https://hasteb.in/documents', { method: FetchMethods.Post, body: result }, FetchResultTypes.JSON)) as {
+			key: string;
+		};
 		return `https://hasteb.in/${key}.js`;
 	}
 }

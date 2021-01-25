@@ -7,7 +7,7 @@ import { ApplyOptions } from '@skyra/decorators';
 	description: (language) => language.get('COMMAND_PING_DESCRIPTION')
 })
 export default class extends ArchAngelCommand {
-	async run(message: Message): Promise<Message[]> {
+	public async run(message: Message): Promise<Message[]> {
 		const [msg] = await message.replyLocale('COMMAND_PING');
 		return message.replyLocale('COMMAND_PINGPONG', [
 			(msg.editedTimestamp || msg.createdTimestamp) - (message.editedTimestamp || message.createdTimestamp),

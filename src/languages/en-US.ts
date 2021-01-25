@@ -1,6 +1,6 @@
 import { Embed, PermissionsFlags } from '@klasa/core';
 import { codeBlock, toTitleCase } from '@sapphire/utilities';
-import { LanguageKeys } from '@lib/types/Languages';
+import type { LanguageKeys } from '@lib/types/Languages';
 import { Emojis } from '@utils/constants';
 import friendlyDuration, { DurationFormatAssetsTime, TimeTypes } from '@utils/FriendlyDuration';
 import { LanguageHelp } from '@utils/LanguageHelp';
@@ -181,7 +181,7 @@ export default class extends Language {
 		INHIBITOR_NSFW: 'You can only use NSFW commands in NSFW channels.',
 		INHIBITOR_PERMISSIONS: 'You do not have permission to use this command.',
 		INHIBITOR_REQUIRED_SETTINGS: (settings) =>
-			`The guild is missing the **${settings.join(', ')}** guild setting${settings.length !== 1 ? 's' : ''} and thus the command cannot run.`,
+			`The guild is missing the **${settings.join(', ')}** guild setting${settings.length === 1 ? '' : 's'} and thus the command cannot run.`,
 		INHIBITOR_RUNIN_NONE: (name) => `The ${name} command is not configured to run in any channel.`,
 		INHIBITOR_RUNIN: (types) => `This command is only available in ${types} channels.`,
 		MONITOR_COMMAND_HANDLER_ABORTED: 'Aborted',
@@ -214,7 +214,7 @@ export default class extends Language {
 		COMMAND_UNLOAD: (type, name) => `${GREENTICK} Unloaded ${type}: ${name}`,
 		COMMAND_UNLOAD_DESCRIPTION: 'Unloads the klasa piece.',
 		COMMAND_UNLOAD_WARN: "You probably don't want to unload that, since you wouldn't be able to run any command to enable it again",
-		COMMAND_TRANSFER_ERROR: '${REDCROSS} That file has been transfered already or never existed.',
+		COMMAND_TRANSFER_ERROR: `${REDCROSS} That file has been transfered already or never existed.`,
 		COMMAND_TRANSFER_SUCCESS: (type, name) => `${GREENTICK} Successfully transferred ${type}: ${name}.`,
 		COMMAND_TRANSFER_FAILED: (type, name) => `Transfer of ${type}: ${name} to Client has failed. Please check your Console.`,
 		COMMAND_TRANSFER_DESCRIPTION: 'Transfers a core piece to its respective folder.',
@@ -260,7 +260,8 @@ export default class extends Language {
 		COMMAND_ENABLE: (type, name) => `+ Successfully enabled ${type}: ${name}`,
 		COMMAND_ENABLE_DESCRIPTION: 'Re-enables or temporarily enables a command/inhibitor/monitor/finalizer. Default state restored on reboot.',
 		COMMAND_DISABLE: (type, name) => `+ Successfully disabled ${type}: ${name}`,
-		COMMAND_DISABLE_DESCRIPTION: 'Re-disables or temporarily disables a command/inhibitor/monitor/finalizer/event. Default state restored on reboot.',
+		COMMAND_DISABLE_DESCRIPTION:
+			'Re-disables or temporarily disables a command/inhibitor/monitor/finalizer/event. Default state restored on reboot.',
 		COMMAND_DISABLE_WARN: "You probably don't want to disable that, since you wouldn't be able to run any command to enable it again",
 		COMMAND_CONF_NOKEY: 'You must provide a key',
 		COMMAND_CONF_NOVALUE: 'You must provide a value',
@@ -328,7 +329,8 @@ export default class extends Language {
 			`${GREENTICK} Success! All successful commands in ${channel} will be deleted after ${duration(time)}!`,
 		COMMAND_MANAGECOMMANDAUTODELETE_DESCRIPTION: 'Manage per-channel autodelete timer.',
 		COMMAND_MANAGECOMMANDAUTODELETE_EXTENDED: builder.display('manageCommandAutodelete', {
-			extendedHelp: "This command manages this guild's per-channel command autodelete timer, it serves well to leave a channel clean from commands.",
+			extendedHelp:
+				"This command manages this guild's per-channel command autodelete timer, it serves well to leave a channel clean from commands.",
 			explainedUsage: [
 				['show', 'Show the autodelete timer for all channels.'],
 				['add [channel] <command>', 'Add an autodelete timer for the specified channel.'],
@@ -338,13 +340,16 @@ export default class extends Language {
 			reminder: "The channel argument is optional, defaulting to the message's channel, but it uses fuzzy search when possible.",
 			examples: ['show', 'add #general 4s', 'remove #general', 'reset']
 		}),
-		COMMAND_MANAGECOMMANDAUTODELETE_REMOVE_NOTSET: (channel) => `${REDCROSS} The channel ${channel} was not configured to automatically delete messages!`,
-		COMMAND_MANAGECOMMANDAUTODELETE_REMOVE: (channel) => `${GREENTICK} Success! Commands will not be automatically deleted in ${channel} anymore!`,
+		COMMAND_MANAGECOMMANDAUTODELETE_REMOVE_NOTSET: (channel) =>
+			`${REDCROSS} The channel ${channel} was not configured to automatically delete messages!`,
+		COMMAND_MANAGECOMMANDAUTODELETE_REMOVE: (channel) =>
+			`${GREENTICK} Success! Commands will not be automatically deleted in ${channel} anymore!`,
 		COMMAND_MANAGECOMMANDAUTODELETE_REQUIRED_DURATION: 'You must specify an amount of seconds for the command to be automatically deleted.',
 		COMMAND_MANAGECOMMANDAUTODELETE_RESET: 'All the command autodeletes have been reset.',
 		COMMAND_MANAGECOMMANDAUTODELETE_SHOW_EMPTY: 'There are no command autodelete configured right now.',
 		COMMAND_MANAGECOMMANDAUTODELETE_SHOW: (codeblock) => `All command autodeletes configured:${codeblock}`,
-		COMMAND_MANAGECOMMANDAUTODELETE_TEXTCHANNEL: 'You must input a valid text channel, people cannot use commands in a voice or a category channel!',
+		COMMAND_MANAGECOMMANDAUTODELETE_TEXTCHANNEL:
+			'You must input a valid text channel, people cannot use commands in a voice or a category channel!',
 		COMMAND_SETPREFIX_DESCRIPTION: "Set Archangel's prefix.",
 		COMMAND_SETPREFIX_EXTENDED: builder.display('setPrefix', {
 			extendedHelp: `This command helps you setting up Archangel's prefix. A prefix is an affix that is added in front of the word, in this case, the message.
@@ -391,7 +396,8 @@ export default class extends Language {
 		COMMAND_HELP_NO_EXTENDED: 'No extended help available.',
 		COMMAND_HELP_DM: '📥 | The list of commands you have access to has been sent to your DMs.',
 		COMMAND_HELP_NODM: `${REDCROSS} | You have DMs disabled, I couldn't send you the commands in DMs.`,
-		COMMAND_HELP_ALL_FLAG: (prefix) => `Displaying one category per page. Have issues with the embed? Run \`${prefix}help --all\` for a full list in DMs.`,
+		COMMAND_HELP_ALL_FLAG: (prefix) =>
+			`Displaying one category per page. Have issues with the embed? Run \`${prefix}help --all\` for a full list in DMs.`,
 		COMMAND_HELP_COMMAND_COUNT: (n) => `${n} command${n === 1 ? '' : 's'}`,
 		COMMAND_HELP_DATA: {
 			TITLE: (description) => `${description}`,

@@ -1,4 +1,4 @@
-import { GuildChannel, TextChannel } from '@klasa/core';
+import type { GuildChannel, TextChannel } from '@klasa/core';
 import { ChannelType } from '@klasa/dapi-types';
 import { Argument, CustomUsageArgument, KlasaMessage, Possible } from 'klasa';
 

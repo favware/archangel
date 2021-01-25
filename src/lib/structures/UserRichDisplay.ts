@@ -40,10 +40,13 @@ export class UserRichDisplay extends RichDisplay {
 
 	private setAuthorizedFooter(guildMember: GuildMember | null, channel: TextBasedChannel) {
 		const priviledged =
-			this.isDmChannel(channel) || guildMember === null ? true : channel.permissionsFor(guildMember)?.has(UserRichDisplay.kPermissions) ?? false;
+			this.isDmChannel(channel) || guildMember === null
+				? true
+				: channel.permissionsFor(guildMember)?.has(UserRichDisplay.kPermissions) ?? false;
 
 		if (priviledged) {
-			for (let i = 1; i <= this.pages.length; i++) this.pages[i - 1].setFooter(`${this['footerPrefix']}${i}/${this.pages.length}${this['footerSuffix']}`);
+			for (let i = 1; i <= this.pages.length; i++)
+				this.pages[i - 1].setFooter(`${this['footerPrefix']}${i}/${this.pages.length}${this['footerSuffix']}`);
 			if (this.infoPage) this.infoPage.setFooter('ℹ');
 		}
 	}

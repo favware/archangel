@@ -38,7 +38,7 @@ export default class extends ArchAngelCommand {
 			return message.channel.send((mb) => mb.setContent(`${Emojis.GreenTick} Successfully cleaned old dist directory.`));
 		}
 
-		return;
+		return undefined;
 	}
 
 	private async updateDependencies(message: Message) {
@@ -67,7 +67,9 @@ export default class extends ArchAngelCommand {
 
 		// For all other cases, return the original output
 		return message.reply((mb) =>
-			mb.setContent(codeBlock('prolog', [cutText(stdout, 1800) || Emojis.GreenTick, cutText(stderr, 100) || Emojis.GreenTick].join('\n-=-=-=-\n')))
+			mb.setContent(
+				codeBlock('prolog', [cutText(stdout, 1800) || Emojis.GreenTick, cutText(stderr, 100) || Emojis.GreenTick].join('\n-=-=-=-\n'))
+			)
 		);
 	}
 
@@ -79,7 +81,9 @@ export default class extends ArchAngelCommand {
 			throw `Unsuccessful pull, stashing:\n\n${codeBlock('prolog', [stdout || '✔', stderr || '✔'].join('\n-=-=-=-\n'))}`;
 		}
 
-		return message.reply((mb) => mb.setContent(codeBlock('prolog', [cutText(stdout, 1800) || '✔', cutText(stderr, 100) || '✔'].join('\n-=-=-=-\n'))));
+		return message.reply((mb) =>
+			mb.setContent(codeBlock('prolog', [cutText(stdout, 1800) || '✔', cutText(stderr, 100) || '✔'].join('\n-=-=-=-\n')))
+		);
 	}
 
 	private async checkout(message: Message, branch: string) {

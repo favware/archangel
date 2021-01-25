@@ -4,7 +4,7 @@ import { PermissionLevels } from '@lib/types/Enums';
 import { GuildSettings } from '@lib/types/settings/GuildSettings';
 import { codeBlock } from '@sapphire/utilities';
 import { ApplyOptions, CreateResolvers } from '@skyra/decorators';
-import { KlasaMessage } from 'klasa';
+import type { KlasaMessage } from 'klasa';
 
 @ApplyOptions<ArchAngelCommandOptions>({
 	bucket: 2,
@@ -78,6 +78,6 @@ export default class extends ArchAngelCommand {
 
 	public async reset(message: KlasaMessage) {
 		await message.guild!.settings.reset(GuildSettings.CommandAutodelete);
-		message.replyLocale('COMMAND_MANAGECOMMANDAUTODELETE_RESET');
+		void message.replyLocale('COMMAND_MANAGECOMMANDAUTODELETE_RESET');
 	}
 }

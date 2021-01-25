@@ -1,4 +1,4 @@
-import { GuildChannel } from '@klasa/core';
+import type { GuildChannel } from '@klasa/core';
 import { validateChannelAccess } from '@utils/util';
 import { Argument, KlasaMessage, Possible } from 'klasa';
 

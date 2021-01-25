@@ -8,7 +8,7 @@ import { isFunction, isNumber } from '@sapphire/utilities';
 import { ApplyOptions, CreateResolvers } from '@skyra/decorators';
 import { BrandingColors } from '@utils/constants';
 import { getColor, noop } from '@utils/util';
-import { Command, KlasaMessage } from 'klasa';
+import type { Command, KlasaMessage } from 'klasa';
 
 const PERMISSIONS_RICHDISPLAY = new Permissions([
 	PermissionsFlags.ManageMessages,
@@ -78,7 +78,11 @@ export default class extends ArchAngelCommand {
 		const command = typeof commandOrPage === 'object' ? commandOrPage : null;
 		if (command) return message.reply((mb) => mb.setEmbed(this.buildCommandHelp(message, command)));
 
-		if (!message.flagArgs.all && message.guild && (message.channel as TextChannel).permissionsFor(message.guild.me!)!.has(PERMISSIONS_RICHDISPLAY)) {
+		if (
+			!message.flagArgs.all &&
+			message.guild &&
+			(message.channel as TextChannel).permissionsFor(message.guild.me!)!.has(PERMISSIONS_RICHDISPLAY)
+		) {
 			const [response] = await message.reply((mb) =>
 				mb
 					.setContent(message.language.tget('COMMAND_HELP_ALL_FLAG', message.guildSettings.get(GuildSettings.Prefix)))
@@ -122,7 +126,9 @@ export default class extends ArchAngelCommand {
 		const display = new UserRichDisplay({ template: (embed) => embed.setColor(getColor(message)) });
 		for (const [category, commands] of commandsByCategory) {
 			display.addPage((template) =>
-				template.setTitle(`${category} Commands`).setDescription(commands.map(this.formatCommand.bind(this, message, prefix, true)).join('\n'))
+				template
+					.setTitle(`${category} Commands`)
+					.setDescription(commands.map(this.formatCommand.bind(this, message, prefix, true)).join('\n'))
 			);
 		}
 

@@ -21,7 +21,7 @@ export default class extends Extendable {
 		if (time === 0) return nuke(this);
 
 		await sleep(time);
-		return !this.deleted ? nuke(this) : this;
+		return this.deleted ? this : nuke(this);
 	}
 }
 

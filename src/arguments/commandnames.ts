@@ -1,4 +1,4 @@
-import { AliasPieceOptions } from '@klasa/core';
+import type { AliasPieceOptions } from '@klasa/core';
 import { ApplyOptions } from '@skyra/decorators';
 import { Argument, MultiArgument } from 'klasa';
 

@@ -2,7 +2,7 @@ import { ArchAngelCommand, ArchAngelCommandOptions } from '@lib/structures/ArchA
 import { PermissionLevels } from '@lib/types/Enums';
 import { GuildSettings } from '@lib/types/settings/GuildSettings';
 import { ApplyOptions } from '@skyra/decorators';
-import { KlasaMessage } from 'klasa';
+import type { KlasaMessage } from 'klasa';
 
 @ApplyOptions<ArchAngelCommandOptions>({
 	bucket: 2,

@@ -1,6 +1,6 @@
 apps:
-  script: "./dist/ArchAngel.js"
-  name: "ArchAngel"
+  script: './dist/ArchAngel.js'
+  name: 'ArchAngel'
   vizion: false
   env:
     DEV: false
