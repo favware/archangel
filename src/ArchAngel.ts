@@ -1,20 +1,17 @@
-import 'reflect-metadata';
-import 'module-alias/register';
-import '@utils/initClean';
-import '@lib/schemas/Guild';
-import { CLIENT_OPTIONS, TOKEN } from '@root/config';
-import { KlasaClient, KlasaClientOptions } from 'klasa';
-import { inspect } from 'util';
-inspect.defaultOptions.depth = 1;
+import { ArchAngelClient } from '#lib/extensions/ArchAngelClient';
+import '#lib/setup';
+import { TOKEN } from '#root/config';
 
-const client = new KlasaClient(CLIENT_OPTIONS as KlasaClientOptions);
-client.token = TOKEN;
+const client = new ArchAngelClient();
 
-client.connect().catch((error) => {
-	client.console.error(error);
-});
-
-declare module 'klasa' {
-	// eslint-disable-next-line @typescript-eslint/no-empty-interface
-	export interface PieceOptions {}
+async function main() {
+	try {
+		await client.login(TOKEN);
+	} catch (error) {
+		client.logger.error(error);
+		client.destroy();
+		process.exit(1);
+	}
 }
+
+void main();

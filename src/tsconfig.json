@@ -4,13 +4,10 @@
 		"outDir": "../dist",
 		"rootDir": ".",
 		"baseUrl": ".",
-		"declaration": true,
-		"declarationMap": true,
-		"sourceMap": true,
 		"paths": {
-			"@utils/*": ["lib/util/*"],
-			"@lib/*": ["lib/*"],
-			"@root/*": ["*"]
+			"#utils/*": ["lib/util/*"],
+			"#lib/*": ["lib/*"],
+			"#root/*": ["*"]
 		}
 	},
 	"include": ["."]

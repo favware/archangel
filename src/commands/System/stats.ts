@@ -1,71 +1,96 @@
-import { PermissionsFlags, version as klasaCoreVersion } from '@klasa/core';
-import { ArchAngelCommand, ArchAngelCommandOptions } from '@lib/structures/ArchAngelCommand';
-import { ApplyOptions } from '@skyra/decorators';
-import { getColor, roundNumber } from '@utils/util';
-import { KlasaMessage, version as klasaVersion } from 'klasa';
-import { cpus, uptime } from 'os';
+import { ArchAngelCommand } from '#lib/extensions/ArchAngelCommand';
+import { BrandingColors } from '#utils/constants';
+import { ApplyOptions } from '@sapphire/decorators';
+import { roundNumber } from '@sapphire/utilities';
+import { Message, MessageEmbed, version } from 'discord.js';
+import { CpuInfo, cpus, uptime } from 'os';
 
-@ApplyOptions<ArchAngelCommandOptions>({
+@ApplyOptions<ArchAngelCommand.Options>({
 	aliases: ['stats', 'sts'],
-	bucket: 2,
-	cooldown: 15,
-	description: (language) => language.tget('COMMAND_STATS_DESCRIPTION'),
-	extendedHelp: (language) => language.tget('COMMAND_STATS_EXTENDED'),
-	requiredPermissions: [PermissionsFlags.EmbedLinks]
+	description: 'Provides some details about the bot and stats.',
+	permissions: ['EMBED_LINKS']
 })
-export default class extends ArchAngelCommand {
-	public async run(message: KlasaMessage) {
-		return message.reply((mb) =>
-			mb.setEmbed(
-				message.language.tget('COMMAND_STATS', getColor(message), this.generalStatistics, this.uptimeStatistics, this.usageStatistics)
-			)
-		);
+export class UserCommand extends ArchAngelCommand {
+	public run(message: Message) {
+		return message.send(this.buildEmbed());
+	}
+
+	private buildEmbed() {
+		const titles = {
+			stats: 'Statistics',
+			uptime: 'Uptime',
+			serverUsage: 'Server Usage'
+		};
+		const stats = this.generalStatistics;
+		const uptime = this.uptimeStatistics;
+		const usage = this.usageStatistics;
+
+		const fields = {
+			stats: `• **Users**: ${stats.users}}\n• **Guilds**: ${stats.guilds}\n• **Channels**: ${stats.channels}}\n• **Discord.js**: ${stats.version}}\n• **Node.js**: ${stats.nodeJs}`,
+			uptime: `• **Host**: ${this.context.client.EnGbHandler.duration.format(
+				uptime.host
+			)}\n• **Total**: ${this.context.client.EnGbHandler.duration.format(
+				uptime.total
+			)}\n• **Client**: ${this.context.client.EnGbHandler.duration.format(uptime.client)}`,
+			serverUsage: `• **CPU Load**: ${usage.cpuLoad}}\n• **Heap**: ${usage.ramUsed}MB (Total: ${usage.ramTotal}}MB)`
+		};
+
+		return new MessageEmbed()
+			.setColor(BrandingColors.Primary)
+			.addField(titles.stats, fields.stats)
+			.addField(titles.uptime, fields.uptime)
+			.addField(titles.serverUsage, fields.serverUsage);
 	}
 
 	private get generalStatistics(): StatsGeneral {
+		const { client } = this.context;
 		return {
-			CHANNELS: this.client.channels.size.toLocaleString(),
-			GUILDS: this.client.guilds.size.toLocaleString(),
-			NODE_JS: process.version,
-			USERS: this.client.guilds.reduce((a, b) => a + b.members.size, 0).toLocaleString(),
-			KLASA_CORE_VERSION: `v${klasaCoreVersion}`,
-			KLASA_VERSION: `v${klasaVersion}`
+			channels: client.channels.cache.size,
+			guilds: client.guilds.cache.size,
+			nodeJs: process.version,
+			users: client.guilds.cache.reduce((acc, val) => acc + (val.memberCount ?? 0), 0),
+			version: `v${version}`
 		};
 	}
 
 	private get uptimeStatistics(): StatsUptime {
 		return {
-			HOST: uptime() * 1000,
-			PROCESS: process.uptime() * 1000
+			client: this.context.client.uptime!,
+			host: uptime() * 1000,
+			total: process.uptime() * 1000
 		};
 	}
 
 	private get usageStatistics(): StatsUsage {
 		const usage = process.memoryUsage();
 		return {
-			CPU_LOAD: cpus().map(({ times }) => roundNumber(((times.user + times.nice + times.sys + times.irq) / times.idle) * 10000) / 100),
-			RAM_TOTAL: `${Math.round(100 * (usage.heapTotal / 1048576)) / 100}MB`,
-			RAM_USED: `${Math.round(100 * (usage.heapUsed / 1048576)) / 100}MB`
+			cpuLoad: cpus().map(UserCommand.formatCpuInfo.bind(null)).join(' | '),
+			ramTotal: usage.heapTotal / 1048576,
+			ramUsed: usage.heapUsed / 1048576
 		};
+	}
+
+	private static formatCpuInfo({ times }: CpuInfo) {
+		return `${roundNumber(((times.user + times.nice + times.sys + times.irq) / times.idle) * 10000) / 100}%`;
 	}
 }
 
 export interface StatsGeneral {
-	CHANNELS: string;
-	GUILDS: string;
-	NODE_JS: string;
-	USERS: string;
-	KLASA_CORE_VERSION: string;
-	KLASA_VERSION: string;
+	channels: number;
+	guilds: number;
+	nodeJs: string;
+	users: number;
+	version: string;
 }
 
 export interface StatsUptime {
-	HOST: number;
-	PROCESS: number;
+	client: number;
+	host: number;
+	total: number;
 }
 
 export interface StatsUsage {
-	CPU_LOAD: number[];
-	RAM_TOTAL: string;
-	RAM_USED: string;
+	cpuLoad: string;
+	ramTotal: number;
+	ramUsed: number;
 }

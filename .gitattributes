@@ -1,7 +1,0 @@
-* text eol=lf
-
-*.js text
-*.ts text
-*.json text
-*.md text
-*.ttf binary

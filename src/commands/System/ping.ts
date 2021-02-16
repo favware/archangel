@@ -1,17 +1,15 @@
-import type { Message } from '@klasa/core';
-import { ArchAngelCommand, ArchAngelCommandOptions } from '@lib/structures/ArchAngelCommand';
-import { ApplyOptions } from '@skyra/decorators';
+import { ArchAngelCommand } from '#lib/extensions/ArchAngelCommand';
+import { ApplyOptions } from '@sapphire/decorators';
+import type { Message } from 'discord.js';
 
-@ApplyOptions<ArchAngelCommandOptions>({
-	guarded: true,
-	description: (language) => language.get('COMMAND_PING_DESCRIPTION')
+@ApplyOptions<ArchAngelCommand.Options>({
+	description: 'Runs a connection test to Discord.'
 })
-export default class extends ArchAngelCommand {
-	public async run(message: Message): Promise<Message[]> {
-		const [msg] = await message.replyLocale('COMMAND_PING');
-		return message.replyLocale('COMMAND_PINGPONG', [
-			(msg.editedTimestamp || msg.createdTimestamp) - (message.editedTimestamp || message.createdTimestamp),
-			Math.round(this.client.ws.ping)
-		]);
+export class UserCommand extends ArchAngelCommand {
+	public async run(message: Message) {
+		const msg = await message.send('{{LOADING}} Ping?');
+		const diff = (msg.editedTimestamp || msg.createdTimestamp) - (message.editedTimestamp || message.createdTimestamp);
+		const ping = Math.round(this.context.client.ws.ping);
+		return message.send(`Pong! (Roundtrip took: ${diff}ms. Heartbeat: ${ping}ms.)`);
 	}
 }

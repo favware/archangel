@@ -1,8 +1,11 @@
 {
 	"extends": "@sapphire/ts-config",
 	"compilerOptions": {
-		"lib": ["ES2020", "DOM"],
-		"target": "ES2020",
-		"module": "ES2020"
+		"lib": ["ESNext", "DOM"],
+		"target": "ESNext",
+		"noEmitHelpers": true,
+		"importHelpers": true,
+		"removeComments": true,
+		"importsNotUsedAsValues": "remove"
 	}
 }
