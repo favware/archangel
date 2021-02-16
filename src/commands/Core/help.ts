@@ -1,8 +1,8 @@
 import { ArchAngelCommand } from '#lib/extensions/ArchAngelCommand';
-import { Emojis } from '#utils/constants';
+import { BrandingColors } from '#utils/constants';
 import { ApplyOptions } from '@sapphire/decorators';
 import { Store } from '@sapphire/framework';
-import { Collection, Message } from 'discord.js';
+import { Collection, Message, MessageEmbed } from 'discord.js';
 
 /**
  * Sorts a collection alphabetically as based on the keys, rather than the values.
@@ -30,16 +30,7 @@ export class UserCommand extends ArchAngelCommand {
 
 	private async all(message: Message, context: ArchAngelCommand.Context) {
 		const content = await this.buildHelp(message, context.commandPrefix);
-		try {
-			const response = await message.author.send(content, { split: { char: '\n' } });
-			return message.channel.type === 'dm'
-				? response
-				: await message.send('📥 | The list of commands you have access to has been sent to your DMs.');
-		} catch {
-			return message.channel.type === 'dm'
-				? null
-				: message.send(`${Emojis.RedCross} | You have DMs disabled so I couldn't send you the list of commands.`);
-		}
+		return message.send(new MessageEmbed().setDescription(content).setColor(BrandingColors.Primary));
 	}
 
 	private async buildHelp(message: Message, prefix: string) {

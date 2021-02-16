@@ -18,8 +18,5 @@ export class UserEvent extends Event {
 
 		// Run the message parser.
 		this.context.client.emit(Events.PreMessageParsed, message);
-
-		// Emit UserMessage
-		this.context.client.emit(Events.UserMessage, message);
 	}
 }
