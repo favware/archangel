@@ -38,15 +38,15 @@ export class UserCommand extends ArchAngelCommand {
 
 		const helpMessage: string[] = [];
 		for (const [category, list] of commands) {
-			helpMessage.push(`**${category} Commands**:\n`, list.map(this.formatCommand.bind(this, prefix, false)).join('\n'), '');
+			helpMessage.push(`**${category} Commands**:\n`, list.map(this.formatCommand.bind(this, prefix)).join('\n'), '');
 		}
 
 		return helpMessage.join('\n');
 	}
 
-	private formatCommand(prefix: string, paginatedMessage: boolean, command: ArchAngelCommand) {
+	private formatCommand(prefix: string, command: ArchAngelCommand) {
 		const { description } = command;
-		return paginatedMessage ? `• ${prefix}${command.name} → ${description}` : `• **${prefix}${command.name}** → ${description}`;
+		return `• **${prefix}${command.name}** → ${description}`;
 	}
 
 	private static async fetchCommands(message: Message) {

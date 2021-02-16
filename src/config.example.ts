@@ -6,13 +6,13 @@ export const NAME = DEV ? 'Lucifer' : 'ArchAngel';
 export const PREFIX = DEV ? 'lc.' : 'a.';
 export const VERSION = '2.0.0 Angelic';
 
-export const OWNERS = [''];
+export const OWNERS = ['268792781713965056'];
 
 export const CLIENT_OPTIONS: ClientOptions = {
 	shards: 'auto',
 	dev: DEV,
 	ws: {
-		intents: ['GUILDS', 'GUILD_MESSAGES', 'GUILD_MESSAGE_REACTIONS']
+		intents: ['GUILDS', 'GUILD_MESSAGES', 'DIRECT_MESSAGES']
 	},
 	messageCacheLifetime: 900,
 	messageCacheMaxSize: 300,
@@ -23,4 +23,4 @@ export const CLIENT_OPTIONS: ClientOptions = {
 	restTimeOffset: 0
 };
 
-export const TOKEN = '';
+export const TOKEN = process.env.ARCHANGEL_TOKEN ?? '';

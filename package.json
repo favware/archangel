@@ -38,10 +38,10 @@
 		"bufferutil": "^4.0.3",
 		"colorette": "^1.2.1",
 		"discord.js": "^12.5.1",
-		"marked": "^1.2.2",
+		"marked": "^2.0.0",
 		"node-html-to-image": "^3.1.0",
 		"reflect-metadata": "^0.1.13",
-		"tslib": "1.11.2",
+		"tslib": "2.1.0",
 		"utf-8-validate": "^5.0.4",
 		"ws": "^7.4.3",
 		"zlib-sync": "^0.1.7"

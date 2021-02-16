@@ -1,5 +1,6 @@
 import type { Components } from '@skyra/discord-components-core/dist/types/components';
 import markdownToHtml from 'marked';
+import { BrandingColors } from './constants';
 import type { getAttachment } from './util';
 
 markdownToHtml.setOptions({
@@ -37,7 +38,7 @@ export const discordMessageGenerator = ({
 		<discord-message
 			author="${author}"
 			avatar="${avatar}"
-			role-color="${roleColor ?? '#259EEE'}"
+			role-color="${roleColor ?? `#${BrandingColors.Secondary}`}"
 			timestamp=${timestamp}
 			${edited ? 'edited' : null}
 			${bot ? 'bot' : null}
