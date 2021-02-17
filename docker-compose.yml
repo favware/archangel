@@ -1,0 +1,12 @@
+version: '2.4'
+
+services:
+  archangel:
+    image: archangel:latest
+    container_name: archangel
+    restart: unless-stopped
+    mem_limit: 100M
+    cpus: 0.5
+    cpu_shares: 512
+    tty: true
+    build: ./
