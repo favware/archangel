@@ -14,7 +14,7 @@
 	"scripts": {
 		"predocker:build": "run-s clean build",
 		"docker:build": "docker-compose build",
-		"docker:start": "docker-compose up",
+		"docker:start": "docker-compose up -d",
 		"docker:logs": "docker-compose logs -f",
 		"start": "node dist/ArchAngel.js",
 		"lint": "eslint src --ext ts --fix",

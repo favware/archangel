@@ -42,7 +42,10 @@ export class UserCommand extends ArchAngelCommand {
 		// Generate the image
 		const buffer = (await imageGenerator({
 			html,
-			puppeteerArgs: { args: ['--no-sandbox', '--disable-setuid-sandbox'], ignoreHTTPSErrors: true }
+			puppeteerArgs: {
+				args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-translate', '--disable-extensions'],
+				ignoreHTTPSErrors: true
+			}
 		})) as Buffer;
 
 		await targetChannel.send(new MessageAttachment(buffer, 'aa.png'));
