@@ -7,7 +7,7 @@ import type { ClientOptions, Message } from 'discord.js';
 
 export class ArchAngelClient extends SapphireClient {
 	/**
-	 * The version of Skyra
+	 * The version of Archangel
 	 */
 	public readonly version = VERSION;
 
