@@ -1,7 +1,7 @@
+import { BrandingColors } from '#lib/util/constants';
+import type { getAttachment } from '#utils/util';
 import type { Components } from '@skyra/discord-components-core/dist/types/components';
 import markdownToHtml from 'marked';
-import { BrandingColors } from './constants';
-import type { getAttachment } from './util';
 
 markdownToHtml.setOptions({
 	breaks: false,
