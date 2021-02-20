@@ -6,10 +6,6 @@
 		"module": "ESNext",
 		"noEmitHelpers": true,
 		"importHelpers": true,
-		"removeComments": true,
-		"declaration": false,
-		"declarationMap": false,
-		"sourceMap": false,
-		"importsNotUsedAsValues": "remove"
+		"removeComments": true
 	}
 }
