@@ -6,6 +6,7 @@
 	"license": "Apache-2.0",
 	"main": "dist/ArcAngel.js",
 	"private": true,
+	"type": "module",
 	"imports": {
 		"#lib/*": "./dist/lib/*.js",
 		"#root/*": "./dist/*.js",
@@ -27,16 +28,11 @@
 	},
 	"dependencies": {
 		"@discordjs/collection": "^0.1.6",
-		"@sapphire/async-queue": "^1.0.4",
 		"@sapphire/decorators": "^2.0.4",
 		"@sapphire/discord.js-utilities": "^1.4.3",
 		"@sapphire/framework": "^1.0.0-alpha.11",
 		"@sapphire/plugin-logger": "1.0.8",
-		"@sapphire/plugin-subcommands": "^1.0.1",
-		"@sapphire/snowflake": "^1.2.5",
-		"@sapphire/stopwatch": "^1.0.5",
 		"@sapphire/time-utilities": "^1.2.9",
-		"@sapphire/type": "^1.1.5",
 		"@sapphire/utilities": "^1.4.5",
 		"@skyra/editable-commands": "^1.0.0",
 		"bufferutil": "^4.0.3",
@@ -51,7 +47,6 @@
 		"zlib-sync": "^0.1.7"
 	},
 	"devDependencies": {
-		"@klasa/dapi-types": "^0.3.0",
 		"@sapphire/eslint-config": "^2.1.2",
 		"@sapphire/prettier-config": "^1.0.7",
 		"@sapphire/ts-config": "^2.0.1",

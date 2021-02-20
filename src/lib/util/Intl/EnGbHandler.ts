@@ -1,5 +1,5 @@
+import { Handler } from '#utils/Intl/Handler';
 import { TimeTypes } from '@sapphire/time-utilities';
-import { Handler } from './Handler';
 
 export class ExtendedHandler extends Handler {
 	public constructor() {

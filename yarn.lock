@@ -53,11 +53,6 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@klasa/dapi-types@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@klasa/dapi-types/-/dapi-types-0.3.0.tgz#710c9965b9676af7804a6d4f178e0147b7d0ab91"
-  integrity sha512-9jG3b4XNXeNMCKECQcxd5u1A0YW2Ff75ywJYks9uTPSNu1x29ZAgYnkOag/NEB4PCItkfp2fik6FwNDmfnQ6cA==
-
 "@nodelib/fs.scandir@2.1.3":
   version "2.1.3"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.scandir/-/fs.scandir-2.1.3.tgz#3a582bdb53804c6ba6d146579c46e52130cf4a3b"
@@ -78,11 +73,6 @@
   dependencies:
     "@nodelib/fs.scandir" "2.1.3"
     fastq "^1.6.0"
-
-"@sapphire/async-queue@^1.0.4":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@sapphire/async-queue/-/async-queue-1.0.4.tgz#0af03e15a7892b049f0a48b6cfbe3a180c8bcf6e"
-  integrity sha512-nCztNfsD1y8GQ9GFslLVcv81iXp9YtHFJOy3p05gCYlk1q0CKuzOhDayuRoUXHgYwSI9nrOk0CUb1Mci9xNu4A==
 
 "@sapphire/decorators@^2.0.4":
   version "2.0.4"
@@ -136,11 +126,6 @@
     colorette "^1.2.1"
     tslib "^2.1.0"
 
-"@sapphire/plugin-subcommands@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@sapphire/plugin-subcommands/-/plugin-subcommands-1.0.1.tgz#f71d56b2ac018fbb79fb2214d810c48e96b173ad"
-  integrity sha512-ik5TQvWYM/ORnbDLl2WNI9zADKfq5Eo93CF0KcetZoYU6XsQ3UFxFy0bPCG4KfaEmyG+DDX760C8tCZ73Uzq2g==
-
 "@sapphire/prettier-config@^1.0.7":
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/@sapphire/prettier-config/-/prettier-config-1.0.7.tgz#1b21400346fde231fb9db4c8dad38932eae486e6"
@@ -150,16 +135,6 @@
   version "1.1.5"
   resolved "https://registry.yarnpkg.com/@sapphire/ratelimits/-/ratelimits-1.1.5.tgz#04bbc9488d890d30e9b6541cab04f26663f97d0f"
   integrity sha512-7HzQrW3naxZTq1LN0oGzGX/xVDFWMWnfmPA1Z1erEO1DPd3hEo+CD6V/bEd3vWh7/XBAX5L+KMvlenvMQNy3wg==
-
-"@sapphire/snowflake@^1.2.5":
-  version "1.2.5"
-  resolved "https://registry.yarnpkg.com/@sapphire/snowflake/-/snowflake-1.2.5.tgz#b27f5697a310ac72f87eea7ac1b9acd54eb570f7"
-  integrity sha512-gvR9vI3bEk3MykKIRmXDs6ZMVnqNV65QIzzPuPZfuEGpLTFrt+Zy8m+Lkb/OVuwb2pf0FeliZjn1dn3OeBMVJg==
-
-"@sapphire/stopwatch@^1.0.5":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@sapphire/stopwatch/-/stopwatch-1.0.5.tgz#3a85f02e151525ab4980a19ce479e6fb3f117a45"
-  integrity sha512-2NeVF7IWeiQCwQprkChIdQNR/7BWTBz/pOZH9dHgDqE31ENbkIIcm7H6IEfvMTwfOmbHMOyICAv8HrxrWOOwig==
 
 "@sapphire/time-utilities@^1.2.9":
   version "1.2.9"
@@ -172,11 +147,6 @@
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/@sapphire/ts-config/-/ts-config-2.0.1.tgz#88ab57663285b60746bb39daefef62e767d3de71"
   integrity sha512-WEjctyHS69i4h0xsM9cOZz05AJB4Xed99PLz1s0npBmgpcIgGJGOfglPNHe/AqmhjOW8pdSBjFJejaUU5RoImg==
-
-"@sapphire/type@^1.1.5":
-  version "1.1.5"
-  resolved "https://registry.yarnpkg.com/@sapphire/type/-/type-1.1.5.tgz#3c7e5b37b36e82df6ca53437d03d6d43fc9f2681"
-  integrity sha512-1IZvaatSo3MmqmsWueYnMCHvGEk1K/3TS5GwVu4dc2Eb2Hgj1ao/7Sv4Ag8KdJV0FgrcL8l4IFvyXslkWbj6Kg==
 
 "@sapphire/utilities@^1.4.5":
   version "1.4.5"

@@ -1,4 +1,4 @@
-import { promisify } from 'util';
+import { promisify } from 'node:util';
 
 interface PromisifiedTimeout {
 	(ms: number): Promise<void>;

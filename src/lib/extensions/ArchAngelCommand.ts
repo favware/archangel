@@ -1,10 +1,17 @@
 import { PermissionLevels } from '#lib/types/Enums';
-import { Args as SapphireArgs, CommandContext, PermissionsPrecondition, PieceContext, PreconditionEntryResolvable } from '@sapphire/framework';
-import { SubCommandPluginCommand } from '@sapphire/plugin-subcommands';
+import {
+	Args as SapphireArgs,
+	Command,
+	CommandContext,
+	CommandOptions,
+	PermissionsPrecondition,
+	PieceContext,
+	PreconditionEntryResolvable
+} from '@sapphire/framework';
 import type { PermissionResolvable } from 'discord.js';
 import { sep } from 'path';
 
-export abstract class ArchAngelCommand extends SubCommandPluginCommand<SapphireArgs, ArchAngelCommand> {
+export abstract class ArchAngelCommand extends Command {
 	public readonly permissionLevel: PermissionLevels;
 
 	/**
@@ -89,7 +96,7 @@ export namespace ArchAngelCommand {
 	/**
 	 * The ArchAngelCommand Options
 	 */
-	export type Options = SubCommandPluginCommand.Options & {
+	export type Options = CommandOptions & {
 		permissionLevel?: number;
 		permissions?: PermissionResolvable;
 		runIn?: RunInOption[];

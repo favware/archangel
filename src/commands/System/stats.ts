@@ -3,7 +3,7 @@ import { BrandingColors } from '#utils/constants';
 import { ApplyOptions } from '@sapphire/decorators';
 import { roundNumber } from '@sapphire/utilities';
 import { Message, MessageEmbed, version } from 'discord.js';
-import { CpuInfo, cpus, uptime } from 'os';
+import { CpuInfo, cpus, uptime } from 'node:os';
 
 @ApplyOptions<ArchAngelCommand.Options>({
 	aliases: ['stats', 'sts'],
