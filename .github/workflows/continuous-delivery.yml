@@ -8,6 +8,7 @@ on:
       - 'src/**'
       - 'Dockerfile'
       - '.github/workflows/continuous-delivery.yml'
+  workflow_dispatch:
 
 jobs:
   PublishArchAngel:
