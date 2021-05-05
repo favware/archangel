@@ -18,7 +18,7 @@ export class ArchAngelMessage extends Structures.get('Message') {
 		const message = await this.channel.send(content);
 		const responses = await this.channel.awaitMessages((msg) => msg.author === this.author, { time, max: 1 });
 		message.nuke().catch((error) => this.client.emit(Events.ApiError, error));
-		if (responses.size === 0) throw 'The prompt has timed out.';
+		if (responses.size === 0) throw new Error('The prompt has timed out.');
 		return responses.first()!;
 	}
 

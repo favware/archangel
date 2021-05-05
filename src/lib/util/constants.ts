@@ -1,6 +1,7 @@
-import { DEV } from '#root/config';
-import { LogLevel } from '@sapphire/framework';
-import type { ClientOptions } from 'discord.js';
+import { URL } from 'url';
+
+export const rootFolder = new URL('../../../', import.meta.url);
+export const srcFolder = new URL('src/', rootFolder);
 
 export const enum Emojis {
 	Loading = '<a:aaloading:730555789730775042>',
@@ -18,14 +19,6 @@ export const LoadingMessages = [
 	`${Emojis.Loading} Tuning in to the right frequencies...`,
 	`${Emojis.Loading} Reticulating splines...`
 ];
-
-export const clientOptions: Partial<ClientOptions> = {
-	caseInsensitiveCommands: true,
-	caseInsensitivePrefixes: true,
-	logger: {
-		level: DEV ? LogLevel.Debug : LogLevel.Info
-	}
-};
 
 export const enum BrandingColors {
 	Primary = 0x5b75b3,

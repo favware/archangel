@@ -1,8 +1,5 @@
 {
 	"extends": "@sapphire",
-	"rules": {
-		"@typescript-eslint/no-throw-literal": "off"
-	},
 	"parserOptions": {
 		"warnOnUnsupportedTypeScriptVersion": false
 	}

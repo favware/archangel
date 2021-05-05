@@ -1,4 +1,4 @@
-import { levenshtein } from '#utils/External/levenshtein';
+import { decode, jaroWinkler } from '#utils/External/jaro-winkler';
 import type { Collection } from '@discordjs/collection';
 import { codeBlock } from '@sapphire/utilities';
 import type { Message } from 'discord.js';
@@ -19,12 +19,22 @@ export class FuzzySearch<K extends string, V> {
 
 	public run(message: Message, query: string, threshold = 2) {
 		const lowerCaseQuery = query.toLowerCase();
+		const decodedLowerCaseQuery = decode(lowerCaseQuery);
 		const results: [K, V, number][] = [];
 
-		let lowerCaseName: string | undefined = undefined;
-		let current: string | undefined = undefined;
-		let distance: number | undefined = undefined;
+		// Adaptive threshold based on input length
+		if (threshold === undefined) {
+			if (lowerCaseQuery.length <= 3) threshold = 1;
+			else if (lowerCaseQuery.length <= 6) threshold = 0.8;
+			else if (lowerCaseQuery.length <= 12) threshold = 0.7;
+			else threshold = 0.6;
+		}
+
+		let lowerCaseName: string;
+		let current: string;
+		let similarity: number;
 		let almostExacts = 0;
+
 		for (const [id, entry] of this.kCollection.entries()) {
 			if (!this.kFilter(entry)) continue;
 
@@ -33,30 +43,28 @@ export class FuzzySearch<K extends string, V> {
 
 			// If lowercase result, go next
 			if (lowerCaseName === lowerCaseQuery) {
-				distance = 0;
-			} else if (lowerCaseName.includes(lowerCaseQuery)) {
-				distance = lowerCaseName.length - lowerCaseQuery.length;
+				similarity = 1;
 			} else {
-				distance = levenshtein(lowerCaseQuery, lowerCaseName);
+				similarity = jaroWinkler(decodedLowerCaseQuery, lowerCaseName);
 			}
 
-			// If the distance is bigger than the threshold, skip
-			if (distance > threshold) continue;
+			// If the similarity is bigger than the threshold, skip
+			if (similarity < threshold) continue;
 
 			// Push the results
-			results.push([id, entry, distance]);
+			results.push([id, entry, similarity]);
 
 			// Continue earlier
-			if (distance <= 1) almostExacts++;
+			if (similarity >= 0.9) almostExacts++;
 			if (almostExacts === 10) break;
 		}
 
 		if (!results.length) return Promise.resolve(null);
 
-		// Almost precisive matches
-		const sorted = results.sort((a, b) => a[2] - b[2]);
+		// Almost precise matches
+		const sorted = results.sort((a, b) => b[2] - a[2]);
 		const precision = sorted[0][2];
-		if (precision <= 2) {
+		if (precision >= 0.9) {
 			let i = 0;
 			while (i < sorted.length && sorted[i][2] === precision) i++;
 			return this.select(message, sorted.slice(0, i));
@@ -76,10 +84,10 @@ export class FuzzySearch<K extends string, V> {
 			)}\nWrite **ABORT** if you want to exit the prompt.`
 		);
 
-		if (n.toLowerCase() === 'abort') throw 'Successfully aborted the prompt.';
+		if (n.toLowerCase() === 'abort') throw new Error('Successfully aborted the prompt.');
 		const parsed = Number(n);
-		if (!Number.isSafeInteger(parsed)) throw 'I expected you to give me a (single digit) number, got a potato.';
-		if (parsed < 0 || parsed >= results.length) throw 'That number was out of range, aborting prompt.';
+		if (!Number.isSafeInteger(parsed)) throw new Error('I expected you to give me a (single digit) number, got a potato.');
+		if (parsed < 0 || parsed >= results.length) throw new Error('That number was out of range, aborting prompt.');
 		return results[parsed];
 	}
 }

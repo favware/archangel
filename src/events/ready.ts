@@ -1,21 +1,23 @@
-import { DEV, VERSION } from '#root/config';
+import { envParseString } from '#lib/env';
 import { ApplyOptions } from '@sapphire/decorators';
 import { Event, EventOptions, Store } from '@sapphire/framework';
 import { blue, gray, green, magenta, magentaBright, white, yellow } from 'colorette';
 
-const style = DEV ? yellow : blue;
-
 @ApplyOptions<EventOptions>({ once: true })
 export class UserEvent extends Event {
+	private readonly style = this.context.client.dev ? yellow : blue;
+
 	public run() {
 		this.printBanner();
 		this.printStoreDebugInformation();
 	}
 
 	private printBanner() {
+		const { client } = this.context;
 		const success = green('+');
-		const llc = DEV ? magentaBright : white;
-		const blc = DEV ? magenta : blue;
+
+		const llc = client.dev ? magentaBright : white;
+		const blc = client.dev ? magenta : blue;
 
 		const line01 = llc('');
 		const line02 = llc('');
@@ -36,9 +38,9 @@ ${line02}     / \   |  _ \  / ___|| | | |   / \   | \ | | / ___|| ____|| |
 ${line03}    / _ \  | |_) || |    | |_| |  / _ \  |  \| || |  _ |  _|  | |    
 ${line04}   / ___ \ |  _ < | |___ |  _  | / ___ \ | |\  || |_| || |___ | |___ 
 ${line05}  /_/   \_\|_| \_\ \____||_| |_|/_/   \_\|_| \_| \____||_____||_____|
-${line06} ${blc(VERSION.padStart(55, ' '))}
+${line06} ${blc(envParseString('CLIENT_VERSION').padStart(55, ' '))}
 ${line07} ${pad}[${success}] Gateway
-${line08}${DEV ? ` ${pad}${blc('<')}${llc('/')}${blc('>')} ${llc('DEVELOPMENT MODE')}` : ''}
+${line08}${this.context.client.dev ? ` ${pad}${blc('<')}${llc('/')}${blc('>')} ${llc('DEVELOPMENT MODE')}` : ''}
 		`.trim()
 		);
 	}
@@ -53,6 +55,6 @@ ${line08}${DEV ? ` ${pad}${blc('<')}${llc('/')}${blc('>')} ${llc('DEVELOPMENT MO
 	}
 
 	private styleStore(store: Store<any>, last: boolean) {
-		return gray(`${last ? '└─' : '├─'} Loaded ${style(store.size.toString().padEnd(3, ' '))} ${store.name}.`);
+		return gray(`${last ? '└─' : '├─'} Loaded ${this.style(store.size.toString().padEnd(3, ' '))} ${store.name}.`);
 	}
 }

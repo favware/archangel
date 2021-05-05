@@ -1,6 +1,14 @@
-import { TOKEN } from '#root/config';
+import { isNullishOrEmpty } from '#utils/comparators';
 import { initClean } from '#utils/Sanitizer/clean';
 
-const raw = [TOKEN].filter((value) => typeof value === 'string' && value !== '');
+const secrets = new Set<string>();
+for (const [key, value] of Object.entries(process.env)) {
+	if (isNullishOrEmpty(value)) continue;
 
-initClean([...new Set(raw)]);
+	// _TOKEN keys
+	if (key.endsWith('_TOKEN')) secrets.add(value);
+	else if (key.endsWith('_SECRET')) secrets.add(value);
+	else if (key.endsWith('_PASSWORD')) secrets.add(value);
+}
+
+initClean([...secrets]);

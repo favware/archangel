@@ -1,14 +1,33 @@
 <div align="center">
-  <p>
-<h1> ArchAngel </h1>
-<h3> Private Discord Bot for <a href="https://discord.gg/0qngWPF6JTRbzdxe">Populous Gaming<a></h3>
-  </p>
+
+<img height="200" src="https://cdn.favware.tech/img/archangel.png" alt="ArchAngel"/>
+
+# ArchAngel
+
+**Custom Discord Bot for <a href="https://discord.gg/0qngWPF6JTRbzdxe">Populous Gaming**
+
+[![GitHub](https://img.shields.io/github/license/favware/archangel)](https://github.com/favware/archangel/blob/main/LICENSE)
+[![Depfu](https://badges.depfu.com/badges/7d6f05bef4fee57b224cea94907b38dc/count.svg)](https://depfu.com/github/favware/archangel?project*id=25471)
+[![Twitter Follow](https://img.shields.io/twitter/follow/favna*?label=Follow%20@Favna*&logo=twitter&colorB=1DA1F2&style=flat-square)](https://twitter.com/Favna*/follow)
+
+[![Support Server](https://discord.com/api/guilds/152464629753315328/embed.png?style=banner2)](https://discord.gg/0qngWPF6JTRbzdxe)
 
 </div>
 
 ---
 
-[![Join Discord server](https://img.shields.io/discord/512303595966824458?color=697EC4&label=Join%20Discord%20Server&logo=discord&logoColor=FDFEFE&style=flat-square)](https://discord.gg/0qngWPF6JTRbzdxe)
-[![Twitter Follow](https://img.shields.io/twitter/follow/favna_?label=Follow%20@Favna_&logo=twitter&colorB=1DA1F2&style=flat-square)](https://twitter.com/Favna_/follow)
-[![Patreon Donate](https://img.shields.io/badge/patreon-donate-brightgreen.svg?label=Donate%20with%20Patreon&logo=patreon&colorB=F96854&style=flat-square&link=https://donate.favware.tech/patreon)](https://donate.favware.tech/patreon)
-[![PayPal Donate](https://img.shields.io/badge/paypal-donate-brightgreen.svg?label=Donate%20with%20Paypal&logo=paypal&colorB=00457C&style=flat-square&link=https://donate.favware.tech/paypal)](https://donate.favware.tech/paypal)
+## Buy us some doughnuts
+
+Favware projects is and always will be open source, even if we don't get donations. That being said, we know there are amazing people who may still want to donate just to show their appreciation. Thank you very much in advance!
+
+We accept donations through Ko-fi, Paypal, Patreon, GitHub Sponsorships, and various crypto currencies. You can use the buttons below to donate through your method of choice.
+
+|   Donate With   |                      Address                      |
+| :-------------: | :-----------------------------------------------: |
+|      Ko-fi      |  [Click Here](https://donate.favware.tech/kofi)   |
+|     Patreon     | [Click Here](https://donate.favware.tech/patreon) |
+|     PayPal      | [Click Here](https://donate.favware.tech/paypal)  |
+| GitHub Sponsors |  [Click Here](https://github.com/sponsors/Favna)  |
+|     Bitcoin     |       `1E643TNif2MTh75rugepmXuq35Tck4TnE5`        |
+|    Ethereum     |   `0xF653F666903cd8739030D2721bF01095896F5D6E`    |
+|    LiteCoin     |       `LZHvBkaJqKJRa8N7Dyu41Jd1PDBAofCik6`        |

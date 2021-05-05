@@ -69,35 +69,35 @@ export const htmlGenerator = (content: string) => `
         font-family: Whitney;
         font-style: light;
         font-weight: 300;
-        src: url(https://discord.com/assets/6c6374bad0b0b6d204d8d6dc4a18d820.woff)
+        src: url(https://skyra.pw/fonts/Whitney-Light.woff)
           format("woff");
       }
       @font-face {
         font-family: Whitney;
         font-style: normal;
         font-weight: 500;
-        src: url(https://discord.com/assets/e8acd7d9bf6207f99350ca9f9e23b168.woff)
+        src: url(https://skyra.pw/fonts/Whitney-Normal.woff)
           format("woff");
       }
       @font-face {
         font-family: Whitney;
         font-style: medium;
         font-weight: 600;
-        src: url(https://discord.com/assets/3bdef1251a424500c1b3a78dea9b7e57.woff)
+        src: url(https://skyra.pw/fonts/Whitney-Medium-Regular.woff)
           format("woff");
       }
       @font-face {
         font-family: WhitneyMedium;
         font-style: medium;
         font-weight: 600;
-        src: url(https://discord.com/assets/be0060dafb7a0e31d2a1ca17c0708636.woff)
+        src: url(https://skyra.pw/fonts/Whitney-Medium-Extra.woff)
           format("woff");
       }
       @font-face {
         font-family: Whitney;
         font-style: bold;
         font-weight: 700;
-        src: url(https://discord.com/assets/8e12fb4f14d9c4592eb8ec9f22337b04.woff)
+        src: url(https://skyra.pw/fonts/Whitney-Bold.woff)
           format("woff");
       }
 

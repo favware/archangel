@@ -1,21 +1,16 @@
-import { CLIENT_OPTIONS, PREFIX, VERSION } from '#root/config';
-import { clientOptions } from '#utils/constants';
+import { envParseString } from '#lib/env';
+import { CLIENT_OPTIONS } from '#root/config';
 import { ExtendedHandler as EnGbHandler } from '#utils/Intl/EnGbHandler';
 import { SapphireClient } from '@sapphire/framework';
-import { mergeDefault } from '@sapphire/utilities';
-import type { ClientOptions, Message } from 'discord.js';
+import type { Message } from 'discord.js';
 
 export class ArchAngelClient extends SapphireClient {
-	/**
-	 * The version of Archangel
-	 */
-	public readonly version = VERSION;
+	public dev = envParseString('NODE_ENV') !== 'production';
 
 	public readonly EnGbHandler = new EnGbHandler();
 
 	public constructor() {
-		// @ts-expect-error shut the fuck up TS
-		super(mergeDefault(clientOptions, CLIENT_OPTIONS) as ClientOptions);
+		super(CLIENT_OPTIONS);
 	}
 
 	/**
@@ -23,7 +18,7 @@ export class ArchAngelClient extends SapphireClient {
 	 * @param message The message that gives context.
 	 */
 	public fetchPrefix = (message: Message) => {
-		if (!message.guild) return [PREFIX, ''] as readonly string[];
-		return PREFIX;
+		if (!message.guild) return [envParseString('CLIENT_PREFIX'), ''] as readonly string[];
+		return envParseString('CLIENT_PREFIX');
 	};
 }

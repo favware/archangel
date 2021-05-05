@@ -1,29 +1,67 @@
-FROM node:15-alpine
+FROM --platform=linux/amd64 node:16-buster-slim as BUILDER
 
-WORKDIR /home/node/app
+WORKDIR /usr/src/app
 
-RUN \
-    echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
-    && echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories \
-    && echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
-    && apk --no-cache  update \
-    && apk --no-cache  upgrade \
-    && apk add --no-cache --virtual .build-deps \
-    gifsicle pngquant optipng libjpeg-turbo-utils \
-    udev ttf-opensans chromium \
-    && rm -rf /var/cache/apk/* /tmp/*
-
-ENV CHROME_BIN /usr/bin/chromium-browser
-ENV LIGHTHOUSE_CHROMIUM_PATH /usr/bin/chromium-browser
+ENV NODE_ENV="development"
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD 1
-ENV PUPPETEER_EXECUTABLE_PATH /usr/bin/chromium-browser
 
-COPY package.json ./
-COPY yarn.lock ./
-COPY src/ ./src/
-COPY tsconfig* ./
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y \
+    build-essential \
+    python3
 
-RUN yarn install --frozen-lockfile --link-duplicates --ignore-scripts
+COPY --chown=node:node package.json ./
+COPY --chown=node:node yarn.lock ./
+COPY --chown=node:node src/ ./src/
+COPY --chown=node:node tsconfig* ./
+
+RUN yarn install --production=false --frozen-lockfile --link-duplicates --ignore-scripts
+
 RUN yarn build
 
-CMD [ "node", "./dist/ArchAngel.js" ]
+# ================ #
+#   Runner Stage   #
+# ================ #
+
+FROM --platform=linux/amd64 node:16-buster-slim AS RUNNER
+
+ENV NODE_ENV="production"
+
+WORKDIR /usr/src/app
+
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y \
+          build-essential \
+          ca-certificates \
+          dumb-init \
+          gnupg \
+          libxss1 \
+          procps \
+          python3 \
+          wget \
+    && \
+    wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
+    sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' && \
+    apt-get update && \
+    apt-get install -y \
+          google-chrome-stable \
+    && \
+    rm -rf /var/lib/apt/lists/*
+
+ENV CHROME_BIN /usr/bin/google-chrome-stable
+ENV LIGHTHOUSE_CHROMIUM_PATH /usr/bin/google-chrome-stable
+ENV PUPPETEER_EXECUTABLE_PATH /usr/bin/google-chrome-stable
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD 1
+
+COPY --chown=node:node --from=BUILDER /usr/src/app/dist dist
+
+COPY --chown=node:node package.json ./
+COPY --chown=node:node yarn.lock ./
+
+RUN yarn install --production=true --frozen-lockfile --link-duplicates --ignore-scripts
+
+USER node
+
+CMD [ "dumb-init", "yarn", "start" ]

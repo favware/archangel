@@ -4,20 +4,8 @@ node_modules/
 .idea/
 *.iml
 
-# Ignore bwd folders
+# Ignore the dist output
 dist/
-bwd/
-
-# Ignore JavaScript files
-**/*.js
-**/*.js.map
-**/*.d.ts
-!src/**/*.d.ts
-**/*.tsbuildinfo
-!jest.config.js
-
-# Ignore the config file (contains sensitive information such as tokens)
-config.ts
 
 # Ignore heapsnapshot and log files
 *.heapsnapshot
@@ -25,3 +13,9 @@ config.ts
 
 # Ignore package locks
 package-lock.json
+
+# Environment variables
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
