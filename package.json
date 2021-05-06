@@ -65,8 +65,9 @@
 	},
 	"resolutions": {
 		"acorn": "^8.2.4",
-		"minimist": "^1.2.5",
-		"kind-of": "^6.0.3"
+		"hosted-git-info": "^3.0.8",
+		"kind-of": "^6.0.3",
+		"minimist": "^1.2.5"
 	},
 	"engines": {
 		"node": ">=15",
