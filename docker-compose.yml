@@ -8,5 +8,4 @@ services:
     restart: unless-stopped
     tty: true
     env_file:
-      - ./src/.env.development
       - ./src/.env.production.local

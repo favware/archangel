@@ -11,12 +11,13 @@ RUN apt-get update && \
     build-essential \
     python3
 
-COPY --chown=node:node package.json ./
-COPY --chown=node:node yarn.lock ./
-COPY --chown=node:node src/ ./src/
-COPY --chown=node:node tsconfig* ./
+COPY --chown=node:node package.json .
+COPY --chown=node:node yarn.lock .
+COPY --chown=node:node tsconfig* .
+COPY --chown=node:node src/ src/
+COPY --chown=node:node scripts/ scripts/
 
-RUN yarn install --production=false --frozen-lockfile --link-duplicates --ignore-scripts
+RUN yarn install --production=false --frozen-lockfile --link-duplicates
 
 RUN yarn build
 
@@ -57,8 +58,8 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD 1
 
 COPY --chown=node:node --from=BUILDER /usr/src/app/dist dist
 
-COPY --chown=node:node package.json ./
-COPY --chown=node:node yarn.lock ./
+COPY --chown=node:node package.json .
+COPY --chown=node:node yarn.lock .
 
 RUN yarn install --production=true --frozen-lockfile --link-duplicates --ignore-scripts
 
