@@ -1,4 +1,5 @@
-import { Argument, ArgumentContext } from '@sapphire/framework';
+import type { ArgumentContext } from '@sapphire/framework';
+import { Argument } from '@sapphire/framework';
 import type { GuildChannel, TextChannel } from 'discord.js';
 
 export class UserArgument extends Argument<TextChannel> {

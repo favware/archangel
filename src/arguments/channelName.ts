@@ -1,7 +1,8 @@
 import { FuzzySearch } from '#utils/Parsers/FuzzySearch';
 import { validateChannelAccess } from '#utils/util';
 import { ChannelMentionRegex, SnowflakeRegex } from '@sapphire/discord.js-utilities';
-import { Argument, ArgumentContext, Identifiers } from '@sapphire/framework';
+import type { ArgumentContext } from '@sapphire/framework';
+import { Argument, Identifiers } from '@sapphire/framework';
 import type { Guild, GuildChannel, User } from 'discord.js';
 
 export class UserArgument extends Argument<GuildChannel> {

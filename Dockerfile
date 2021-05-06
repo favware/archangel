@@ -64,4 +64,4 @@ RUN yarn install --production=true --frozen-lockfile --link-duplicates --ignore-
 
 USER node
 
-CMD [ "dumb-init", "yarn", "start" ]
+CMD [ "dumb-init", "yarn", "start", "--enable-source-maps" ]

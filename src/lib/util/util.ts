@@ -1,5 +1,6 @@
 import { BrandingColors, LoadingMessages } from '#utils/constants';
-import { GuildChannel, Message, MessageEmbed, Permissions, UserResolvable } from 'discord.js';
+import type { UserResolvable } from 'discord.js';
+import { GuildChannel, Message, MessageEmbed, Permissions } from 'discord.js';
 
 export const IMAGE_EXTENSION = /\.(bmp|jpe?g|png|gif|webp|tiff)$/i;
 

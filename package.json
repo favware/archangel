@@ -18,9 +18,10 @@
 		"lint": "eslint src --ext ts --fix",
 		"format": "prettier --write --loglevel=warn \"src/**/*.ts\"",
 		"update": "yarn upgrade-interactive --latest",
-		"build": "tsc -b src",
-		"watch": "tsc -b src -w",
-		"clean": "rimraf dist",
+		"build": "node scripts/build.mjs",
+		"watch": "node scripts/watch.mjs",
+		"clean": "node scripts/clean.mjs",
+		"typecheck": "tsc -p src --noEmit",
 		"dev": "yarn build && yarn start"
 	},
 	"dependencies": {
@@ -56,6 +57,7 @@
 		"@types/node-fetch": "^2.5.10",
 		"@types/puppeteer": "^5.4.3",
 		"@types/ws": "^7.4.2",
+		"esbuild": "^0.11.19",
 		"npm-run-all": "^4.1.5",
 		"pretty-quick": "^3.1.0",
 		"rimraf": "^3.0.2",

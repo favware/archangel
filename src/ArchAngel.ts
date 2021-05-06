@@ -1,5 +1,5 @@
-import { ArchAngelClient } from '#lib/extensions/ArchAngelClient';
 import '#lib/setup';
+import { ArchAngelClient } from '#lib/extensions/ArchAngelClient';
 import { green } from 'colorette';
 
 const client = new ArchAngelClient();

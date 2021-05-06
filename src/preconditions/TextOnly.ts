@@ -1,4 +1,5 @@
-import { Precondition, PreconditionResult } from '@sapphire/framework';
+import type { PreconditionResult } from '@sapphire/framework';
+import { Precondition } from '@sapphire/framework';
 import type { Message } from 'discord.js';
 
 export class UserPrecondition extends Precondition {

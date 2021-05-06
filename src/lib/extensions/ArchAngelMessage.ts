@@ -2,7 +2,8 @@ import { Events } from '#lib/types/Enums';
 import { sleep } from '#utils/Promisified/sleep';
 import { Time } from '@sapphire/time-utilities';
 import { RESTJSONErrorCodes } from 'discord-api-types/v6';
-import { Message, MessageOptions, Structures } from 'discord.js';
+import type { MessageOptions } from 'discord.js';
+import { Message, Structures } from 'discord.js';
 
 export class ArchAngelMessage extends Structures.get('Message') {
 	public async nuke(time = 0): Promise<Message> {

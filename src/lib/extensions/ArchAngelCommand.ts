@@ -1,13 +1,6 @@
 import { PermissionLevels } from '#lib/types/Enums';
-import {
-	Args as SapphireArgs,
-	Command,
-	CommandContext,
-	CommandOptions,
-	PermissionsPrecondition,
-	PieceContext,
-	PreconditionEntryResolvable
-} from '@sapphire/framework';
+import type { CommandContext, CommandOptions, PieceContext, PreconditionEntryResolvable } from '@sapphire/framework';
+import { Args as SapphireArgs, Command, PermissionsPrecondition } from '@sapphire/framework';
 import type { PermissionResolvable } from 'discord.js';
 import { sep } from 'path';
 

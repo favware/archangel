@@ -2,5 +2,8 @@
 	"extends": "@sapphire",
 	"parserOptions": {
 		"warnOnUnsupportedTypeScriptVersion": false
+	},
+	"rules": {
+		"no-duplicate-imports": "off"
 	}
 }

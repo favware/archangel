@@ -1,5 +1,6 @@
 import type { ArchAngelEnv, ArchAngelEnvAny, ArchAngelEnvBoolean, ArchAngelEnvInteger, ArchAngelEnvString } from '#lib/env/types';
-import { isNullish, Nullish } from '@sapphire/utilities';
+import type { Nullish } from '@sapphire/utilities';
+import { isNullish } from '@sapphire/utilities';
 
 function isNullishOrEmpty(value: unknown): value is Nullish | '' {
 	return value === '' || isNullish(value);
