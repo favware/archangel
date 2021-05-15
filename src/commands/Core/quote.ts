@@ -2,7 +2,7 @@ import { ArchAngelCommand } from '#lib/extensions/ArchAngelCommand';
 import type { GuildMessage } from '#lib/types/Discord';
 import { BrandingColors } from '#utils/constants';
 import { discordMessageGenerator, discordMessagesGenerator, htmlGenerator } from '#utils/HtmlGenerator';
-import { getAttachment, sendLoadingMessage } from '#utils/util';
+import { getAttachment, oneLine, sendLoadingMessage } from '#utils/util';
 import { ApplyOptions } from '@sapphire/decorators';
 import { Timestamp } from '@sapphire/time-utilities';
 import { Message, MessageAttachment, UserFlags } from 'discord.js';
@@ -33,10 +33,12 @@ export class UserCommand extends ArchAngelCommand {
 		}
 
 		// Generate the HTML
-		const html = htmlGenerator(
-			discordMessagesGenerator({
-				content: content.join('\n')
-			})
+		const html = oneLine(
+			htmlGenerator(
+				discordMessagesGenerator({
+					content: content.join('')
+				})
+			)
 		);
 
 		// Generate the image
@@ -48,7 +50,7 @@ export class UserCommand extends ArchAngelCommand {
 			}
 		})) as Buffer;
 
-		await targetChannel.send(new MessageAttachment(buffer, 'aa.png'));
+		await targetChannel.send(new MessageAttachment(buffer, 'archangel-quote.png'));
 
 		return loadingMessage.nuke();
 	}
@@ -64,7 +66,7 @@ export class UserCommand extends ArchAngelCommand {
 			verified: message.author.flags?.has(UserFlags.FLAGS.VERIFIED_BOT) ?? false,
 			edited: Boolean(message.editedAt),
 			roleColor: member?.displayHexColor ?? `#${BrandingColors.Primary}`,
-			content: message.content,
+			content: message.cleanContent,
 			timestamp: this.timestamp.display(message.createdAt),
 			image: attachment
 		});

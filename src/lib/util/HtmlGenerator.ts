@@ -1,5 +1,5 @@
 import { BrandingColors } from '#lib/util/constants';
-import type { getAttachment } from '#utils/util';
+import { getAttachment, oneLine } from '#utils/util';
 import type { Components } from '@skyra/discord-components-core/dist/types/components';
 import markdownToHtml from 'marked';
 
@@ -34,19 +34,17 @@ export const discordMessageGenerator = ({
 				/>`
 		].join(' ');
 
-	return `
+	return oneLine(`
 		<discord-message
 			author="${author}"
 			avatar="${avatar}"
 			role-color="${roleColor ?? `#${BrandingColors.Secondary}`}"
-			timestamp=${timestamp}
+			timestamp="${timestamp}"
 			${edited ? 'edited' : null}
 			${bot ? 'bot' : null}
 			${verified ? 'verified' : null}
-		>
-			${htmlContent}
-		</discord-message>
-`;
+		>${htmlContent}</discord-message>
+`);
 };
 
 export const discordMessagesGenerator = ({ compactMode, lightTheme, content }: Partial<DiscordMessagesOptions>) => `
@@ -61,53 +59,9 @@ export const htmlGenerator = (content: string) => `
   <head>
     <script
       type="module"
-      src="https://cdn.jsdelivr.net/npm/@skyra/discord-components-core/dist/skyra-discord-components-core/skyra-discord-components-core.esm.js"
+      src="https://unpkg.com/@skyra/discord-components-core@2.0.5/dist/skyra-discord-components-core/skyra-discord-components-core.esm.js"
     ></script>
     <style>
-      /* Whitney font face to match Discord */
-      @font-face {
-        font-family: Whitney;
-        font-style: light;
-        font-weight: 300;
-        src: url(https://skyra.pw/fonts/Whitney-Light.woff)
-          format("woff");
-      }
-      @font-face {
-        font-family: Whitney;
-        font-style: normal;
-        font-weight: 500;
-        src: url(https://skyra.pw/fonts/Whitney-Normal.woff)
-          format("woff");
-      }
-      @font-face {
-        font-family: Whitney;
-        font-style: medium;
-        font-weight: 600;
-        src: url(https://skyra.pw/fonts/Whitney-Medium-Regular.woff)
-          format("woff");
-      }
-      @font-face {
-        font-family: WhitneyMedium;
-        font-style: medium;
-        font-weight: 600;
-        src: url(https://skyra.pw/fonts/Whitney-Medium-Extra.woff)
-          format("woff");
-      }
-      @font-face {
-        font-family: Whitney;
-        font-style: bold;
-        font-weight: 700;
-        src: url(https://skyra.pw/fonts/Whitney-Bold.woff)
-          format("woff");
-      }
-
-      /* Setting default CSS for Discord messages */
-      .discord-message,
-      .discord-messages {
-        font-family: Whitney, Roboto, "Helvetica Neue", Helvetica, Arial,
-          sans-serif;
-      }
-
       .discord-messages {
         border-radius: 0px;
       }

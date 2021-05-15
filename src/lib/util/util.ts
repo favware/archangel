@@ -79,3 +79,5 @@ export function getAttachment(message: Message): ImageAttachment | null {
 
 	return null;
 }
+
+export const oneLine = (input: string): string => input.replace(/(?:\n(?:\s*))+/g, ' ').trim();
