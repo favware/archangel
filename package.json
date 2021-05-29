@@ -44,7 +44,7 @@
 		"reflect-metadata": "^0.1.13",
 		"tslib": "2.2.0",
 		"utf-8-validate": "^5.0.5",
-		"ws": "^7.4.5",
+		"ws": "^7.4.6",
 		"zlib-sync": "^0.1.7"
 	},
 	"devDependencies": {
