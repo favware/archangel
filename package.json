@@ -26,13 +26,13 @@
 	},
 	"dependencies": {
 		"@discordjs/collection": "^0.1.6",
-		"@sapphire/decorators": "^2.1.1",
-		"@sapphire/discord.js-utilities": "^1.5.7",
-		"@sapphire/fetch": "^1.0.1",
+		"@sapphire/decorators": "^2.1.2",
+		"@sapphire/discord.js-utilities": "^1.5.8",
+		"@sapphire/fetch": "^1.0.2",
 		"@sapphire/framework": "^1.0.2",
 		"@sapphire/plugin-logger": "1.0.12",
-		"@sapphire/time-utilities": "^1.3.1",
-		"@sapphire/utilities": "^1.5.1",
+		"@sapphire/time-utilities": "^1.3.2",
+		"@sapphire/utilities": "^1.5.2",
 		"@skyra/editable-commands": "^1.0.0",
 		"bufferutil": "^4.0.3",
 		"colorette": "^1.2.2",
@@ -48,9 +48,9 @@
 		"zlib-sync": "^0.1.7"
 	},
 	"devDependencies": {
-		"@sapphire/eslint-config": "^3.1.2",
-		"@sapphire/prettier-config": "^1.1.1",
-		"@sapphire/ts-config": "^2.2.1",
+		"@sapphire/eslint-config": "^3.1.3",
+		"@sapphire/prettier-config": "^1.1.2",
+		"@sapphire/ts-config": "^2.2.2",
 		"@skyra/discord-components-core": "^2.0.7",
 		"@types/marked": "^2.0.3",
 		"@types/node": "^15.6.1",
@@ -61,7 +61,7 @@
 		"npm-run-all": "^4.1.5",
 		"pretty-quick": "^3.1.0",
 		"rimraf": "^3.0.2",
-		"typescript": "^4.2.4"
+		"typescript": "^4.3.2"
 	},
 	"resolutions": {
 		"acorn": "^8.2.4",
