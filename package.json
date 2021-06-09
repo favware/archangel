@@ -22,7 +22,7 @@
 		"watch": "node scripts/watch.mjs",
 		"clean": "node scripts/clean.mjs",
 		"typecheck": "tsc -p src --noEmit",
-		"dev": "yarn build && yarn start"
+		"dev": "run-s build start"
 	},
 	"dependencies": {
 		"@discordjs/collection": "^0.1.6",
@@ -60,7 +60,6 @@
 		"esbuild": "^0.11.23",
 		"npm-run-all": "^4.1.5",
 		"pretty-quick": "^3.1.0",
-		"rimraf": "^3.0.2",
 		"typescript": "^4.3.2"
 	},
 	"resolutions": {
