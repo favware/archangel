@@ -107,10 +107,10 @@
     prettier "^2.3.2"
     typescript "^4.3.4"
 
-"@sapphire/fetch@^1.0.3":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@sapphire/fetch/-/fetch-1.0.3.tgz#524fbee5a7498993808d743b601b8063f5709392"
-  integrity sha512-FVmSxGWMb6NWVoqqt4+3PkGwMz/exA93kOEM9VtCd8iWK4WJjyjjhJOX/AAN0olBHaWtP6RMlkcghUCtTd64Ng==
+"@sapphire/fetch@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@sapphire/fetch/-/fetch-1.0.5.tgz#0fd4ec423b3a0d6934460361686772d28258f660"
+  integrity sha512-iZ/ZReTTlIMPZeTkVkna/RwqCJGym/BAJevE13s2o57M4DlxZnrYT5d0vSJEfGbBp7nEGmqIsGhntHe/7CjSdg==
   dependencies:
     node-fetch "^2.6.1"
     tslib "2.x"
