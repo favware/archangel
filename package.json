@@ -51,7 +51,7 @@
 		"@sapphire/eslint-config": "^3.2.3",
 		"@sapphire/prettier-config": "^1.1.6",
 		"@sapphire/ts-config": "^2.3.2",
-		"@skyra/discord-components-core": "^2.1.0",
+		"@skyra/discord-components-core": "^2.4.0",
 		"@types/marked": "^2.0.4",
 		"@types/node": "^15.14.0",
 		"@types/node-fetch": "^2.5.12",

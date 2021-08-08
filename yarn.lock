@@ -196,10 +196,10 @@
   resolved "https://registry.yarnpkg.com/@sapphire/utilities/-/utilities-2.0.1.tgz#c436c5b2b72679c89a40abe46d2f9301d03e63e2"
   integrity sha512-KgJsgQ1cnfVKqscrMX4GH29mIVhVQkF8kSTIRCB+hgCCRfIvUU5peE4g/cegnesPS5eMiQqV+NWk7cNwhjextQ==
 
-"@skyra/discord-components-core@^2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@skyra/discord-components-core/-/discord-components-core-2.1.0.tgz#4e6e1c5c75224aeb54ccf3e39f473c9b1f51f770"
-  integrity sha512-MUEy2JWv2jGCWY4ZNi/lFE5PKV3rz22w8Io5hWTpjNeqbONwQBPuGCZghi3sjecqwMf0on8HN9jUdAD5NaDR+A==
+"@skyra/discord-components-core@^2.4.0":
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@skyra/discord-components-core/-/discord-components-core-2.4.0.tgz#081005c7e627750266f60efd44bda32f207dbd8b"
+  integrity sha512-j0II8A1/lsHYLUj5YmCi+aBiytMdIAcs+AzIyXcpf47C8P7Y7q0qnwBfjvGBnHpMFmmpv5Ey7dO2WKeiJc3Oow==
   dependencies:
     "@stencil/core" "^2.6.0"
     clsx "^1.1.1"
