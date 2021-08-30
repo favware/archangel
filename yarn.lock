@@ -196,10 +196,10 @@
   resolved "https://registry.yarnpkg.com/@sapphire/utilities/-/utilities-2.0.1.tgz#c436c5b2b72679c89a40abe46d2f9301d03e63e2"
   integrity sha512-KgJsgQ1cnfVKqscrMX4GH29mIVhVQkF8kSTIRCB+hgCCRfIvUU5peE4g/cegnesPS5eMiQqV+NWk7cNwhjextQ==
 
-"@skyra/discord-components-core@^2.4.0":
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/@skyra/discord-components-core/-/discord-components-core-2.4.0.tgz#081005c7e627750266f60efd44bda32f207dbd8b"
-  integrity sha512-j0II8A1/lsHYLUj5YmCi+aBiytMdIAcs+AzIyXcpf47C8P7Y7q0qnwBfjvGBnHpMFmmpv5Ey7dO2WKeiJc3Oow==
+"@skyra/discord-components-core@^2.8.1":
+  version "2.8.1"
+  resolved "https://registry.yarnpkg.com/@skyra/discord-components-core/-/discord-components-core-2.8.1.tgz#eb67bb42546fbdddee650dab61f5dd9c8b162168"
+  integrity sha512-PyIbixBu1m2+eFWMWo5yCMAaRocJRhm9a0gWxkCy6CdbZG+htkXfEwccYLNnsOdHVvqgR5dY4fi3HkeP0QUcqQ==
   dependencies:
     "@stencil/core" "^2.6.0"
     clsx "^1.1.1"
@@ -2183,10 +2183,10 @@ wrappy@1:
   resolved "https://registry.yarnpkg.com/wrappy/-/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"
   integrity sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=
 
-ws@^7.2.3, ws@^7.4.4, ws@^7.5.3:
-  version "7.5.3"
-  resolved "https://registry.yarnpkg.com/ws/-/ws-7.5.3.tgz#160835b63c7d97bfab418fc1b8a9fced2ac01a74"
-  integrity sha512-kQ/dHIzuLrS6Je9+uv81ueZomEwH0qVYstcAQ4/Z93K8zeko9gtAbttJWzoC5ukqXY1PpoouV3+VSOqEAFt5wg==
+ws@^7.2.3, ws@^7.4.4, ws@^7.5.4:
+  version "7.5.4"
+  resolved "https://registry.yarnpkg.com/ws/-/ws-7.5.4.tgz#56bfa20b167427e138a7795de68d134fe92e21f9"
+  integrity sha512-zP9z6GXm6zC27YtspwH99T3qTG7bBFv2VIkeHstMLrLlDJuzA7tQ5ls3OJ1hOGGCzTQPniNJoHXIAOS0Jljohg==
 
 yallist@^4.0.0:
   version "4.0.0"
