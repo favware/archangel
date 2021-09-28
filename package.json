@@ -36,7 +36,7 @@
 		"@skyra/editable-commands": "^1.0.0",
 		"bufferutil": "^4.0.4",
 		"colorette": "^1.4.0",
-		"discord-api-types": "^0.18.1",
+		"discord-api-types": "^0.23.1",
 		"discord.js": "^12.5.3",
 		"dotenv-cra": "^2.2.0",
 		"marked": "^2.1.3",
