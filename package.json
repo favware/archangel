@@ -35,7 +35,7 @@
 		"@sapphire/utilities": "^1.7.0",
 		"@skyra/editable-commands": "^1.0.0",
 		"bufferutil": "^4.0.4",
-		"colorette": "^1.4.0",
+		"colorette": "^2.0.12",
 		"discord-api-types": "^0.23.1",
 		"discord.js": "^12.5.3",
 		"dotenv-cra": "^2.2.0",
