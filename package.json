@@ -63,7 +63,7 @@
 		"typescript": "^4.4.3"
 	},
 	"resolutions": {
-		"acorn": "^8.4.0",
+		"acorn": "^8.5.0",
 		"hosted-git-info": "^3.0.8",
 		"kind-of": "^6.0.3",
 		"minimist": "^1.2.5"
