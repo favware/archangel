@@ -64,7 +64,7 @@
 	},
 	"resolutions": {
 		"acorn": "^8.5.0",
-		"hosted-git-info": "^3.0.8",
+		"hosted-git-info": "^4.0.2",
 		"kind-of": "^6.0.3",
 		"minimist": "^1.2.5"
 	},
