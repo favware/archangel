@@ -219,10 +219,10 @@
     clsx "^1.1.1"
     hex-to-rgba "^2.0.1"
 
-"@skyra/editable-commands@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@skyra/editable-commands/-/editable-commands-1.0.0.tgz#3aab646cbd5cfc1f676eea95222e1db50b119409"
-  integrity sha512-lZwz9XgYXNsEzJ+e8d5k2NX4MhbxrTI/tCg75VEftD0sbTzyZJQfRAwKvOv/QfEgIKYb2JoneZeAUkhtoWaLhQ==
+"@skyra/editable-commands@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@skyra/editable-commands/-/editable-commands-2.1.0.tgz#5c26b8716e99a4f7c48468dbda4f9a1603d69754"
+  integrity sha512-J2ok13AxditPel4pUknKFpLQDW7hF6Dchc8JnetGKlOJrHqy+j4/UJ+Qf46KgX/zsPcRB4Q5ydZIHAq4XNtK8g==
 
 "@stencil/core@^2.8.0":
   version "2.8.1"
