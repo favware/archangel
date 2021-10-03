@@ -210,12 +210,12 @@
   resolved "https://registry.yarnpkg.com/@sapphire/utilities/-/utilities-2.0.1.tgz#c436c5b2b72679c89a40abe46d2f9301d03e63e2"
   integrity sha512-KgJsgQ1cnfVKqscrMX4GH29mIVhVQkF8kSTIRCB+hgCCRfIvUU5peE4g/cegnesPS5eMiQqV+NWk7cNwhjextQ==
 
-"@skyra/discord-components-core@^2.10.0":
-  version "2.10.0"
-  resolved "https://registry.yarnpkg.com/@skyra/discord-components-core/-/discord-components-core-2.10.0.tgz#f39a96825e656b8509d0a35d1816f11446f50f6c"
-  integrity sha512-XFL0NgL9fUpVWS9ig+m93qzvzbeF5zL+rQ7Xza1P/3UcNG9w6Psf3WYIv8Iq65NPsiIST404HGoiP6uqmm0Bzw==
+"@skyra/discord-components-core@^2.11.0":
+  version "2.11.0"
+  resolved "https://registry.yarnpkg.com/@skyra/discord-components-core/-/discord-components-core-2.11.0.tgz#54b5590838fe3caed6e32f6db5d319b34af7a36d"
+  integrity sha512-gxS8A4rIq1rsrhIyPT7TBeDYrs3f9si7/+qdj/hK0NBjjJlRaYhQUKvRlKinnryOuisj2DeiYoTtLtb35Sw7Bw==
   dependencies:
-    "@stencil/core" "^2.8.0"
+    "@stencil/core" "^2.8.1"
     clsx "^1.1.1"
     hex-to-rgba "^2.0.1"
 
@@ -224,7 +224,7 @@
   resolved "https://registry.yarnpkg.com/@skyra/editable-commands/-/editable-commands-1.0.0.tgz#3aab646cbd5cfc1f676eea95222e1db50b119409"
   integrity sha512-lZwz9XgYXNsEzJ+e8d5k2NX4MhbxrTI/tCg75VEftD0sbTzyZJQfRAwKvOv/QfEgIKYb2JoneZeAUkhtoWaLhQ==
 
-"@stencil/core@^2.8.0":
+"@stencil/core@^2.8.1":
   version "2.8.1"
   resolved "https://registry.yarnpkg.com/@stencil/core/-/core-2.8.1.tgz#21b15c115d9a5e2f56379774fcbd9bc947bf336f"
   integrity sha512-iv9J6oLO/lv7/aO45M05yw3pp1J7olY400vlOZgdMVs3s5zHfalY1ZPYM0KyqU4+7DZuadKYbd0aQZ/g2PInZw==
@@ -2299,10 +2299,10 @@ ws@^7.2.3, ws@^7.4.4:
   resolved "https://registry.yarnpkg.com/ws/-/ws-7.5.5.tgz#8b4bc4af518cfabd0473ae4f99144287b33eb881"
   integrity sha512-BAkMFcAzl8as1G/hArkxOxq3G7pjUqQ3gzYbLL0/5zNkph70e+lCoxBGnm6AW1+/aiNeV4fnKqZ8m4GZewmH2w==
 
-ws@^8.2.2:
-  version "8.2.2"
-  resolved "https://registry.yarnpkg.com/ws/-/ws-8.2.2.tgz#ca684330c6dd6076a737250ed81ac1606cb0a63e"
-  integrity sha512-Q6B6H2oc8QY3llc3cB8kVmQ6pnJWVQbP7Q5algTcIxx7YEpc0oU4NBVHlztA7Ekzfhw2r0rPducMUiCGWKQRzw==
+ws@^8.2.3:
+  version "8.2.3"
+  resolved "https://registry.yarnpkg.com/ws/-/ws-8.2.3.tgz#63a56456db1b04367d0b721a0b80cae6d8becbba"
+  integrity sha512-wBuoj1BDpC6ZQ1B7DWQBYVLphPWkm8i9Y0/3YdHjHKHiohOJ1ws+3OccDWtH+PoC9DZD5WOTrJvNbWvjS6JWaA==
 
 yallist@^4.0.0:
   version "4.0.0"
