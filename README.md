@@ -6,10 +6,10 @@
 
 **Custom Discord Bot for <a href="https://discord.gg/0qngWPF6JTRbzdxe">Populous Gaming**
 
-[![GitHub](https://img.shields.io/github/license/favware/archangel)](https://github.com/favware/archangel/blob/main/LICENSE)
-[![Twitter Follow](https://img.shields.io/twitter/follow/favna*?label=Follow%20@Favna*&logo=twitter&colorB=1DA1F2&style=flat-square)](https://twitter.com/Favna\*/follow)
+<a href="https://github.com/favware/archangel/blob/main/LICENSE" alt="License"><img src="https://img.shields.io/github/license/favware/archangel"/></a>
+<a href="https://twitter.com/Favna_/follow" alt="Twitter Follow"><img src="https://img.shields.io/twitter/follow/favna_?label=Follow%20@Favna_&logo=twitter&colorB=1DA1F2&style=flat-square"/></a>
 
-[![Support Server](https://discord.com/api/guilds/152464629753315328/embed.png?style=banner2)](https://discord.gg/0qngWPF6JTRbzdxe)
+<a href="https://discord.gg/0qngWPF6JTRbzdxe" alt="Support Server"><img src="https://discord.com/api/guilds/152464629753315328/embed.png?style=banner2"/></a>
 
 </div>
 
