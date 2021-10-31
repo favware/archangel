@@ -1,8 +1,18 @@
 import { BrandingColors, LoadingMessages } from '#utils/constants';
+import { send } from '@sapphire/plugin-editable-commands';
 import type { UserResolvable } from 'discord.js';
-import { GuildChannel, Message, MessageEmbed, Permissions } from 'discord.js';
+import { GuildChannel, Message, MessageEmbed, Permissions, ThreadChannel } from 'discord.js';
 
-export const IMAGE_EXTENSION = /\.(bmp|jpe?g|png|gif|webp|tiff)$/i;
+/**
+ * Image extensions:
+ * - bmp
+ * - jpg
+ * - jpeg
+ * - png
+ * - gif
+ * - webp
+ */
+export const IMAGE_EXTENSION = /\.(bmp|jpe?g|png|gif|webp)$/i;
 
 /**
  * Picks a random item from an array
@@ -16,7 +26,8 @@ export function pickRandom<T>(array: readonly T[]): T {
 }
 
 export function sendLoadingMessage(message: Message) {
-	return message.send(new MessageEmbed().setDescription(pickRandom(LoadingMessages)).setColor(BrandingColors.Secondary));
+	const embed = new MessageEmbed().setDescription(pickRandom(LoadingMessages)).setColor(BrandingColors.Secondary);
+	return send(message, { embeds: [embed] });
 }
 
 export function getColor(message: Message) {
@@ -30,7 +41,7 @@ export function getColor(message: Message) {
  * @returns Whether the user has access to the channel
  * @example validateChannelAccess(channel, message.author)
  */
-export function validateChannelAccess(channel: GuildChannel, user: UserResolvable) {
+export function validateChannelAccess(channel: GuildChannel | ThreadChannel, user: UserResolvable) {
 	return (channel.guild !== null && channel.permissionsFor(user)?.has(Permissions.FLAGS.VIEW_CHANNEL)) || false;
 }
 

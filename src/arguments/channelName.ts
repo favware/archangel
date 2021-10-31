@@ -1,47 +1,60 @@
+import type { GuildMessage } from '#lib/types/Discord';
 import { FuzzySearch } from '#utils/Parsers/FuzzySearch';
 import { validateChannelAccess } from '#utils/util';
-import { ChannelMentionRegex, SnowflakeRegex } from '@sapphire/discord.js-utilities';
+import { ChannelMentionRegex, SnowflakeRegex } from '@sapphire/discord-utilities';
 import type { ArgumentContext } from '@sapphire/framework';
-import { Argument, Identifiers } from '@sapphire/framework';
-import type { Guild, GuildChannel, User } from 'discord.js';
+import { Argument } from '@sapphire/framework';
+import { inlineCodeBlock } from '@sapphire/utilities';
+import type { Guild, GuildChannel, Message, ThreadChannel, User } from 'discord.js';
 
-export class UserArgument extends Argument<GuildChannel> {
+export class UserArgument extends Argument<GuildChannel | ThreadChannel> {
 	public resolveChannel(query: string, guild: Guild) {
-		const channelID = ChannelMentionRegex.exec(query) ?? SnowflakeRegex.exec(query);
-		return (channelID !== null && guild.channels.cache.get(channelID[1])) ?? null;
+		const channelId = ChannelMentionRegex.exec(query) ?? SnowflakeRegex.exec(query);
+		return (channelId !== null && guild.channels.cache.get(channelId[1])) ?? null;
 	}
 
 	public async run(parameter: string, { message, minimum, context, filter }: ChannelArgumentContext) {
-		if (!message.guild)
+		if (!this.isGuildMessage(message)) {
 			return this.error({
 				parameter,
-				identifier: Identifiers.ArgumentGuildChannelMissingGuild,
-				context,
-				message: `I was not able to resolve \`${parameter}\` because this argument requires to be run in a server channel.`
+				message: `I was not able to resolve ${inlineCodeBlock(parameter)} because this argument requires to be run in a server channel.`,
+				context
 			});
+		}
+
 		filter = this.getFilter(message.author, filter);
 
 		const resChannel = this.resolveChannel(parameter, message.guild);
 		if (resChannel && filter(resChannel)) return this.ok(resChannel);
 
 		const result = await new FuzzySearch(message.guild.channels.cache, (entry) => entry.name, filter).run(message, parameter, minimum);
-		if (result) return this.ok(result[1]);
+
+		if (result) {
+			return this.ok(result[1]);
+		}
+
 		return this.error({
 			parameter,
-			identifier: Identifiers.ArgumentGuildChannel,
-			context,
-			message: `I could not resolve \`${parameter}\` to a channel from this server, please make sure you typed its name or ID correctly!`
+			message: `I could not resolve ${inlineCodeBlock(
+				parameter
+			)} to a channel from this server, please make sure you typed its name or ID correctly!`,
+			context
 		});
 	}
 
-	private getFilter(author: User, filter?: (entry: GuildChannel) => boolean) {
+	private getFilter(author: User, filter?: (entry: GuildChannel | ThreadChannel) => boolean) {
 		const clientUser = author.client.user!;
 		return typeof filter === 'undefined'
-			? (entry: GuildChannel) => validateChannelAccess(entry, author) && validateChannelAccess(entry, clientUser)
-			: (entry: GuildChannel) => filter(entry) && validateChannelAccess(entry, author) && validateChannelAccess(entry, clientUser);
+			? (entry: GuildChannel | ThreadChannel) => validateChannelAccess(entry, author) && validateChannelAccess(entry, clientUser)
+			: (entry: GuildChannel | ThreadChannel) =>
+					filter(entry) && validateChannelAccess(entry, author) && validateChannelAccess(entry, clientUser);
+	}
+
+	private isGuildMessage(message: Message): message is GuildMessage {
+		return message.guild !== null;
 	}
 }
 
-interface ChannelArgumentContext extends ArgumentContext<GuildChannel> {
-	filter?: (entry: GuildChannel) => boolean;
+interface ChannelArgumentContext extends ArgumentContext<GuildChannel | ThreadChannel> {
+	filter?: (entry: GuildChannel | ThreadChannel) => boolean;
 }

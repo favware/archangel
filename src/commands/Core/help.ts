@@ -1,7 +1,8 @@
-import { ArchAngelCommand } from '#lib/extensions/ArchAngelCommand';
 import { BrandingColors } from '#utils/constants';
 import { ApplyOptions } from '@sapphire/decorators';
-import { Store } from '@sapphire/framework';
+import type { CommandContext, CommandOptions } from '@sapphire/framework';
+import { Args, Command, container } from '@sapphire/framework';
+import { send } from '@sapphire/plugin-editable-commands';
 import { Collection, Message, MessageEmbed } from 'discord.js';
 
 /**
@@ -12,25 +13,25 @@ import { Collection, Message, MessageEmbed } from 'discord.js';
  * @param firstCategory Key of the first element for comparison
  * @param secondCategory Key of the second element for comparison
  */
-function sortCommandsAlphabetically(_: ArchAngelCommand[], __: ArchAngelCommand[], firstCategory: string, secondCategory: string): 1 | -1 | 0 {
+function sortCommandsAlphabetically(_: Command[], __: Command[], firstCategory: string, secondCategory: string): 1 | -1 | 0 {
 	if (firstCategory > secondCategory) return 1;
 	if (secondCategory > firstCategory) return -1;
 	return 0;
 }
 
-@ApplyOptions<ArchAngelCommand.Options>({
+@ApplyOptions<CommandOptions>({
 	aliases: ['commands', 'cmd', 'cmds'],
 	description: 'Displays all commands or the description of one.',
-	strategyOptions: { flags: ['cat', 'categories', 'all'] }
+	flags: ['cat', 'categories', 'all']
 })
-export class UserCommand extends ArchAngelCommand {
-	public async run(message: Message, _: ArchAngelCommand.Args, context: ArchAngelCommand.Context) {
+export class UserCommand extends Command {
+	public async messageRun(message: Message, _: Args, context: CommandContext) {
 		return this.all(message, context);
 	}
 
-	private async all(message: Message, context: ArchAngelCommand.Context) {
+	private async all(message: Message, context: CommandContext) {
 		const content = await this.buildHelp(message, context.commandPrefix);
-		return message.send(new MessageEmbed().setDescription(content).setColor(BrandingColors.Primary));
+		return send(message, { embeds: [new MessageEmbed().setDescription(content).setColor(BrandingColors.Primary)] });
 	}
 
 	private async buildHelp(message: Message, prefix: string) {
@@ -44,24 +45,24 @@ export class UserCommand extends ArchAngelCommand {
 		return helpMessage.join('\n');
 	}
 
-	private formatCommand(prefix: string, command: ArchAngelCommand) {
+	private formatCommand(prefix: string, command: Command) {
 		const { description } = command;
 		return `• **${prefix}${command.name}** → ${description}`;
 	}
 
 	private static async fetchCommands(message: Message) {
-		const commands = Store.injectedContext.stores.get('commands');
-		const filtered = new Collection<string, ArchAngelCommand[]>();
+		const commands = container.stores.get('commands');
+		const filtered = new Collection<string, Command[]>();
 		await Promise.all(
 			commands.map(async (cmd) => {
-				const command = cmd as ArchAngelCommand;
+				const command = cmd as Command;
 
 				const result = await cmd.preconditions.run(message, command, { command: null! });
 				if (!result.success) return;
 
 				const category = filtered.get(command.fullCategory.join(' → '));
 				if (category) category.push(command);
-				else filtered.set(command.fullCategory.join(' → '), [command as ArchAngelCommand]);
+				else filtered.set(command.fullCategory.join(' → '), [command as Command]);
 			})
 		);
 

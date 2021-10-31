@@ -14,4 +14,12 @@ declare module '@sapphire/framework' {
 		channelName: GuildChannel;
 		textChannelName: TextChannel;
 	}
+
+	interface Preconditions {
+		Administrator: never;
+		BotOwner: never;
+		Everyone: never;
+		Moderator: never;
+		ServerOwner: never;
+	}
 }

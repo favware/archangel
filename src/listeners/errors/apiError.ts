@@ -1,11 +1,11 @@
-import { Event } from '@sapphire/framework';
+import { Listener } from '@sapphire/framework';
 import { DiscordAPIError, HTTPError } from 'discord.js';
 
 const NEWLINE = '\n';
 
-export class UserEvent extends Event {
+export class UserListener extends Listener {
 	public run(error: Error) {
-		const { client } = this.context;
+		const { client } = this.container;
 		if (error instanceof DiscordAPIError) {
 			client.logger.warn(`[API ERROR] [CODE: ${error.code}] ${error.message}${NEWLINE}            [PATH: ${error.method} ${error.path}]`);
 			client.logger.fatal(error.stack);

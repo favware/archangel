@@ -4,7 +4,8 @@ process.env.NODE_ENV ??= 'development';
 import { envParseArray, envParseBoolean, envParseString } from '#lib/env';
 import { srcFolder } from '#utils/constants';
 import { LogLevel } from '@sapphire/framework';
-import type { ActivityType, ClientOptions, PresenceData } from 'discord.js';
+import type { ActivitiesOptions, ClientOptions, ExcludeEnum } from 'discord.js';
+import type { ActivityTypes } from 'discord.js/typings/enums';
 import { config } from 'dotenv-cra';
 import { join } from 'path';
 import { fileURLToPath } from 'url';
@@ -17,14 +18,16 @@ config({
 
 export const OWNERS = envParseArray('CLIENT_OWNERS');
 
-function parsePresenceActivity(): PresenceData['activity'] | undefined {
+function parsePresenceActivity(): ActivitiesOptions[] {
 	const { CLIENT_PRESENCE_NAME } = process.env;
-	if (!CLIENT_PRESENCE_NAME) return undefined;
+	if (!CLIENT_PRESENCE_NAME) return [];
 
-	return {
-		name: CLIENT_PRESENCE_NAME,
-		type: envParseString('CLIENT_PRESENCE_TYPE', 'WATCHING') as ActivityType
-	};
+	return [
+		{
+			name: CLIENT_PRESENCE_NAME,
+			type: envParseString('CLIENT_PRESENCE_TYPE', 'WATCHING') as ExcludeEnum<typeof ActivityTypes, 'CUSTOM'>
+		}
+	];
 }
 
 function parseRegExpPrefix(): RegExp | undefined {
@@ -33,12 +36,9 @@ function parseRegExpPrefix(): RegExp | undefined {
 }
 
 export const CLIENT_OPTIONS: ClientOptions = {
-	ws: { intents: ['GUILDS', 'GUILD_MESSAGES', 'DIRECT_MESSAGES'] },
-	messageCacheLifetime: 120,
-	messageCacheMaxSize: 25,
-	messageSweepInterval: 300,
+	intents: ['GUILDS', 'GUILD_MESSAGES', 'DIRECT_MESSAGES'],
 	defaultPrefix: envParseString('CLIENT_PREFIX'),
-	presence: { activity: parsePresenceActivity() },
+	presence: { activities: parsePresenceActivity() },
 	regexPrefix: parseRegExpPrefix(),
 	logger: { level: envParseString('NODE_ENV') === 'production' ? LogLevel.Info : LogLevel.Debug },
 	restTimeOffset: 0,

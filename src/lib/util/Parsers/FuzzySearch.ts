@@ -1,25 +1,27 @@
-import { decode, jaroWinkler } from '#utils/External/jaro-winkler';
-import type { Collection } from '@discordjs/collection';
+import { promptForMessage } from '#utils/Parsers/functions';
+import { UserError } from '@sapphire/framework';
 import { codeBlock } from '@sapphire/utilities';
+import { decodeUtf8, jaroWinkler } from '@skyra/jaro-winkler';
+import { bold } from 'colorette';
 import type { Message } from 'discord.js';
 
 type FuzzySearchAccess<V> = (value: V) => string;
 type FuzzySearchFilter<V> = (value: V) => boolean;
 
 export class FuzzySearch<K extends string, V> {
-	private readonly kCollection: Collection<K, V>;
+	private readonly kCollection: Map<K, V>;
 	private readonly kAccess: FuzzySearchAccess<V>;
 	private readonly kFilter: FuzzySearchFilter<V>;
 
-	public constructor(collection: Collection<K, V>, access: FuzzySearchAccess<V>, filter: FuzzySearchFilter<V> = () => true) {
+	public constructor(collection: Map<K, V>, access: FuzzySearchAccess<V>, filter: FuzzySearchFilter<V> = () => true) {
 		this.kCollection = collection;
 		this.kAccess = access;
 		this.kFilter = filter;
 	}
 
-	public run(message: Message, query: string, threshold = 2) {
+	public run(message: Message, query: string, threshold?: number) {
 		const lowerCaseQuery = query.toLowerCase();
-		const decodedLowerCaseQuery = decode(lowerCaseQuery);
+		const decodedLowerCaseQuery = decodeUtf8(lowerCaseQuery);
 		const results: [K, V, number][] = [];
 
 		// Adaptive threshold based on input length
@@ -34,7 +36,6 @@ export class FuzzySearch<K extends string, V> {
 		let current: string;
 		let similarity: number;
 		let almostExacts = 0;
-
 		for (const [id, entry] of this.kCollection.entries()) {
 			if (!this.kFilter(entry)) continue;
 
@@ -77,17 +78,27 @@ export class FuzzySearch<K extends string, V> {
 		if (results.length === 1) return results[0];
 		if (results.length > 10) results.length = 10;
 
-		const { content: n } = await message.prompt(
-			`I found multiple matches! **Please select a number within 0 and ${results.length - 1}**:\n${codeBlock(
-				'http',
-				results.map(([id, result], i) => `${i} : [ ${id.padEnd(18, ' ')} ] ${this.kAccess(result)}`).join('\n')
-			)}\nWrite **ABORT** if you want to exit the prompt.`
-		);
+		const codeblock = codeBlock('http', results.map(([id, result], i) => `${i} : [ ${id.padEnd(18, ' ')} ] ${this.kAccess(result)}`).join('\n'));
 
-		if (n.toLowerCase() === 'abort') throw new Error('Successfully aborted the prompt.');
+		const prompt = `I found multiple matches! ${bold(`Please select a number within 0 and ${results.length - 1}`)}:\n${codeblock}\nWrite ${bold(
+			'ABORT'
+		)} if you want to exit the prompt.`;
+
+		const n = await promptForMessage(message, prompt);
+		if (n === null || n.toLowerCase() === 'abort') {
+			throw new UserError({ identifier: 'AbortedPrompt', message: 'Successfully aborted the prompt.' });
+		}
+
 		const parsed = Number(n);
-		if (!Number.isSafeInteger(parsed)) throw new Error('I expected you to give me a (single digit) number, got a potato.');
-		if (parsed < 0 || parsed >= results.length) throw new Error('That number was out of range, aborting prompt.');
+
+		if (!Number.isSafeInteger(parsed)) {
+			throw new UserError({ identifier: 'InvalidNumber', message: 'I expected you to give me a (single digit) number, got a potato.' });
+		}
+
+		if (parsed < 0 || parsed >= results.length) {
+			throw new UserError({ identifier: 'InvalidIndex', message: 'That number was out of range, aborting prompt.' });
+		}
+
 		return results[parsed];
 	}
 }

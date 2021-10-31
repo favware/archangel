@@ -1,12 +1,12 @@
 import { envParseString } from '#lib/env';
 import { ApplyOptions } from '@sapphire/decorators';
-import type { EventOptions } from '@sapphire/framework';
-import { Event, Store } from '@sapphire/framework';
+import type { ListenerOptions } from '@sapphire/framework';
+import { Listener, Store } from '@sapphire/framework';
 import { blue, gray, green, magenta, magentaBright, white, yellow } from 'colorette';
 
-@ApplyOptions<EventOptions>({ once: true })
-export class UserEvent extends Event {
-	private readonly style = this.context.client.dev ? yellow : blue;
+@ApplyOptions<ListenerOptions>({ once: true })
+export class UserListener extends Listener {
+	private readonly style = this.container.client.dev ? yellow : blue;
 
 	public run() {
 		this.printBanner();
@@ -14,7 +14,7 @@ export class UserEvent extends Event {
 	}
 
 	private printBanner() {
-		const { client } = this.context;
+		const { client } = this.container;
 		const success = green('+');
 
 		const llc = client.dev ? magentaBright : white;
@@ -41,13 +41,13 @@ ${line04}   / ___ \ |  _ < | |___ |  _  | / ___ \ | |\  || |_| || |___ | |___
 ${line05}  /_/   \_\|_| \_\ \____||_| |_|/_/   \_\|_| \_| \____||_____||_____|
 ${line06} ${blc(envParseString('CLIENT_VERSION').padStart(55, ' '))}
 ${line07} ${pad}[${success}] Gateway
-${line08}${this.context.client.dev ? ` ${pad}${blc('<')}${llc('/')}${blc('>')} ${llc('DEVELOPMENT MODE')}` : ''}
+${line08}${this.container.client.dev ? ` ${pad}${blc('<')}${llc('/')}${blc('>')} ${llc('DEVELOPMENT MODE')}` : ''}
 		`.trim()
 		);
 	}
 
 	private printStoreDebugInformation() {
-		const { client, logger } = this.context;
+		const { client, logger } = this.container;
 		const stores = [...client.stores.values()];
 		const last = stores.pop()!;
 

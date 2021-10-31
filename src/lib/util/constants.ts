@@ -4,9 +4,9 @@ export const rootFolder = new URL('../../../', import.meta.url);
 export const srcFolder = new URL('src/', rootFolder);
 
 export const enum Emojis {
-	Loading = '<a:aaloading:730555789730775042>',
-	GreenTick = '<:greenTick:637706251253317669>',
-	RedCross = '<:redCross:637706251257511973>'
+	Loading = '<a:_:730555789730775042>',
+	GreenTick = '<:_:637706251253317669>',
+	RedCross = '<:_:637706251257511973>'
 }
 
 export const LoadingMessages = [

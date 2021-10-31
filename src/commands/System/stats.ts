@@ -1,19 +1,21 @@
-import { ArchAngelCommand } from '#lib/extensions/ArchAngelCommand';
 import { BrandingColors } from '#utils/constants';
 import { ApplyOptions } from '@sapphire/decorators';
+import type { CommandOptions } from '@sapphire/framework';
+import { Command } from '@sapphire/framework';
+import { send } from '@sapphire/plugin-editable-commands';
 import { roundNumber } from '@sapphire/utilities';
 import { Message, MessageEmbed, version } from 'discord.js';
 import type { CpuInfo } from 'os';
 import { cpus, uptime } from 'os';
 
-@ApplyOptions<ArchAngelCommand.Options>({
+@ApplyOptions<CommandOptions>({
 	aliases: ['stats', 'sts'],
 	description: 'Provides some details about the bot and stats.',
-	permissions: ['EMBED_LINKS']
+	requiredClientPermissions: ['EMBED_LINKS']
 })
-export class UserCommand extends ArchAngelCommand {
-	public run(message: Message) {
-		return message.send(this.buildEmbed());
+export class UserCommand extends Command {
+	public messageRun(message: Message) {
+		return send(message, { embeds: [this.buildEmbed()] });
 	}
 
 	private buildEmbed() {
@@ -27,12 +29,12 @@ export class UserCommand extends ArchAngelCommand {
 		const usage = this.usageStatistics;
 
 		const fields = {
-			stats: `• **Users**: ${stats.users}}\n• **Guilds**: ${stats.guilds}\n• **Channels**: ${stats.channels}}\n• **Discord.js**: ${stats.version}}\n• **Node.js**: ${stats.nodeJs}`,
-			uptime: `• **Host**: ${this.context.client.EnGbHandler.duration.format(
+			stats: `• **Users**: ${stats.users}\n• **Guilds**: ${stats.guilds}\n• **Channels**: ${stats.channels}\n• **Discord.js**: ${stats.version}\n• **Node.js**: ${stats.nodeJs}`,
+			uptime: `• **Host**: ${this.container.client.EnGbHandler.duration.format(
 				uptime.host
-			)}\n• **Total**: ${this.context.client.EnGbHandler.duration.format(
+			)}\n• **Total**: ${this.container.client.EnGbHandler.duration.format(
 				uptime.total
-			)}\n• **Client**: ${this.context.client.EnGbHandler.duration.format(uptime.client)}`,
+			)}\n• **Client**: ${this.container.client.EnGbHandler.duration.format(uptime.client)}`,
 			serverUsage: `• **CPU Load**: ${usage.cpuLoad}}\n• **Heap**: ${usage.ramUsed}MB (Total: ${usage.ramTotal}}MB)`
 		};
 
@@ -44,7 +46,7 @@ export class UserCommand extends ArchAngelCommand {
 	}
 
 	private get generalStatistics(): StatsGeneral {
-		const { client } = this.context;
+		const { client } = this.container;
 		return {
 			channels: client.channels.cache.size,
 			guilds: client.guilds.cache.size,
@@ -56,7 +58,7 @@ export class UserCommand extends ArchAngelCommand {
 
 	private get uptimeStatistics(): StatsUptime {
 		return {
-			client: this.context.client.uptime!,
+			client: this.container.client.uptime!,
 			host: uptime() * 1000,
 			total: process.uptime() * 1000
 		};

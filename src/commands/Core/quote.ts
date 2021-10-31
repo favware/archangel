@@ -1,23 +1,25 @@
-import { ArchAngelCommand } from '#lib/extensions/ArchAngelCommand';
 import type { GuildMessage } from '#lib/types/Discord';
 import { BrandingColors } from '#utils/constants';
 import { discordMessageGenerator, discordMessagesGenerator, htmlGenerator } from '#utils/HtmlGenerator';
+import { deleteMessage } from '#utils/Parsers/functions';
 import { getAttachment, oneLine, sendLoadingMessage } from '#utils/util';
 import { ApplyOptions } from '@sapphire/decorators';
+import type { CommandOptions } from '@sapphire/framework';
+import { Args, Command, CommandOptionsRunTypeEnum } from '@sapphire/framework';
 import { Timestamp } from '@sapphire/time-utilities';
 import { Message, MessageAttachment, UserFlags } from 'discord.js';
 import imageGenerator from 'node-html-to-image';
 
-@ApplyOptions<ArchAngelCommand.Options>({
+@ApplyOptions<CommandOptions>({
 	description: 'Quotes one or more messages and outputs them in a channel.',
 	detailedDescription: [].join('\n'),
-	runIn: ['text'],
-	strategyOptions: { options: ['inputChannel', 'targetChannel'] }
+	runIn: [CommandOptionsRunTypeEnum.GuildAny],
+	options: ['inputChannel', 'targetChannel']
 })
-export class UserCommand extends ArchAngelCommand {
+export class UserCommand extends Command {
 	private readonly timestamp = new Timestamp('MM/DD/YYYY');
 
-	public async run(message: GuildMessage, args: ArchAngelCommand.Args) {
+	public async messageRun(message: GuildMessage, args: Args) {
 		const inputChannel = await args.pick('textChannelName').catch(() => message.channel);
 		const targetChannel = await args.pick('textChannelName').catch(() => message.channel);
 
@@ -50,9 +52,9 @@ export class UserCommand extends ArchAngelCommand {
 			}
 		})) as Buffer;
 
-		await targetChannel.send(new MessageAttachment(buffer, 'archangel-quote.png'));
+		await targetChannel.send({ files: [new MessageAttachment(buffer, 'archangel-quote.png')] });
 
-		return loadingMessage.nuke();
+		return deleteMessage(loadingMessage);
 	}
 
 	private messageToHtml(message: Message, commandMessage: GuildMessage): string {
@@ -63,12 +65,15 @@ export class UserCommand extends ArchAngelCommand {
 			author: member?.displayName ?? message.author.tag,
 			avatar: message.author.displayAvatarURL({ dynamic: false, format: 'png', size: 128 })!,
 			bot: message.author.bot,
-			verified: message.author.flags?.has(UserFlags.FLAGS.VERIFIED_BOT) ?? false,
-			edited: Boolean(message.editedAt),
-			roleColor: member?.displayHexColor ?? `#${BrandingColors.Primary}`,
 			content: message.cleanContent,
+			edited: Boolean(message.editedAt),
+			highlight: false,
+			image: attachment,
+			roleColor: member?.displayHexColor ?? `#${BrandingColors.Primary}`,
+			server: false,
 			timestamp: this.timestamp.display(message.createdAt),
-			image: attachment
+			twentyFour: true,
+			verified: message.author.flags?.has(UserFlags.FLAGS.VERIFIED_BOT) ?? false
 		});
 	}
 }
