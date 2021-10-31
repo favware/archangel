@@ -4,6 +4,11 @@ node_modules/
 .idea/
 *.iml
 
+# Yarn files
+.yarn/install-state.gz
+.yarn/build-state.yml
+
+
 # Ignore the dist output
 dist/
 

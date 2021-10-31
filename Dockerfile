@@ -1,33 +1,54 @@
-FROM --platform=linux/amd64 node:17-buster-slim as BUILDER
+# ================ #
+#    Base Stage    #
+# ================ #
+
+FROM node:17-buster-slim as base
 
 WORKDIR /usr/src/app
 
+ENV HUSKY=0
+ENV CI=true
 ENV NODE_ENV="development"
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD 1
 
 RUN apt-get update && \
-    apt-get upgrade -y && \
-    apt-get install -y \
-    build-essential \
-    python3
+    apt-get upgrade -y --no-install-recommends && \
+    apt-get install -y --no-install-recommends build-essential python3 dumb-init && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
-COPY --chown=node:node package.json .
 COPY --chown=node:node yarn.lock .
-COPY --chown=node:node tsconfig* .
-COPY --chown=node:node src/ src/
+COPY --chown=node:node package.json .
+COPY --chown=node:node .yarnrc.yml .
+COPY --chown=node:node .yarn/ .yarn/
+
+RUN sed -i 's/"prepare": "husky install .github\/husky"/"prepare": ""/' ./package.json
+
+ENTRYPOINT ["dumb-init", "--"]
+
+# ================ #
+#   Builder Stage  #
+# ================ #
+
+FROM base as builder
+
+ENV NODE_ENV="development"
+
+COPY --chown=node:node tsconfig.base.json tsconfig.base.json
 COPY --chown=node:node scripts/ scripts/
+COPY --chown=node:node src/ src/
 
-RUN yarn install --production=false --frozen-lockfile --link-duplicates
-
-RUN yarn build
+RUN yarn install --immutable
+RUN yarn run build
 
 # ================ #
 #   Runner Stage   #
 # ================ #
 
-FROM --platform=linux/amd64 node:17-buster-slim AS RUNNER
+FROM base AS runner
 
 ENV NODE_ENV="production"
+ENV NODE_OPTIONS="--enable-source-maps --max_old_space_size=4096"
 
 WORKDIR /usr/src/app
 
@@ -56,13 +77,11 @@ ENV LIGHTHOUSE_CHROMIUM_PATH /usr/bin/google-chrome-stable
 ENV PUPPETEER_EXECUTABLE_PATH /usr/bin/google-chrome-stable
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD 1
 
+COPY --chown=node:node src/.env src/.env
 COPY --chown=node:node --from=BUILDER /usr/src/app/dist dist
 
-COPY --chown=node:node package.json .
-COPY --chown=node:node yarn.lock .
-
-RUN yarn install --production=true --frozen-lockfile --link-duplicates --ignore-scripts
+RUN yarn workspaces focus --all --production
 
 USER node
 
-CMD [ "dumb-init", "yarn", "start", "--enable-source-maps" ]
+CMD [ "yarn", "run", "start"]

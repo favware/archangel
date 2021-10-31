@@ -1,4 +1,4 @@
-version: '2.4'
+version: '3.8'
 
 services:
   archangel:
@@ -8,4 +8,4 @@ services:
     restart: unless-stopped
     tty: true
     env_file:
-      - ./src/.env.production.local
+      - ./src/.env.development.local

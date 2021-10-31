@@ -30,16 +30,10 @@ function parsePresenceActivity(): ActivitiesOptions[] {
 	];
 }
 
-function parseRegExpPrefix(): RegExp | undefined {
-	const { CLIENT_REGEX_PREFIX } = process.env;
-	return CLIENT_REGEX_PREFIX ? new RegExp(CLIENT_REGEX_PREFIX, 'i') : undefined;
-}
-
 export const CLIENT_OPTIONS: ClientOptions = {
 	intents: ['GUILDS', 'GUILD_MESSAGES', 'DIRECT_MESSAGES'],
 	defaultPrefix: envParseString('CLIENT_PREFIX'),
 	presence: { activities: parsePresenceActivity() },
-	regexPrefix: parseRegExpPrefix(),
 	logger: { level: envParseString('NODE_ENV') === 'production' ? LogLevel.Info : LogLevel.Debug },
 	restTimeOffset: 0,
 	caseInsensitiveCommands: true,

@@ -1,6 +1,6 @@
 {
 	"name": "archangel",
-	"version": "2.0.0",
+	"version": "3.0.0",
 	"description": "Private bot for PopulousGaming",
 	"author": "Jeroen Claassens <support@favware.tech>",
 	"license": "Apache-2.0",
@@ -14,7 +14,7 @@
 		"#lib/env": "./dist/lib/env/index.js"
 	},
 	"scripts": {
-		"start": "node dist/ArchAngel.js",
+		"start": "node --enable-source-maps dist/ArchAngel.js",
 		"lint": "eslint src --ext ts --fix",
 		"format": "prettier --write --loglevel=warn \"src/**/*.ts\"",
 		"update": "yarn upgrade-interactive --latest",
@@ -22,7 +22,7 @@
 		"watch": "node scripts/watch.mjs",
 		"clean": "node scripts/clean.mjs",
 		"typecheck": "tsc -p src --noEmit",
-		"dev": "run-s build start"
+		"dev": "yarn build && yarn start"
 	},
 	"dependencies": {
 		"@discordjs/collection": "^0.3.2",
@@ -60,7 +60,8 @@
 		"@types/puppeteer": "^5.4.4",
 		"@types/ws": "^8.2.0",
 		"esbuild": "^0.13.12",
-		"npm-run-all": "^4.1.5",
+		"eslint": "^8.1.0",
+		"prettier": "^2.4.1",
 		"pretty-quick": "^3.1.1",
 		"typescript": "^4.4.4"
 	},
@@ -68,5 +69,6 @@
 		"node": ">=16.6.0",
 		"npm": ">=7.24.2"
 	},
-	"prettier": "@sapphire/prettier-config"
+	"prettier": "@sapphire/prettier-config",
+	"packageManager": "yarn@3.1.0"
 }
