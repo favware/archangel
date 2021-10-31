@@ -1,13 +1,4 @@
 {
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
-	"extends": ["github>sapphiredev/readme:sapphire-renovate"],
-	"labels": ["Meta: Dependencies"],
-	"npm": {
-		"packageRules": [
-			{
-				"matchPackagePatterns": ["@sapphire/discord.js-utilities", "@sapphire/framework", "@sapphire/plugin-logger"],
-				"enabled": false
-			}
-		]
-	}
+	"extends": ["github>sapphiredev/readme:sapphire-renovate"]
 }
