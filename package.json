@@ -17,7 +17,7 @@
 		"start": "node --enable-source-maps dist/ArchAngel.js",
 		"lint": "eslint src --ext ts --fix",
 		"format": "prettier --write --loglevel=warn \"src/**/*.ts\"",
-		"update": "yarn upgrade-interactive --latest",
+		"update": "yarn upgrade-interactive",
 		"build": "node scripts/build.mjs",
 		"watch": "node scripts/watch.mjs",
 		"clean": "node scripts/clean.mjs",
@@ -51,7 +51,7 @@
 		"zlib-sync": "^0.1.7"
 	},
 	"devDependencies": {
-		"@sapphire/eslint-config": "^4.0.4",
+		"@sapphire/eslint-config": "^4.0.5",
 		"@sapphire/prettier-config": "^1.2.4",
 		"@sapphire/ts-config": "^3.1.4",
 		"@skyra/discord-components-core": "^2.12.0",
