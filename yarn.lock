@@ -233,13 +233,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/plugin-editable-commands@npm:^1.1.1":
-  version: 1.1.1
-  resolution: "@sapphire/plugin-editable-commands@npm:1.1.1"
+"@sapphire/plugin-editable-commands@npm:^1.1.2":
+  version: 1.1.2
+  resolution: "@sapphire/plugin-editable-commands@npm:1.1.2"
   dependencies:
     "@skyra/editable-commands": ^2.1.1
     tslib: ^2.3.1
-  checksum: e50e6ca2a18c03b16366b863e866f3e6f1712dda9dd0cca0fe4bab1152d6562ad53ed59d2ddbede685a377003e6a1049df8500c184ae9811b7ff25f75695942d
+  checksum: cf685ded6fa92faab21c5a9b1eda0bde5adde73b89a73abeaaabdc351276ae90d725189e1fcb9a9b800d17d28f1ac036b28eae467ce37dd5b539f21aaafaafff
   languageName: node
   linkType: hard
 
@@ -749,7 +749,7 @@ __metadata:
     "@sapphire/eslint-config": ^4.0.8
     "@sapphire/fetch": ^2.0.3
     "@sapphire/framework": ^2.2.1
-    "@sapphire/plugin-editable-commands": ^1.1.1
+    "@sapphire/plugin-editable-commands": ^1.1.2
     "@sapphire/plugin-logger": ^2.1.1
     "@sapphire/prettier-config": ^1.2.7
     "@sapphire/time-utilities": ^1.5.0
