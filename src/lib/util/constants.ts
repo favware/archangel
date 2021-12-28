@@ -1,8 +1,6 @@
-import { getRootData } from '@sapphire/pieces';
-import { join } from 'node:path';
-import { pathToFileURL, URL } from 'node:url';
+import { URL } from 'node:url';
 
-export const rootFolder = pathToFileURL(join(getRootData().root, '..'));
+export const rootFolder = new URL('../../../', import.meta.url);
 export const srcFolder = new URL('src/', rootFolder);
 
 export const enum Emojis {
