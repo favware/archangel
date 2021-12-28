@@ -3,8 +3,6 @@ import type { GuildCommandInteraction, GuildContextMenuInteraction } from './Dis
 
 declare module 'discord.js' {
 	interface Client {
-		readonly dev: boolean;
-		readonly version: string;
 		readonly EnGbHandler: EnGbHandler;
 	}
 }

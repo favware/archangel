@@ -5,8 +5,6 @@ import { SapphireClient } from '@sapphire/framework';
 import type { Message } from 'discord.js';
 
 export class ArchAngelClient extends SapphireClient {
-	public dev = envParseString('NODE_ENV') !== 'production';
-
 	public readonly EnGbHandler = new EnGbHandler();
 
 	public constructor() {
