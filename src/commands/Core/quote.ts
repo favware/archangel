@@ -1,7 +1,10 @@
+// TODO: Remove this file
+/* eslint-disable */
+// @ts-nocheck
 import type { GuildMessage } from '#lib/types/Discord';
 import { BrandingColors } from '#utils/constants';
 import { discordMessageGenerator, discordMessagesGenerator, htmlGenerator } from '#utils/HtmlGenerator';
-import { deleteMessage } from '#utils/Parsers/functions';
+import { safeDeleteMessage } from '#utils/functions/safeDeleteMessage';
 import { getAttachment, oneLine, sendLoadingMessage } from '#utils/util';
 import { ApplyOptions } from '@sapphire/decorators';
 import { Args, Command, CommandOptionsRunTypeEnum } from '@sapphire/framework';
@@ -53,7 +56,7 @@ export class UserCommand extends Command {
 
 		await targetChannel.send({ files: [new MessageAttachment(buffer, 'archangel-quote.png')] });
 
-		return deleteMessage(loadingMessage);
+		return safeDeleteMessage(loadingMessage);
 	}
 
 	private messageToHtml(message: Message, commandMessage: GuildMessage): string {
