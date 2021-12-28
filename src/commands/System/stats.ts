@@ -5,8 +5,8 @@ import { Command } from '@sapphire/framework';
 import { send } from '@sapphire/plugin-editable-commands';
 import { roundNumber } from '@sapphire/utilities';
 import { Message, MessageEmbed, version } from 'discord.js';
-import type { CpuInfo } from 'os';
-import { cpus, uptime } from 'os';
+import type { CpuInfo } from 'node:os';
+import { cpus, uptime } from 'node:os';
 
 @ApplyOptions<CommandOptions>({
 	aliases: ['stats', 'sts'],

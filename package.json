@@ -17,12 +17,11 @@
 		"start": "node --enable-source-maps dist/ArchAngel.js",
 		"lint": "eslint src --ext ts --fix",
 		"format": "prettier --write --loglevel=warn \"src/**/*.ts\"",
-		"update": "yarn upgrade-interactive",
-		"build": "node scripts/build.mjs",
-		"watch": "node scripts/watch.mjs",
+		"build": "tsup",
+		"watch": "tsup --watch",
 		"clean": "node scripts/clean.mjs",
-		"typecheck": "tsc -p src --noEmit",
-		"dev": "yarn build && yarn start"
+		"typecheck": "tsc -b src",
+		"dev": "tsup --watch --onSuccess \"yarn start\""
 	},
 	"dependencies": {
 		"@discordjs/collection": "^0.4.0",
@@ -65,8 +64,10 @@
 		"eslint": "^8.5.0",
 		"eslint-config-prettier": "^8.3.0",
 		"eslint-plugin-prettier": "^4.0.0",
+		"globby": "^12.0.2",
 		"prettier": "^2.5.1",
 		"pretty-quick": "^3.1.3",
+		"tsup": "^5.11.9",
 		"typescript": "^4.5.4"
 	},
 	"engines": {

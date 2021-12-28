@@ -6,7 +6,7 @@ import { isThenable } from '@sapphire/utilities';
 import { RESTJSONErrorCodes } from 'discord-api-types/v9';
 import type { MessageOptions } from 'discord.js';
 import { DiscordAPIError, Message } from 'discord.js';
-import { setTimeout as sleep } from 'timers/promises';
+import { setTimeout as sleep } from 'node:timers/promises';
 
 export async function resolveOnErrorCodes<T>(promise: Promise<T>, ...codes: readonly RESTJSONErrorCodes[]) {
 	try {
