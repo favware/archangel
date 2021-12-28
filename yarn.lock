@@ -638,7 +638,6 @@ __metadata:
     discord-api-types: ^0.26.0
     discord.js: ^13.4.0
     dotenv-cra: ^3.0.2
-    esbuild: ^0.14.8
     eslint: ^8.5.0
     eslint-config-prettier: ^8.3.0
     eslint-plugin-prettier: ^4.0.0
@@ -1272,7 +1271,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:^0.14.2, esbuild@npm:^0.14.8":
+"esbuild@npm:^0.14.2":
   version: 0.14.8
   resolution: "esbuild@npm:0.14.8"
   dependencies:
