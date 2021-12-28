@@ -1,14 +1,12 @@
 import { BrandingColors } from '#utils/constants';
 import { ApplyOptions } from '@sapphire/decorators';
-import type { CommandOptions } from '@sapphire/framework';
 import { Command } from '@sapphire/framework';
 import { send } from '@sapphire/plugin-editable-commands';
 import { roundNumber } from '@sapphire/utilities';
 import { Message, MessageEmbed, version } from 'discord.js';
-import type { CpuInfo } from 'node:os';
-import { cpus, uptime } from 'node:os';
+import { cpus, uptime, type CpuInfo } from 'node:os';
 
-@ApplyOptions<CommandOptions>({
+@ApplyOptions<Command.Options>({
 	aliases: ['stats', 'sts'],
 	description: 'Provides some details about the bot and stats.',
 	requiredClientPermissions: ['EMBED_LINKS']

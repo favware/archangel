@@ -1,11 +1,10 @@
 import { ApplyOptions } from '@sapphire/decorators';
-import type { CommandSuccessPayload, ListenerOptions } from '@sapphire/framework';
-import { Command, Listener, Events, LogLevel } from '@sapphire/framework';
+import { Command, Events, Listener, LogLevel, type CommandSuccessPayload } from '@sapphire/framework';
 import type { Logger } from '@sapphire/plugin-logger';
 import { cyan } from 'colorette';
 import type { Guild, User } from 'discord.js';
 
-@ApplyOptions<ListenerOptions>({ event: Events.CommandSuccess })
+@ApplyOptions<Listener.Options>({ event: Events.CommandSuccess })
 export class UserListener extends Listener {
 	public run({ message, command }: CommandSuccessPayload) {
 		const shard = this.shard(message.guild?.shardId ?? 0);

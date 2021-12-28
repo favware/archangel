@@ -4,13 +4,12 @@ import { discordMessageGenerator, discordMessagesGenerator, htmlGenerator } from
 import { deleteMessage } from '#utils/Parsers/functions';
 import { getAttachment, oneLine, sendLoadingMessage } from '#utils/util';
 import { ApplyOptions } from '@sapphire/decorators';
-import type { CommandOptions } from '@sapphire/framework';
 import { Args, Command, CommandOptionsRunTypeEnum } from '@sapphire/framework';
 import { Timestamp } from '@sapphire/time-utilities';
 import { Message, MessageAttachment, UserFlags } from 'discord.js';
 import imageGenerator from 'node-html-to-image';
 
-@ApplyOptions<CommandOptions>({
+@ApplyOptions<Command.Options>({
 	description: 'Quotes one or more messages and outputs them in a channel.',
 	detailedDescription: [].join('\n'),
 	runIn: [CommandOptionsRunTypeEnum.GuildAny],

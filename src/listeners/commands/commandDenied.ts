@@ -1,6 +1,5 @@
 import { sendTemporaryMessage } from '#utils/Parsers/functions';
-import type { CommandDeniedPayload } from '@sapphire/framework';
-import { Listener, UserError } from '@sapphire/framework';
+import { Listener, UserError, type CommandDeniedPayload } from '@sapphire/framework';
 import type { Message } from 'discord.js';
 
 export class UserListener extends Listener {

@@ -1,7 +1,6 @@
 import { BrandingColors, LoadingMessages } from '#utils/constants';
 import { send } from '@sapphire/plugin-editable-commands';
-import type { UserResolvable } from 'discord.js';
-import { GuildChannel, Message, MessageEmbed, Permissions, ThreadChannel } from 'discord.js';
+import { GuildChannel, Message, MessageEmbed, Permissions, ThreadChannel, type UserResolvable } from 'discord.js';
 
 /**
  * Image extensions:

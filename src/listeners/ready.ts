@@ -1,10 +1,9 @@
 import { envParseString } from '#lib/env';
 import { ApplyOptions } from '@sapphire/decorators';
-import type { ListenerOptions } from '@sapphire/framework';
 import { Listener, Store } from '@sapphire/framework';
 import { blue, gray, green, magenta, magentaBright, white, yellow } from 'colorette';
 
-@ApplyOptions<ListenerOptions>({ once: true })
+@ApplyOptions<Listener.Options>({ once: true })
 export class UserListener extends Listener {
 	private readonly style = this.container.client.dev ? yellow : blue;
 

@@ -1,5 +1,4 @@
-import type { DurationFormatAssetsTime } from '@sapphire/time-utilities';
-import { DurationFormatter } from '@sapphire/time-utilities';
+import { DurationFormatter, type DurationFormatAssetsTime } from '@sapphire/time-utilities';
 
 export abstract class Handler {
 	public readonly name: string;

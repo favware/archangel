@@ -1,10 +1,5 @@
 import type { ArchAngelEnv, ArchAngelEnvAny, ArchAngelEnvBoolean, ArchAngelEnvInteger, ArchAngelEnvString } from '#lib/env/types';
-import type { Nullish } from '@sapphire/utilities';
-import { isNullish } from '@sapphire/utilities';
-
-function isNullishOrEmpty(value: unknown): value is Nullish | '' {
-	return value === '' || isNullish(value);
-}
+import { isNullishOrEmpty } from '@sapphire/utilities';
 
 export function envParseInteger(key: ArchAngelEnvInteger, defaultValue?: number): number {
 	const value = process.env[key];

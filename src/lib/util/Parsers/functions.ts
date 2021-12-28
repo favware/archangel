@@ -1,11 +1,9 @@
 import { container } from '@sapphire/framework';
 import { send } from '@sapphire/plugin-editable-commands';
 import { Time } from '@sapphire/time-utilities';
-import type { Awaitable } from '@sapphire/utilities';
-import { isThenable } from '@sapphire/utilities';
+import { isThenable, type Awaitable } from '@sapphire/utilities';
 import { RESTJSONErrorCodes } from 'discord-api-types/v9';
-import type { MessageOptions } from 'discord.js';
-import { DiscordAPIError, Message } from 'discord.js';
+import { DiscordAPIError, Message, type MessageOptions } from 'discord.js';
 import { setTimeout as sleep } from 'node:timers/promises';
 
 export async function resolveOnErrorCodes<T>(promise: Promise<T>, ...codes: readonly RESTJSONErrorCodes[]) {

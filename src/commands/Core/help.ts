@@ -1,6 +1,5 @@
 import { BrandingColors } from '#utils/constants';
 import { ApplyOptions } from '@sapphire/decorators';
-import type { CommandContext, CommandOptions } from '@sapphire/framework';
 import { Args, Command, container } from '@sapphire/framework';
 import { send } from '@sapphire/plugin-editable-commands';
 import { Collection, Message, MessageEmbed } from 'discord.js';
@@ -19,17 +18,17 @@ function sortCommandsAlphabetically(_: Command[], __: Command[], firstCategory: 
 	return 0;
 }
 
-@ApplyOptions<CommandOptions>({
+@ApplyOptions<Command.Options>({
 	aliases: ['commands', 'cmd', 'cmds'],
 	description: 'Displays all commands or the description of one.',
 	flags: ['cat', 'categories', 'all']
 })
 export class UserCommand extends Command {
-	public async messageRun(message: Message, _: Args, context: CommandContext) {
+	public async messageRun(message: Message, _: Args, context: Command.RunContext) {
 		return this.all(message, context);
 	}
 
-	private async all(message: Message, context: CommandContext) {
+	private async all(message: Message, context: Command.RunContext) {
 		const content = await this.buildHelp(message, context.commandPrefix);
 		return send(message, { embeds: [new MessageEmbed().setDescription(content).setColor(BrandingColors.Primary)] });
 	}

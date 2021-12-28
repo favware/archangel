@@ -2,7 +2,6 @@ import type { GuildMessage } from '#lib/types/Discord';
 import { FuzzySearch } from '#utils/Parsers/FuzzySearch';
 import { validateChannelAccess } from '#utils/util';
 import { ChannelMentionRegex, SnowflakeRegex } from '@sapphire/discord-utilities';
-import type { ArgumentContext } from '@sapphire/framework';
 import { Argument } from '@sapphire/framework';
 import { inlineCodeBlock } from '@sapphire/utilities';
 import type { Guild, GuildChannel, Message, ThreadChannel, User } from 'discord.js';
@@ -55,6 +54,6 @@ export class UserArgument extends Argument<GuildChannel | ThreadChannel> {
 	}
 }
 
-interface ChannelArgumentContext extends ArgumentContext<GuildChannel | ThreadChannel> {
+interface ChannelArgumentContext extends Argument.Context<GuildChannel | ThreadChannel> {
 	filter?: (entry: GuildChannel | ThreadChannel) => boolean;
 }
