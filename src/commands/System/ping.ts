@@ -5,7 +5,7 @@ import { ChatInputCommand, Command, MessageCommand } from '@sapphire/framework';
 import { send } from '@sapphire/plugin-editable-commands';
 import type { CommandInteraction, Message } from 'discord.js';
 
-@ApplyOptions<Command.Options>({
+@ApplyOptions<ChatInputCommand.Options>({
 	description: 'Runs a connection test to Discord.',
 	chatInputCommand: {
 		register: true,

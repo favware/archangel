@@ -1,10 +1,16 @@
+import { getGuildIds } from '#utils/util';
 import { ApplyOptions } from '@sapphire/decorators';
 import { ChatInputCommand, Command, MessageCommand } from '@sapphire/framework';
 import { send } from '@sapphire/plugin-editable-commands';
 
-@ApplyOptions<Command.Options>({
+@ApplyOptions<ChatInputCommand.Options>({
 	aliases: ['details', 'what'],
-	description: 'Provides some information about this bot.'
+	description: 'Provides some information about this bot.',
+	chatInputCommand: {
+		register: true,
+		guildIds: getGuildIds(),
+		idHints: ['925521429770960917']
+	}
 })
 export class UserCommand extends Command {
 	public async chatInputRun(...[interaction]: Parameters<ChatInputCommand['chatInputRun']>) {
