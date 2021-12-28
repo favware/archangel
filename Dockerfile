@@ -34,8 +34,8 @@ FROM base as builder
 
 ENV NODE_ENV="development"
 
-COPY --chown=node:node tsconfig.base.json tsconfig.base.json
-COPY --chown=node:node scripts/ scripts/
+COPY --chown=node:node tsconfig.base.json .
+COPY --chown=node:node tsup.config.ts .
 COPY --chown=node:node src/ src/
 
 RUN yarn install --immutable
@@ -81,6 +81,7 @@ COPY --chown=node:node src/.env src/.env
 COPY --chown=node:node --from=BUILDER /usr/src/app/dist dist
 
 RUN yarn workspaces focus --all --production
+RUN chown node:node -R /usr/src/app/
 
 USER node
 
