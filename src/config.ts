@@ -35,5 +35,6 @@ export const CLIENT_OPTIONS: ClientOptions = {
 	logger: { level: envParseString('NODE_ENV') === 'production' ? LogLevel.Info : LogLevel.Debug },
 	restTimeOffset: 0,
 	caseInsensitiveCommands: true,
-	caseInsensitivePrefixes: true
+	caseInsensitivePrefixes: true,
+	loadMessageCommandListeners: true
 };

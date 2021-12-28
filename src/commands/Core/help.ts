@@ -1,6 +1,6 @@
 import { BrandingColors } from '#utils/constants';
 import { ApplyOptions } from '@sapphire/decorators';
-import { Args, Command, container } from '@sapphire/framework';
+import { Args, Command, container, MessageCommand } from '@sapphire/framework';
 import { send } from '@sapphire/plugin-editable-commands';
 import { Collection, Message, MessageEmbed } from 'discord.js';
 
@@ -24,11 +24,11 @@ function sortCommandsAlphabetically(_: Command[], __: Command[], firstCategory: 
 	flags: ['cat', 'categories', 'all']
 })
 export class UserCommand extends Command {
-	public async messageRun(message: Message, _: Args, context: Command.RunContext) {
+	public async messageRun(message: Message, _: Args, context: MessageCommand.RunContext) {
 		return this.all(message, context);
 	}
 
-	private async all(message: Message, context: Command.RunContext) {
+	private async all(message: Message, context: MessageCommand.RunContext) {
 		const content = await this.buildHelp(message, context.commandPrefix);
 		return send(message, { embeds: [new MessageEmbed().setDescription(content).setColor(BrandingColors.Primary)] });
 	}
@@ -54,9 +54,9 @@ export class UserCommand extends Command {
 		const filtered = new Collection<string, Command[]>();
 		await Promise.all(
 			commands.map(async (cmd) => {
-				const command = cmd as Command;
+				const command = cmd as MessageCommand;
 
-				const result = await cmd.preconditions.run(message, command, { command: null! });
+				const result = await cmd.preconditions.messageRun(message, command, { command: null! });
 				if (!result.success) return;
 
 				const category = filtered.get(command.fullCategory.join(' → '));
