@@ -20,6 +20,8 @@ export interface ArchAngelEnv {
 	CLIENT_PRESENCE_NAME: string;
 	CLIENT_PRESENCE_TYPE: string;
 
+	COMMAND_GUILD_IDS: string;
+
 	WEBSOCKET_PORT: IntegerString;
 
 	DISCORD_TOKEN: string;

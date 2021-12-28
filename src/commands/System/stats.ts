@@ -1,18 +1,28 @@
 import { BrandingColors } from '#utils/constants';
+import { getGuildIds } from '#utils/util';
 import { ApplyOptions } from '@sapphire/decorators';
-import { Command } from '@sapphire/framework';
+import { ChatInputCommand, Command, MessageCommand } from '@sapphire/framework';
 import { send } from '@sapphire/plugin-editable-commands';
 import { roundNumber } from '@sapphire/utilities';
-import { Message, MessageEmbed, version } from 'discord.js';
+import { MessageEmbed, version } from 'discord.js';
 import { cpus, uptime, type CpuInfo } from 'node:os';
 
 @ApplyOptions<Command.Options>({
 	aliases: ['stats', 'sts'],
 	description: 'Provides some details about the bot and stats.',
-	requiredClientPermissions: ['EMBED_LINKS']
+	requiredClientPermissions: ['EMBED_LINKS'],
+	chatInputCommand: {
+		register: true,
+		guildIds: getGuildIds(),
+		idHints: ['925503021197189150']
+	}
 })
 export class UserCommand extends Command {
-	public messageRun(message: Message) {
+	public async chatInputRun(...[interaction]: Parameters<ChatInputCommand['chatInputRun']>) {
+		return interaction.reply({ embeds: [this.buildEmbed()], ephemeral: true });
+	}
+
+	public messageRun(...[message]: Parameters<MessageCommand['messageRun']>) {
 		return send(message, { embeds: [this.buildEmbed()] });
 	}
 
@@ -28,12 +38,8 @@ export class UserCommand extends Command {
 
 		const fields = {
 			stats: `• **Users**: ${stats.users}\n• **Guilds**: ${stats.guilds}\n• **Channels**: ${stats.channels}\n• **Discord.js**: ${stats.version}\n• **Node.js**: ${stats.nodeJs}`,
-			uptime: `• **Host**: ${this.container.client.EnGbHandler.duration.format(
-				uptime.host
-			)}\n• **Total**: ${this.container.client.EnGbHandler.duration.format(
-				uptime.total
-			)}\n• **Client**: ${this.container.client.EnGbHandler.duration.format(uptime.client)}`,
-			serverUsage: `• **CPU Load**: ${usage.cpuLoad}}\n• **Heap**: ${usage.ramUsed}MB (Total: ${usage.ramTotal}}MB)`
+			uptime: `• **Host**: ${uptime.host}\n• **Total**: ${uptime.total}\n• **Client**: ${uptime.client}`,
+			serverUsage: `• **CPU Load**: ${usage.cpuLoad}\n• **Heap**: ${usage.ramUsed}MB (Total: ${usage.ramTotal}}MB)`
 		};
 
 		return new MessageEmbed()
@@ -56,9 +62,9 @@ export class UserCommand extends Command {
 
 	private get uptimeStatistics(): StatsUptime {
 		return {
-			client: this.container.client.uptime!,
-			host: uptime() * 1000,
-			total: process.uptime() * 1000
+			client: this.container.client.EnGbHandler.duration.format(this.container.client.uptime!),
+			host: this.container.client.EnGbHandler.duration.format(uptime() * 1000),
+			total: this.container.client.EnGbHandler.duration.format(process.uptime() * 1000)
 		};
 	}
 
@@ -66,8 +72,8 @@ export class UserCommand extends Command {
 		const usage = process.memoryUsage();
 		return {
 			cpuLoad: cpus().map(UserCommand.formatCpuInfo.bind(null)).join(' | '),
-			ramTotal: usage.heapTotal / 1048576,
-			ramUsed: usage.heapUsed / 1048576
+			ramTotal: this.container.client.EnGbHandler.number.format(usage.heapTotal / 1048576),
+			ramUsed: this.container.client.EnGbHandler.number.format(usage.heapUsed / 1048576)
 		};
 	}
 
@@ -85,13 +91,13 @@ export interface StatsGeneral {
 }
 
 export interface StatsUptime {
-	client: number;
-	host: number;
-	total: number;
+	client: string;
+	host: string;
+	total: string;
 }
 
 export interface StatsUsage {
 	cpuLoad: string;
-	ramTotal: number;
-	ramUsed: number;
+	ramTotal: string;
+	ramUsed: string;
 }
