@@ -34,124 +34,122 @@ export class UserCommand extends Command {
 	}
 
 	public override async chatInputRun(...[interaction]: Parameters<ChatInputCommand['chatInputRun']>) {
-		if (interaction.isCommand()) {
-			const interactionMemberId = interaction.member!.user.id;
+		const interactionMemberId = interaction.member!.user.id;
 
-			const quoteCacheForUser = quoteCache.get(interactionMemberId);
+		const quoteCacheForUser = quoteCache.get(interactionMemberId);
 
-			if (!quoteCacheForUser) {
-				return interaction.reply({
-					content:
-						"Looks like you didn't initialise a quote yet using `Start quote` or `End quote` context menu actions. You need to do that before you can quote messages."
-				});
+		if (!quoteCacheForUser) {
+			return interaction.reply({
+				content:
+					"Looks like you didn't initialise a quote yet using `Start quote` or `End quote` context menu actions. You need to do that before you can quote messages."
+			});
+		}
+
+		const { startMessage, endMessage } = quoteCacheForUser;
+
+		if (!startMessage) {
+			return interaction.reply({
+				content:
+					"Looks like you didn't set the message at which to start quoting yet using the `Start quote` context menu action. You need to do that before you can quote messages."
+			});
+		}
+
+		if (startMessage.channelId !== endMessage?.channelId) {
+			return interaction.reply({
+				content:
+					'Looks like set a start message in a different channel as the end message. I cannot determine a proper start and end that way. Please set the message in the same channel.'
+			});
+		}
+
+		await interaction.deferReply({ ephemeral: true });
+
+		const channelForMessages = await interaction.guild!.channels.fetch(startMessage.channelId);
+
+		if (!channelForMessages) {
+			return interaction.editReply({
+				content: 'Could not find the channel where the messages are.'
+			});
+		}
+
+		let messages: Message[] = [];
+
+		if (((channelForMessages as TextBasedChannel).messages.cache.last()?.createdTimestamp ?? 0) < startMessage.createdTimestamp) {
+			messages = [
+				...(channelForMessages as TextBasedChannel).messages.cache
+					.filter(
+						({ createdTimestamp }) =>
+							createdTimestamp > startMessage.createdTimestamp &&
+							(!endMessage.createdTimestamp || createdTimestamp < endMessage.createdTimestamp)
+					)
+					.values()
+			];
+		} else {
+			const fetchedMessages = await (channelForMessages as TextBasedChannel).messages.fetch({
+				limit: 100,
+				after: startMessage.id,
+				before: endMessage.id
+			});
+
+			messages = [...fetchedMessages.values()];
+
+			if (endMessage) {
+				messages = messages.filter(({ createdTimestamp }) => createdTimestamp > startMessage.createdTimestamp);
+			}
+		}
+
+		let messagesWithBoundaries = [startMessage, ...messages, endMessage];
+
+		if (messagesWithBoundaries.length >= 100) {
+			return interaction.editReply({
+				content:
+					'The start and end boundaries of messages to quote that were provided resulted in more than 100 messages, which exceeds the limit. Please adjust your boundaries.'
+			});
+		}
+
+		messagesWithBoundaries = messagesWithBoundaries.sort((a, b) => a.createdTimestamp - b.createdTimestamp);
+
+		const content: string[] = [];
+
+		// For every quotable message generate the HTML
+		for (const quotableMessage of messages) {
+			content.push(this.messageToHtml(quotableMessage, interaction.guild!));
+		}
+
+		// Generate the HTML
+		const html = oneLine(
+			htmlGenerator(
+				discordMessagesGenerator({
+					content: content.join('')
+				})
+			)
+		);
+
+		// Generate the image
+		const buffer = (await imageGenerator({
+			html,
+			puppeteerArgs: {
+				args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-translate', '--disable-extensions'],
+				ignoreHTTPSErrors: true
+			}
+		})) as Buffer;
+
+		try {
+			const targetChannel = interaction.options.getChannel('output-channel', true) as GuildBasedChannel;
+			if (isTextBasedChannel(targetChannel)) {
+				await targetChannel.send({ files: [new MessageAttachment(buffer, 'archangel-quote.png')] });
+
+				return interaction.editReply({ content: `Successfully sent the quoted messages to ${channelMention(targetChannel.id)}.` });
 			}
 
-			const { startMessage, endMessage } = quoteCacheForUser;
-
-			if (!startMessage) {
-				return interaction.reply({
-					content:
-						"Looks like you didn't set the message at which to start quoting yet using the `Start quote` context menu action. You need to do that before you can quote messages."
-				});
-			}
-
-			if (startMessage.channelId !== endMessage?.channelId) {
-				return interaction.reply({
-					content:
-						'Looks like set a start message in a different channel as the end message. I cannot determine a proper start and end that way. Please set the message in the same channel.'
-				});
-			}
-
-			await interaction.deferReply({ ephemeral: true });
-
-			const channelForMessages = await interaction.guild!.channels.fetch(startMessage.channelId);
-
-			if (!channelForMessages) {
-				return interaction.editReply({
-					content: 'Could not find the channel where the messages are.'
-				});
-			}
-
-			let messages: Message[] = [];
-
-			if (((channelForMessages as TextBasedChannel).messages.cache.last()?.createdTimestamp ?? 0) < startMessage.createdTimestamp) {
-				messages = [
-					...(channelForMessages as TextBasedChannel).messages.cache
-						.filter(
-							({ createdTimestamp }) =>
-								createdTimestamp > startMessage.createdTimestamp &&
-								(!endMessage.createdTimestamp || createdTimestamp < endMessage.createdTimestamp)
-						)
-						.values()
-				];
-			} else {
-				const fetchedMessages = await (channelForMessages as TextBasedChannel).messages.fetch({
-					limit: 100,
-					after: startMessage.id,
-					before: endMessage.id
-				});
-
-				messages = [...fetchedMessages.values()];
-
-				if (endMessage) {
-					messages = messages.filter(({ createdTimestamp }) => createdTimestamp > startMessage.createdTimestamp);
-				}
-			}
-
-			let messagesWithBoundaries = [startMessage, ...messages, endMessage];
-
-			if (messagesWithBoundaries.length >= 100) {
-				return interaction.editReply({
-					content:
-						'The start and end boundaries of messages to quote that were provided resulted in more than 100 messages, which exceeds the limit. Please adjust your boundaries.'
-				});
-			}
-
-			messagesWithBoundaries = messagesWithBoundaries.sort((a, b) => a.createdTimestamp - b.createdTimestamp);
-
-			const content: string[] = [];
-
-			// For every quotable message generate the HTML
-			for (const quotableMessage of messages) {
-				content.push(this.messageToHtml(quotableMessage, interaction.guild!));
-			}
-
-			// Generate the HTML
-			const html = oneLine(
-				htmlGenerator(
-					discordMessagesGenerator({
-						content: content.join('')
-					})
-				)
-			);
-
-			// Generate the image
-			const buffer = (await imageGenerator({
-				html,
-				puppeteerArgs: {
-					args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-translate', '--disable-extensions'],
-					ignoreHTTPSErrors: true
-				}
-			})) as Buffer;
-
-			try {
-				const targetChannel = interaction.options.getChannel('output-channel', true) as GuildBasedChannel;
-				if (isTextBasedChannel(targetChannel)) {
-					await targetChannel.send({ files: [new MessageAttachment(buffer, 'archangel-quote.png')] });
-
-					return interaction.editReply({ content: `Successfully sent the quoted messages to ${channelMention(targetChannel.id)}.` });
-				}
-
-				return interaction.editReply({
-					content:
-						'Sorry, but I was not able to send the quoted messages to the output channel. It appears that you chose a channel that is not a text channel.'
-				});
-			} catch {
-				return interaction.editReply({
-					content:
-						'Sorry, but I was not able to send the quoted messages to the output channel. Do I have sufficient permissions to send messages to that channel?'
-				});
-			}
+			return interaction.editReply({
+				content:
+					'Sorry, but I was not able to send the quoted messages to the output channel. It appears that you chose a channel that is not a text channel.'
+			});
+		} catch {
+			return interaction.editReply({
+				content:
+					'Sorry, but I was not able to send the quoted messages to the output channel. Do I have sufficient permissions to send messages to that channel?'
+			});
 		}
 	}
 

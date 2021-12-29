@@ -30,6 +30,7 @@ function parsePresenceActivity(): ActivitiesOptions[] {
 
 export const CLIENT_OPTIONS: ClientOptions = {
 	intents: ['GUILDS', 'GUILD_MESSAGES', 'DIRECT_MESSAGES'],
+	allowedMentions: { users: [], roles: [] },
 	defaultPrefix: envParseString('CLIENT_PREFIX'),
 	presence: { activities: parsePresenceActivity() },
 	logger: { level: envParseString('NODE_ENV') === 'production' ? LogLevel.Info : LogLevel.Debug },
