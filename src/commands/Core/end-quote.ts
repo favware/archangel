@@ -1,8 +1,9 @@
 import { Quote, quoteCache } from '#lib/quoting/quoteCache';
+import { resolveMessage } from '#lib/quoting/resolveMessage';
 import type { GuildMessage } from '#lib/types/Discord';
 import { getGuildIds, isMessageInstance } from '#utils/util';
 import { ApplyOptions } from '@sapphire/decorators';
-import { Command, ContextMenuCommand } from '@sapphire/framework';
+import { ChatInputCommand, Command, isErr, type ContextMenuCommand } from '@sapphire/framework';
 import { inlineCodeBlock } from '@sapphire/utilities';
 import { ApplicationCommandType } from 'discord-api-types/v9';
 
@@ -18,29 +19,50 @@ export class UserCommand extends Command {
 						.setName('2 - End quote')
 						.setType(ApplicationCommandType.Message),
 				{ guildIds: getGuildIds(), idHints: ['925529556696330350'] }
+			)
+			.registerChatInputCommand(
+				(builder) =>
+					builder //
+						.setName(this.name)
+						.setDescription(this.description)
+						.addStringOption((option) =>
+							option //
+								.setName('message')
+								.setDescription('The ID or link of the message at which to end quoting.')
+								.setRequired(true)
+						),
+				{ guildIds: getGuildIds(), idHints: ['925574048627453972'] }
 			);
+	}
+
+	public override async chatInputRun(...[interaction]: Parameters<ChatInputCommand['chatInputRun']>) {
+		const interactionMemberId = interaction.member!.user.id;
+		const messageToQuoteFrom = await resolveMessage({ parameter: interaction.options.getString('message', true), interaction });
+
+		if (isErr(messageToQuoteFrom)) {
+			return interaction.reply({
+				content:
+					"I was unable to find a message for the provided argument. Check that it's a message in the current channel, or you've provided a message link.",
+				ephemeral: true
+			});
+		}
+
+		const hadAlreadySetQuote = this.setQuoteCache(interactionMemberId, messageToQuoteFrom.value as GuildMessage);
+
+		return interaction.reply({
+			content: this.getContent({ hadAlreadySetQuote }),
+			ephemeral: true
+		});
 	}
 
 	public override async contextMenuRun(...[interaction]: Parameters<ContextMenuCommand['contextMenuRun']>) {
 		if (interaction.isMessageContextMenu() && isMessageInstance(interaction.targetMessage)) {
 			const interactionMemberId = interaction.member!.user.id;
 
-			const quoteCacheForUser = quoteCache.get(interactionMemberId);
-
-			if (quoteCacheForUser) {
-				quoteCacheForUser.endMessage = interaction.targetMessage as GuildMessage;
-				quoteCacheForUser.timeCreated = Date.now();
-				quoteCache.set(interactionMemberId, quoteCacheForUser);
-			} else {
-				const newQuoteCacheEntry: Quote = {
-					endMessage: interaction.targetMessage as GuildMessage,
-					timeCreated: Date.now()
-				};
-				quoteCache.set(interactionMemberId, newQuoteCacheEntry);
-			}
+			const hadAlreadySetQuote = this.setQuoteCache(interactionMemberId, interaction.targetMessage as GuildMessage);
 
 			return interaction.reply({
-				content: this.getContent({ hadAlreadySetQuote: quoteCacheForUser !== undefined }),
+				content: this.getContent({ hadAlreadySetQuote }),
 				ephemeral: true
 			});
 		}
@@ -52,15 +74,27 @@ export class UserCommand extends Command {
 		if (hadAlreadySetQuote) {
 			content.push(`You can send the quote with ${inlineCodeBlock('/quote')}`);
 		} else {
-			content.push(
-				`Before sending the quote with ${inlineCodeBlock(
-					'/quote'
-				)} make sure you set the message from where to start quoting by using the ${inlineCodeBlock(
-					'End quote'
-				)} message context menu action.`
-			);
+			content.push(`Before sending the quote with ${inlineCodeBlock('/quote')} make sure you set the message from where to start quoting.`);
 		}
 
 		return content.join(' ');
+	}
+
+	private setQuoteCache(interactionMemberId: string, messageToQuoteFrom: GuildMessage) {
+		const quoteCacheForUser = quoteCache.get(interactionMemberId);
+
+		if (quoteCacheForUser) {
+			quoteCacheForUser.endMessage = messageToQuoteFrom;
+			quoteCacheForUser.timeCreated = Date.now();
+			quoteCache.set(interactionMemberId, quoteCacheForUser);
+		} else {
+			const newQuoteCacheEntry: Quote = {
+				endMessage: messageToQuoteFrom,
+				timeCreated: Date.now()
+			};
+			quoteCache.set(interactionMemberId, newQuoteCacheEntry);
+		}
+
+		return quoteCacheForUser !== undefined;
 	}
 }
