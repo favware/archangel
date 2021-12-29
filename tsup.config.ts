@@ -3,7 +3,6 @@ import { defineConfig } from 'tsup';
 
 const tsFiles = globbySync([
 	'src/**/*.ts', //
-	'src/lib/grpc/generated/*.js',
 	'!src/**/*.d.ts'
 ]);
 
