@@ -114,6 +114,8 @@ export class UserCommand extends Command {
 		})) as Buffer;
 
 		try {
+			this.clearUserQuoteData(interactionMemberId);
+
 			const targetChannel = interaction.options.getChannel('output-channel', true) as GuildBasedChannel;
 			if (isTextBasedChannel(targetChannel)) {
 				await targetChannel.send({ files: [new MessageAttachment(buffer, 'archangel-quote.png')] });
@@ -151,5 +153,9 @@ export class UserCommand extends Command {
 			twentyFour: true,
 			verified: message.author.flags?.has(UserFlags.FLAGS.VERIFIED_BOT) ?? false
 		});
+	}
+
+	private clearUserQuoteData(interactionMemberId: string) {
+		quoteCache.delete(interactionMemberId);
 	}
 }
