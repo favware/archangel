@@ -18,7 +18,7 @@ export class UserCommand extends Command {
 					builder //
 						.setName('2 - End quote')
 						.setType(ApplicationCommandType.Message),
-				{ guildIds: getGuildIds(), idHints: ['925529556696330350'] }
+				{ guildIds: getGuildIds(), idHints: ['925529556696330350', '925592924056616980'] }
 			)
 			.registerChatInputCommand(
 				(builder) =>
@@ -31,7 +31,7 @@ export class UserCommand extends Command {
 								.setDescription('The ID or link of the message at which to end quoting.')
 								.setRequired(true)
 						),
-				{ guildIds: getGuildIds(), idHints: ['925574048627453972'] }
+				{ guildIds: getGuildIds(), idHints: ['925574048627453972', '925592924467630101'] }
 			);
 	}
 

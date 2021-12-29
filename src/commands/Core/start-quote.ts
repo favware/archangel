@@ -18,7 +18,7 @@ export class UserCommand extends Command {
 					builder //
 						.setName('1 - Start quote')
 						.setType(ApplicationCommandType.Message),
-				{ guildIds: getGuildIds(), idHints: ['925521429368307853'] }
+				{ guildIds: getGuildIds(), idHints: ['925521429368307853', '925592837188354108'] }
 			)
 			.registerChatInputCommand(
 				(builder) =>
@@ -31,7 +31,7 @@ export class UserCommand extends Command {
 								.setDescription('The ID or link of the message to start quoting from.')
 								.setRequired(true)
 						),
-				{ guildIds: getGuildIds(), idHints: ['925571279803805697'] }
+				{ guildIds: getGuildIds(), idHints: ['925571279803805697', '925592837972693072'] }
 			);
 	}
 

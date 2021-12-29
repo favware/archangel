@@ -8,7 +8,7 @@ import { ChatInputCommand, Command } from '@sapphire/framework';
 	chatInputCommand: {
 		register: true,
 		guildIds: getGuildIds(),
-		idHints: ['925555785575067758']
+		idHints: ['925555785575067758', '925592836584390657']
 	}
 })
 export class UserCommand extends Command {

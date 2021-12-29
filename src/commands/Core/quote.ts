@@ -29,7 +29,7 @@ export class UserCommand extends Command {
 								.setDescription('The channel to which the quote should be sent')
 								.setRequired(true)
 						),
-				{ guildIds: getGuildIds(), idHints: ['925552150799601724'] }
+				{ guildIds: getGuildIds(), idHints: ['925552150799601724', '925592923293249606'] }
 			);
 	}
 
