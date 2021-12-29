@@ -3,12 +3,12 @@ import { resolveMessage } from '#lib/quoting/resolveMessage';
 import type { GuildMessage } from '#lib/types/Discord';
 import { getGuildIds, isMessageInstance } from '#utils/util';
 import { ApplyOptions } from '@sapphire/decorators';
-import { ChatInputCommand, Command, isErr, type ContextMenuCommand } from '@sapphire/framework';
+import { ChatInputCommand, Command, isErr, RegisterBehavior, type ContextMenuCommand } from '@sapphire/framework';
 import { inlineCodeBlock } from '@sapphire/utilities';
 import { ApplicationCommandType } from 'discord-api-types/v9';
 
 @ApplyOptions<ContextMenuCommand.Options>({
-	description: 'Sets the message at which I will stop quoting.'
+	description: 'Optionally sets the message at which I will stop quoting.'
 })
 export class UserCommand extends Command {
 	public override registerApplicationCommands(...[registry]: Parameters<ContextMenuCommand['registerApplicationCommands']>) {
@@ -31,7 +31,11 @@ export class UserCommand extends Command {
 								.setDescription('The ID or link of the message at which to end quoting.')
 								.setRequired(true)
 						),
-				{ guildIds: getGuildIds(), idHints: ['925574048627453972', '925592924467630101'] }
+				{
+					guildIds: getGuildIds(),
+					idHints: ['925574048627453972', '925592924467630101'],
+					behaviorWhenNotIdentical: RegisterBehavior.Overwrite
+				}
 			);
 	}
 
