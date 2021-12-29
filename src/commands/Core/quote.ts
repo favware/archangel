@@ -54,7 +54,7 @@ export class UserCommand extends Command {
 			});
 		}
 
-		if (startMessage.channelId !== endMessage?.channelId) {
+		if (startMessage && endMessage && startMessage.channelId !== endMessage?.channelId) {
 			return interaction.reply({
 				content:
 					'Looks like set a start message in a different channel as the end message. I cannot determine a proper start and end that way. Please set the message in the same channel.'
@@ -71,43 +71,18 @@ export class UserCommand extends Command {
 			});
 		}
 
-		let messages: Message[] = [];
+		// If only start message is provided then we quote just that message
+		const messages: Message[] = [startMessage];
 
-		if (((channelForMessages as TextBasedChannel).messages.cache.last()?.createdTimestamp ?? 0) < startMessage.createdTimestamp) {
-			messages = [
-				...(channelForMessages as TextBasedChannel).messages.cache
-					.filter(
-						({ createdTimestamp }) =>
-							createdTimestamp > startMessage.createdTimestamp &&
-							(!endMessage.createdTimestamp || createdTimestamp < endMessage.createdTimestamp)
-					)
-					.values()
-			];
-		} else {
-			const fetchedMessages = await (channelForMessages as TextBasedChannel).messages.fetch({
-				limit: 100,
-				after: startMessage.id,
-				before: endMessage.id
-			});
+		// If end message is also provided then we want to get all messages in between
+		if (endMessage) {
+			const messagesAfterStart = await (channelForMessages as TextBasedChannel).messages.fetch({ after: startMessage.id });
+			const messagesBeforeEnd = messagesAfterStart.filter((message) => message.id !== endMessage.id);
 
-			messages = [...fetchedMessages.values()];
-
-			if (endMessage) {
-				messages = messages.filter(({ createdTimestamp }) => createdTimestamp > startMessage.createdTimestamp);
-			}
+			messages.push(...messagesBeforeEnd.values(), endMessage);
 		}
 
-		let messagesWithBoundaries = [startMessage, ...messages, endMessage];
-
-		if (messagesWithBoundaries.length >= 100) {
-			return interaction.editReply({
-				content:
-					'The start and end boundaries of messages to quote that were provided resulted in more than 100 messages, which exceeds the limit. Please adjust your boundaries.'
-			});
-		}
-
-		messagesWithBoundaries = messagesWithBoundaries.sort((a, b) => a.createdTimestamp - b.createdTimestamp);
-
+		// After determining which messages to include in the quote we can get the content of each
 		const content: string[] = [];
 
 		// For every quotable message generate the HTML
