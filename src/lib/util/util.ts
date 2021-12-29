@@ -1,8 +1,6 @@
 import { envParseArray } from '#lib/env';
-import { BrandingColors, LoadingMessages } from '#utils/constants';
-import { send } from '@sapphire/plugin-editable-commands';
 import type { APIMessage } from 'discord-api-types';
-import { CommandInteraction, GuildChannel, Message, MessageEmbed, Permissions, ThreadChannel, type UserResolvable } from 'discord.js';
+import { CommandInteraction, Message } from 'discord.js';
 
 export function getGuildIds(): string[] {
 	return envParseArray('COMMAND_GUILD_IDS', []);
@@ -22,37 +20,6 @@ export function isMessageInstance(message: APIMessage | CommandInteraction | Mes
  * - webp
  */
 export const IMAGE_EXTENSION = /\.(bmp|jpe?g|png|gif|webp)$/i;
-
-/**
- * Picks a random item from an array
- * @param array The array to pick a random item from
- * @example
- * const randomEntry = pickRandom([1, 2, 3, 4]) // 1
- */
-export function pickRandom<T>(array: readonly T[]): T {
-	const { length } = array;
-	return array[Math.floor(Math.random() * length)];
-}
-
-export function sendLoadingMessage(message: Message) {
-	const embed = new MessageEmbed().setDescription(pickRandom(LoadingMessages)).setColor(BrandingColors.Secondary);
-	return send(message, { embeds: [embed] });
-}
-
-export function getColor(message: Message) {
-	return (message.member && message.member.roles.highest?.color) ?? BrandingColors.Primary;
-}
-
-/**
- * Validates that a user has VIEW_CHANNEL permissions to a channel
- * @param channel The TextChannel to check
- * @param user The user for which to check permission
- * @returns Whether the user has access to the channel
- * @example validateChannelAccess(channel, message.author)
- */
-export function validateChannelAccess(channel: GuildChannel | ThreadChannel, user: UserResolvable) {
-	return (channel.guild !== null && channel.permissionsFor(user)?.has(Permissions.FLAGS.VIEW_CHANNEL)) || false;
-}
 
 export interface ImageAttachment {
 	url: string;
