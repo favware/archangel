@@ -5,19 +5,22 @@ import { blue, gray, green, magenta, magentaBright, white, yellow } from 'colore
 
 @ApplyOptions<Listener.Options>({ once: true })
 export class UserListener extends Listener {
-	private readonly style = this.container.client.dev ? yellow : blue;
+	private readonly style = this.isDev ? yellow : blue;
 
 	public run() {
 		this.printBanner();
 		this.printStoreDebugInformation();
 	}
 
+	private get isDev() {
+		return envParseString('NODE_ENV') === 'development';
+	}
+
 	private printBanner() {
-		const { client } = this.container;
 		const success = green('+');
 
-		const llc = client.dev ? magentaBright : white;
-		const blc = client.dev ? magenta : blue;
+		const llc = this.isDev ? magentaBright : white;
+		const blc = this.isDev ? magenta : blue;
 
 		const line01 = llc('');
 		const line02 = llc('');
@@ -40,7 +43,7 @@ ${line04}   / ___ \ |  _ < | |___ |  _  | / ___ \ | |\  || |_| || |___ | |___
 ${line05}  /_/   \_\|_| \_\ \____||_| |_|/_/   \_\|_| \_| \____||_____||_____|
 ${line06} ${blc(envParseString('CLIENT_VERSION').padStart(55, ' '))}
 ${line07} ${pad}[${success}] Gateway
-${line08}${this.container.client.dev ? ` ${pad}${blc('<')}${llc('/')}${blc('>')} ${llc('DEVELOPMENT MODE')}` : ''}
+${line08}${this.isDev ? ` ${pad}${blc('<')}${llc('/')}${blc('>')} ${llc('DEVELOPMENT MODE')}` : ''}
 		`.trim()
 		);
 	}

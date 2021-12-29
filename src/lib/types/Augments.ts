@@ -1,25 +1,26 @@
 import type { ExtendedHandler as EnGbHandler } from '#utils/Intl/EnGbHandler';
-import type { GuildChannel, TextChannel } from 'discord.js';
+import type { GuildCommandInteraction, GuildContextMenuInteraction } from './Discord';
 
 declare module 'discord.js' {
 	interface Client {
-		readonly dev: boolean;
-		readonly version: string;
 		readonly EnGbHandler: EnGbHandler;
 	}
 }
 
 declare module '@sapphire/framework' {
-	interface ArgType {
-		channelName: GuildChannel;
-		textChannelName: TextChannel;
+	interface ChatInputCommandSuccessPayload {
+		readonly interaction: GuildCommandInteraction;
 	}
 
-	interface Preconditions {
-		Administrator: never;
-		BotOwner: never;
-		Everyone: never;
-		Moderator: never;
-		ServerOwner: never;
+	interface ChatInputCommandDeniedPayload {
+		readonly interaction: GuildCommandInteraction;
+	}
+
+	interface ContextMenuCommandSuccessPayload {
+		readonly interaction: GuildContextMenuInteraction;
+	}
+
+	interface ContextMenuCommandDeniedPayload {
+		readonly interaction: GuildContextMenuInteraction;
 	}
 }

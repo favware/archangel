@@ -1,6 +1,6 @@
 {
 	"name": "archangel",
-	"version": "3.0.0",
+	"version": "4.0.0",
 	"description": "Private bot for PopulousGaming",
 	"author": "Jeroen Claassens <support@favware.tech>",
 	"license": "Apache-2.0",
@@ -24,18 +24,14 @@
 		"dev": "tsup --watch --onSuccess \"yarn start\""
 	},
 	"dependencies": {
-		"@discordjs/collection": "^0.4.0",
 		"@sapphire/decorators": "^3.1.4",
 		"@sapphire/discord-utilities": "^2.4.0",
 		"@sapphire/discord.js-utilities": "^4.1.5",
 		"@sapphire/fetch": "^2.0.3",
-		"@sapphire/framework": "^2.2.2",
-		"@sapphire/plugin-editable-commands": "^1.1.3",
+		"@sapphire/framework": "pr-293",
 		"@sapphire/plugin-logger": "^2.1.1",
 		"@sapphire/time-utilities": "^1.5.0",
 		"@sapphire/utilities": "^3.1.0",
-		"@skyra/editable-commands": "^2.1.2",
-		"@skyra/jaro-winkler": "^1.0.0",
 		"bufferutil": "^4.0.5",
 		"colorette": "^2.0.16",
 		"discord-api-types": "^0.26.0",
@@ -69,9 +65,15 @@
 		"tsup": "^5.11.9",
 		"typescript": "^4.5.4"
 	},
+	"resolutions": {
+		"discord-api-types": "^0.26.0"
+	},
 	"engines": {
 		"node": ">=16.6.0",
 		"npm": ">=7.24.2"
+	},
+	"eslintConfig": {
+		"extends": "@sapphire"
 	},
 	"prettier": "@sapphire/prettier-config",
 	"packageManager": "yarn@3.1.1"

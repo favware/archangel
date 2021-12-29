@@ -3,9 +3,7 @@ import 'reflect-metadata';
 import '#root/config';
 
 // Import everything else:
-import '#utils/Sanitizer/initClean';
 import '@sapphire/plugin-logger/register';
-import '@sapphire/plugin-editable-commands/register';
 
 import * as colorette from 'colorette';
 import { inspect } from 'util';

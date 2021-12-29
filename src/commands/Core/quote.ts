@@ -1,36 +1,93 @@
-import type { GuildMessage } from '#lib/types/Discord';
+import { quoteCache } from '#lib/quoting/quoteCache';
 import { BrandingColors } from '#utils/constants';
 import { discordMessageGenerator, discordMessagesGenerator, htmlGenerator } from '#utils/HtmlGenerator';
-import { deleteMessage } from '#utils/Parsers/functions';
-import { getAttachment, oneLine, sendLoadingMessage } from '#utils/util';
+import { getAttachment, getGuildIds, oneLine } from '#utils/util';
+import { channelMention } from '@discordjs/builders';
 import { ApplyOptions } from '@sapphire/decorators';
-import { Args, Command, CommandOptionsRunTypeEnum } from '@sapphire/framework';
+import { isTextBasedChannel } from '@sapphire/discord.js-utilities';
+import { ApplicationCommandRegistry, ChatInputCommand, Command } from '@sapphire/framework';
 import { Timestamp } from '@sapphire/time-utilities';
-import { Message, MessageAttachment, UserFlags } from 'discord.js';
+import { Guild, GuildBasedChannel, Message, MessageAttachment, TextBasedChannel, UserFlags } from 'discord.js';
 import imageGenerator from 'node-html-to-image';
 
 @ApplyOptions<Command.Options>({
-	description: 'Quotes one or more messages and outputs them in a channel.',
-	detailedDescription: [].join('\n'),
-	runIn: [CommandOptionsRunTypeEnum.GuildAny],
-	options: ['inputChannel', 'targetChannel']
+	description: 'Quotes one or more messages given the configuration from "Start quote" and "End quote".'
 })
 export class UserCommand extends Command {
 	private readonly timestamp = new Timestamp('MM/DD/YYYY');
 
-	public async messageRun(message: GuildMessage, args: Args) {
-		const inputChannel = await args.pick('textChannelName').catch(() => message.channel);
-		const targetChannel = await args.pick('textChannelName').catch(() => message.channel);
+	public override registerApplicationCommands(registry: ApplicationCommandRegistry) {
+		registry //
+			.registerChatInputCommand(
+				(builder) =>
+					builder //
+						.setName(this.name)
+						.setDescription(this.description)
+						.addChannelOption((input) =>
+							input //
+								.setName('output-channel')
+								.setDescription('The channel to which the quote should be sent')
+								.setRequired(true)
+						),
+				{ guildIds: getGuildIds(), idHints: ['925552150799601724'] }
+			);
+	}
 
-		const messages = await args.repeat('message', { channel: inputChannel });
+	public override async chatInputRun(...[interaction]: Parameters<ChatInputCommand['chatInputRun']>) {
+		const interactionMemberId = interaction.member!.user.id;
 
-		const loadingMessage = await sendLoadingMessage(message);
+		const quoteCacheForUser = quoteCache.get(interactionMemberId);
 
+		if (!quoteCacheForUser) {
+			return interaction.reply({
+				content:
+					"Looks like you didn't initialise a quote yet using `Start quote` or `End quote` context menu actions. You need to do that before you can quote messages."
+			});
+		}
+
+		const { startMessage, endMessage } = quoteCacheForUser;
+
+		if (!startMessage) {
+			return interaction.reply({
+				content:
+					"Looks like you didn't set the message at which to start quoting yet using the `Start quote` context menu action. You need to do that before you can quote messages."
+			});
+		}
+
+		if (startMessage && endMessage && startMessage.channelId !== endMessage?.channelId) {
+			return interaction.reply({
+				content:
+					'Looks like set a start message in a different channel as the end message. I cannot determine a proper start and end that way. Please set the message in the same channel.'
+			});
+		}
+
+		await interaction.deferReply({ ephemeral: true });
+
+		const channelForMessages = await interaction.guild!.channels.fetch(startMessage.channelId);
+
+		if (!channelForMessages) {
+			return interaction.editReply({
+				content: 'Could not find the channel where the messages are.'
+			});
+		}
+
+		// If only start message is provided then we quote just that message
+		const messages: Message[] = [startMessage];
+
+		// If end message is also provided then we want to get all messages in between
+		if (endMessage) {
+			const messagesAfterStart = await (channelForMessages as TextBasedChannel).messages.fetch({ after: startMessage.id });
+			const messagesBeforeEnd = messagesAfterStart.filter((message) => message.id !== endMessage.id);
+
+			messages.push(...messagesBeforeEnd.values(), endMessage);
+		}
+
+		// After determining which messages to include in the quote we can get the content of each
 		const content: string[] = [];
 
 		// For every quotable message generate the HTML
 		for (const quotableMessage of messages) {
-			content.push(this.messageToHtml(quotableMessage, message));
+			content.push(this.messageToHtml(quotableMessage, interaction.guild!));
 		}
 
 		// Generate the HTML
@@ -51,13 +108,28 @@ export class UserCommand extends Command {
 			}
 		})) as Buffer;
 
-		await targetChannel.send({ files: [new MessageAttachment(buffer, 'archangel-quote.png')] });
+		try {
+			const targetChannel = interaction.options.getChannel('output-channel', true) as GuildBasedChannel;
+			if (isTextBasedChannel(targetChannel)) {
+				await targetChannel.send({ files: [new MessageAttachment(buffer, 'archangel-quote.png')] });
 
-		return deleteMessage(loadingMessage);
+				return interaction.editReply({ content: `Successfully sent the quoted messages to ${channelMention(targetChannel.id)}.` });
+			}
+
+			return interaction.editReply({
+				content:
+					'Sorry, but I was not able to send the quoted messages to the output channel. It appears that you chose a channel that is not a text channel.'
+			});
+		} catch {
+			return interaction.editReply({
+				content:
+					'Sorry, but I was not able to send the quoted messages to the output channel. Do I have sufficient permissions to send messages to that channel?'
+			});
+		}
 	}
 
-	private messageToHtml(message: Message, commandMessage: GuildMessage): string {
-		const member = commandMessage.guild!.members.cache.get(message.author.id);
+	private messageToHtml(message: Message, guild: Guild): string {
+		const member = guild.members.cache.get(message.author.id);
 		const attachment = getAttachment(message);
 
 		return discordMessageGenerator({

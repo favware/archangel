@@ -24,7 +24,6 @@ export abstract class Handler {
 	public abstract ordinal(cardinal: number): string;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace Handler {
 	export interface Options {
 		name: string;
