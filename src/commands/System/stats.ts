@@ -7,7 +7,6 @@ import { MessageEmbed, version } from 'discord.js';
 import { cpus, uptime, type CpuInfo } from 'node:os';
 
 @ApplyOptions<ChatInputCommand.Options>({
-	aliases: ['stats', 'sts'],
 	description: 'Provides some details about the bot and stats.',
 	requiredClientPermissions: ['EMBED_LINKS'],
 	chatInputCommand: {
