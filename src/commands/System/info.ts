@@ -3,7 +3,6 @@ import { ApplyOptions } from '@sapphire/decorators';
 import { ChatInputCommand, Command } from '@sapphire/framework';
 
 @ApplyOptions<ChatInputCommand.Options>({
-	aliases: ['details', 'what'],
 	description: 'Provides some information about this bot.',
 	chatInputCommand: {
 		register: true,
