@@ -75,14 +75,16 @@ export class UserCommand extends Command {
 		}
 
 		// If only start message is provided then we quote just that message
-		const messages: Message[] = [startMessage];
+		let messages: Message[] = [startMessage];
 
 		// If end message is also provided then we want to get all messages in between
 		if (endMessage) {
 			const messagesAfterStart = await (channelForMessages as TextBasedChannel).messages.fetch({ after: startMessage.id });
-			const messagesBeforeEnd = messagesAfterStart.filter((message) => message.id !== endMessage.id);
+			const messagesBeforeEnd = messagesAfterStart.filter((message) => message.createdTimestamp < endMessage.createdTimestamp);
 
 			messages.push(...messagesBeforeEnd.values(), endMessage);
+
+			messages = messages.sort((a, b) => a.createdTimestamp - b.createdTimestamp);
 		}
 
 		// After determining which messages to include in the quote we can get the content of each
