@@ -4,6 +4,7 @@
 		"lib": ["ESNext", "DOM"],
 		"target": "ESNext",
 		"module": "ESNext",
-		"skipLibCheck": true
+		"skipLibCheck": true,
+		"noImplicitOverride": true
 	}
 }

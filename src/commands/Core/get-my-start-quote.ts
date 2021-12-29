@@ -12,7 +12,7 @@ import { ChatInputCommand, Command } from '@sapphire/framework';
 	}
 })
 export class UserCommand extends Command {
-	public async chatInputRun(...[interaction]: Parameters<ChatInputCommand['chatInputRun']>) {
+	public override async chatInputRun(...[interaction]: Parameters<ChatInputCommand['chatInputRun']>) {
 		const interactionMemberId = interaction.member!.user.id;
 
 		const quoteCacheForUser = quoteCache.get(interactionMemberId);

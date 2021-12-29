@@ -14,7 +14,7 @@ import type { CommandInteraction, Message } from 'discord.js';
 	}
 })
 export class UserCommand extends Command {
-	public async chatInputRun(...[interaction]: Parameters<ChatInputCommand['chatInputRun']>) {
+	public override async chatInputRun(...[interaction]: Parameters<ChatInputCommand['chatInputRun']>) {
 		const msg = await interaction.reply({ content: `${Emojis.Loading} Ping?`, ephemeral: true, fetchReply: true });
 
 		if (isMessageInstance(msg)) {
@@ -26,7 +26,7 @@ export class UserCommand extends Command {
 		return interaction.editReply('Failed to retrieve ping :(');
 	}
 
-	public async messageRun(...[message]: Parameters<MessageCommand['messageRun']>) {
+	public override async messageRun(...[message]: Parameters<MessageCommand['messageRun']>) {
 		const msg = await send(message, `${Emojis.Loading} Ping?`);
 
 		const { diff, ping } = this.getPing(msg, message);

@@ -18,11 +18,11 @@ import { cpus, uptime, type CpuInfo } from 'node:os';
 	}
 })
 export class UserCommand extends Command {
-	public async chatInputRun(...[interaction]: Parameters<ChatInputCommand['chatInputRun']>) {
+	public override chatInputRun(...[interaction]: Parameters<ChatInputCommand['chatInputRun']>) {
 		return interaction.reply({ embeds: [this.buildEmbed()], ephemeral: true });
 	}
 
-	public messageRun(...[message]: Parameters<MessageCommand['messageRun']>) {
+	public override messageRun(...[message]: Parameters<MessageCommand['messageRun']>) {
 		return send(message, { embeds: [this.buildEmbed()] });
 	}
 

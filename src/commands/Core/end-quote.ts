@@ -21,7 +21,7 @@ export class UserCommand extends Command {
 			);
 	}
 
-	public async contextMenuRun(...[interaction]: Parameters<ContextMenuCommand['contextMenuRun']>) {
+	public override async contextMenuRun(...[interaction]: Parameters<ContextMenuCommand['contextMenuRun']>) {
 		if (interaction.isMessageContextMenu() && isMessageInstance(interaction.targetMessage)) {
 			const interactionMemberId = interaction.member!.user.id;
 

@@ -5,7 +5,7 @@ import { SapphireClient } from '@sapphire/framework';
 import type { Message } from 'discord.js';
 
 export class ArchAngelClient extends SapphireClient {
-	public readonly EnGbHandler = new EnGbHandler();
+	public override readonly EnGbHandler = new EnGbHandler();
 
 	public constructor() {
 		super(CLIENT_OPTIONS);
@@ -15,7 +15,7 @@ export class ArchAngelClient extends SapphireClient {
 	 * Retrieves the prefix for the guild.
 	 * @param message The message that gives context.
 	 */
-	public fetchPrefix = (message: Message) => {
+	public override fetchPrefix = (message: Message) => {
 		if (!message.guild) return [envParseString('CLIENT_PREFIX'), ''] as readonly string[];
 		return envParseString('CLIENT_PREFIX');
 	};

@@ -5,12 +5,12 @@ import type { Logger } from '@sapphire/plugin-logger';
 
 @ApplyOptions<Listener.Options>({ event: Events.ChatInputCommandSuccess })
 export class UserListener extends Listener {
-	public run(payload: ChatInputCommandSuccessPayload) {
+	public override run(payload: ChatInputCommandSuccessPayload) {
 		const { author, commandName, sentAt, shard } = getSuccessLoggerData(payload);
 		this.container.logger.debug(`${shard} - ${commandName} ${author} ${sentAt}`);
 	}
 
-	public onLoad() {
+	public override onLoad() {
 		this.enabled = (this.container.logger as Logger).level <= LogLevel.Debug;
 		return super.onLoad();
 	}

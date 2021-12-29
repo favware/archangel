@@ -13,14 +13,14 @@ import { send } from '@sapphire/plugin-editable-commands';
 	}
 })
 export class UserCommand extends Command {
-	public async chatInputRun(...[interaction]: Parameters<ChatInputCommand['chatInputRun']>) {
+	public override async chatInputRun(...[interaction]: Parameters<ChatInputCommand['chatInputRun']>) {
 		return interaction.reply({
 			content: this.content,
 			ephemeral: true
 		});
 	}
 
-	public async messageRun(...[message]: Parameters<MessageCommand['messageRun']>) {
+	public override async messageRun(...[message]: Parameters<MessageCommand['messageRun']>) {
 		return send(message, { content: this.content });
 	}
 
