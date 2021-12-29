@@ -15,7 +15,7 @@ export class UserCommand extends Command {
 			.registerContextMenuCommand(
 				(builder) =>
 					builder //
-						.setName('End quote')
+						.setName('2 - End quote')
 						.setType(ApplicationCommandType.Message),
 				{ guildIds: getGuildIds(), idHints: ['925529556696330350'] }
 			);

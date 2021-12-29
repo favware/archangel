@@ -4,7 +4,7 @@ import { ApplyOptions } from '@sapphire/decorators';
 import { ChatInputCommand, Command } from '@sapphire/framework';
 
 @ApplyOptions<ChatInputCommand.Options>({
-	description: 'Retrieves the message you have configured as your end message for quoting.',
+	description: 'Clears all quoting data that I have on you.',
 	chatInputCommand: {
 		register: true,
 		guildIds: getGuildIds(),
