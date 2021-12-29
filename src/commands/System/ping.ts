@@ -1,8 +1,7 @@
 import { Emojis } from '#utils/constants';
 import { getGuildIds, isMessageInstance } from '#utils/util';
 import { ApplyOptions } from '@sapphire/decorators';
-import { ChatInputCommand, Command, MessageCommand } from '@sapphire/framework';
-import { send } from '@sapphire/plugin-editable-commands';
+import { ChatInputCommand, Command } from '@sapphire/framework';
 import type { CommandInteraction, Message } from 'discord.js';
 
 @ApplyOptions<ChatInputCommand.Options>({
@@ -24,14 +23,6 @@ export class UserCommand extends Command {
 		}
 
 		return interaction.editReply('Failed to retrieve ping :(');
-	}
-
-	public override async messageRun(...[message]: Parameters<MessageCommand['messageRun']>) {
-		const msg = await send(message, `${Emojis.Loading} Ping?`);
-
-		const { diff, ping } = this.getPing(msg, message);
-
-		return msg.edit(`Pong! (Roundtrip took: ${diff}ms. Heartbeat: ${ping}ms.)`);
 	}
 
 	private getPing(message: Message, interactionOrMessage: Message | CommandInteraction) {

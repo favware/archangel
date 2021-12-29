@@ -1,7 +1,6 @@
 import { getGuildIds } from '#utils/util';
 import { ApplyOptions } from '@sapphire/decorators';
-import { ChatInputCommand, Command, MessageCommand } from '@sapphire/framework';
-import { send } from '@sapphire/plugin-editable-commands';
+import { ChatInputCommand, Command } from '@sapphire/framework';
 
 @ApplyOptions<ChatInputCommand.Options>({
 	aliases: ['details', 'what'],
@@ -18,10 +17,6 @@ export class UserCommand extends Command {
 			content: this.content,
 			ephemeral: true
 		});
-	}
-
-	public override async messageRun(...[message]: Parameters<MessageCommand['messageRun']>) {
-		return send(message, { content: this.content });
 	}
 
 	private get content() {

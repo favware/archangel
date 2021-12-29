@@ -1,8 +1,7 @@
 import { BrandingColors } from '#utils/constants';
 import { getGuildIds } from '#utils/util';
 import { ApplyOptions } from '@sapphire/decorators';
-import { ChatInputCommand, Command, MessageCommand } from '@sapphire/framework';
-import { send } from '@sapphire/plugin-editable-commands';
+import { ChatInputCommand, Command, version as sapphireVersion } from '@sapphire/framework';
 import { roundNumber } from '@sapphire/utilities';
 import { MessageEmbed, version } from 'discord.js';
 import { cpus, uptime, type CpuInfo } from 'node:os';
@@ -22,10 +21,6 @@ export class UserCommand extends Command {
 		return interaction.reply({ embeds: [this.buildEmbed()], ephemeral: true });
 	}
 
-	public override messageRun(...[message]: Parameters<MessageCommand['messageRun']>) {
-		return send(message, { embeds: [this.buildEmbed()] });
-	}
-
 	private buildEmbed() {
 		const titles = {
 			stats: 'Statistics',
@@ -37,7 +32,7 @@ export class UserCommand extends Command {
 		const usage = this.usageStatistics;
 
 		const fields = {
-			stats: `• **Users**: ${stats.users}\n• **Guilds**: ${stats.guilds}\n• **Channels**: ${stats.channels}\n• **Discord.js**: ${stats.version}\n• **Node.js**: ${stats.nodeJs}`,
+			stats: `• **Users**: ${stats.users}\n• **Guilds**: ${stats.guilds}\n• **Channels**: ${stats.channels}\n• **Discord.js**: ${stats.version}\n• **Node.js**: ${stats.nodeJs}\n• **Sapphire Framework**: ${stats.sapphireVersion}`,
 			uptime: `• **Host**: ${uptime.host}\n• **Total**: ${uptime.total}\n• **Client**: ${uptime.client}`,
 			serverUsage: `• **CPU Load**: ${usage.cpuLoad}\n• **Heap**: ${usage.ramUsed}MB (Total: ${usage.ramTotal}}MB)`
 		};
@@ -56,7 +51,8 @@ export class UserCommand extends Command {
 			guilds: client.guilds.cache.size,
 			nodeJs: process.version,
 			users: client.guilds.cache.reduce((acc, val) => acc + (val.memberCount ?? 0), 0),
-			version: `v${version}`
+			version: `v${version}`,
+			sapphireVersion: `v${sapphireVersion}`
 		};
 	}
 
@@ -88,6 +84,7 @@ export interface StatsGeneral {
 	nodeJs: string;
 	users: number;
 	version: string;
+	sapphireVersion: string;
 }
 
 export interface StatsUptime {
