@@ -19,7 +19,8 @@ export class UserCommand extends Command {
 
 		if (!quoteCacheForUser) {
 			return interaction.reply({
-				content: "Looks like you didn't initialise a quote yet using `Start quote` or `End quote` context menu actions."
+				content: "Looks like you didn't initialise a quote yet using `Start quote` or `End quote` context menu actions.",
+				ephemeral: true
 			});
 		}
 
@@ -27,7 +28,8 @@ export class UserCommand extends Command {
 
 		if (!startMessage) {
 			return interaction.reply({
-				content: "Looks like you didn't set the message at which to start quoting yet using the `Start quote` context menu action."
+				content: "Looks like you didn't set the message at which to start quoting yet using the `Start quote` context menu action.",
+				ephemeral: true
 			});
 		}
 

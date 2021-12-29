@@ -41,7 +41,8 @@ export class UserCommand extends Command {
 		if (!quoteCacheForUser) {
 			return interaction.reply({
 				content:
-					"Looks like you didn't initialise a quote yet using `Start quote` or `End quote` context menu actions. You need to do that before you can quote messages."
+					"Looks like you didn't initialise a quote yet using `Start quote` or `End quote` context menu actions. You need to do that before you can quote messages.",
+				ephemeral: true
 			});
 		}
 
@@ -50,14 +51,16 @@ export class UserCommand extends Command {
 		if (!startMessage) {
 			return interaction.reply({
 				content:
-					"Looks like you didn't set the message at which to start quoting yet using the `Start quote` context menu action. You need to do that before you can quote messages."
+					"Looks like you didn't set the message at which to start quoting yet using the `Start quote` context menu action. You need to do that before you can quote messages.",
+				ephemeral: true
 			});
 		}
 
 		if (startMessage && endMessage && startMessage.channelId !== endMessage?.channelId) {
 			return interaction.reply({
 				content:
-					'Looks like set a start message in a different channel as the end message. I cannot determine a proper start and end that way. Please set the message in the same channel.'
+					'Looks like set a start message in a different channel as the end message. I cannot determine a proper start and end that way. Please set the message in the same channel.',
+				ephemeral: true
 			});
 		}
 

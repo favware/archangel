@@ -22,7 +22,8 @@ export class UserCommand extends Command {
 		}
 
 		return interaction.reply({
-			content: "Looks like you didn't initialise a quote yet using `Start quote` or `End quote` context menu actions."
+			content: "Looks like you didn't initialise a quote yet using `Start quote` or `End quote` context menu actions.",
+			ephemeral: true
 		});
 	}
 }
