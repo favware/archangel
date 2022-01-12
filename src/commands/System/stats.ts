@@ -77,7 +77,7 @@ export class UserCommand extends Command {
 	}
 }
 
-export interface StatsGeneral {
+interface StatsGeneral {
 	channels: number;
 	guilds: number;
 	nodeJs: string;
@@ -86,13 +86,13 @@ export interface StatsGeneral {
 	sapphireVersion: string;
 }
 
-export interface StatsUptime {
+interface StatsUptime {
 	client: string;
 	host: string;
 	total: string;
 }
 
-export interface StatsUsage {
+interface StatsUsage {
 	cpuLoad: string;
 	ramTotal: string;
 	ramUsed: string;
