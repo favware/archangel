@@ -25,12 +25,8 @@ export class UserCommand extends Command {
 		return interaction.editReply('Failed to retrieve ping :(');
 	}
 
-	private getPing(message: Message, interactionOrMessage: Message | CommandInteraction) {
-		const diffReducer = isMessageInstance(interactionOrMessage)
-			? message.editedTimestamp || message.createdTimestamp
-			: interactionOrMessage.createdTimestamp;
-
-		const diff = (message.editedTimestamp || message.createdTimestamp) - diffReducer;
+	private getPing(message: Message, interactionOrMessage: CommandInteraction) {
+		const diff = (message.editedTimestamp || message.createdTimestamp) - interactionOrMessage.createdTimestamp;
 		const ping = Math.round(this.container.client.ws.ping);
 
 		return { diff, ping };
