@@ -4,12 +4,12 @@
 
 # ArchAngel
 
-**Custom Discord Bot for <a href="https://discord.gg/0qngWPF6JTRbzdxe">Populous Gaming**
+**Custom Discord Bot for <a href="https://join.favware.tech">Populous Gaming**
 
 <a href="https://github.com/favware/archangel/blob/main/LICENSE" alt="License"><img src="https://img.shields.io/github/license/favware/archangel"/></a>
 <a href="https://twitter.com/Favna_/follow" alt="Twitter Follow"><img src="https://img.shields.io/twitter/follow/favna_?label=Follow%20@Favna_&logo=twitter&colorB=1DA1F2&style=flat-square"/></a>
 
-<a href="https://discord.gg/0qngWPF6JTRbzdxe" alt="Support Server"><img src="https://discord.com/api/guilds/152464629753315328/embed.png?style=banner2"/></a>
+<a href="https://join.favware.tech" alt="Support Server"><img src="https://discord.com/api/guilds/152464629753315328/embed.png?style=banner2"/></a>
 
 </div>
 
