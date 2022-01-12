@@ -4,7 +4,7 @@
 	"description": "Private bot for PopulousGaming",
 	"author": "Jeroen Claassens <support@favware.tech>",
 	"license": "Apache-2.0",
-	"main": "dist/ArcAngel.js",
+	"main": "dist/ArchAngel.js",
 	"private": true,
 	"type": "module",
 	"imports": {
