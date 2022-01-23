@@ -24,7 +24,7 @@
 		"dev": "tsup --watch --onSuccess \"yarn start\""
 	},
 	"dependencies": {
-		"@sapphire/decorators": "^3.1.6",
+		"@sapphire/decorators": "^4.0.2",
 		"@sapphire/discord-utilities": "^2.6.0",
 		"@sapphire/discord.js-utilities": "^4.4.0",
 		"@sapphire/fetch": "^2.0.4",
