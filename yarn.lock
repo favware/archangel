@@ -353,15 +353,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/puppeteer@npm:^5.4.4":
-  version: 5.4.4
-  resolution: "@types/puppeteer@npm:5.4.4"
-  dependencies:
-    "@types/node": "*"
-  checksum: 99aa9e8fe0234b5624e93b36e38b407c48e2b9663c46dfc651ee37819e7ce1d19dfcd61d5b3f23b3d0b0f606615e0f298a86b3116a1b3cd09aa139204731e3b1
-  languageName: node
-  linkType: hard
-
 "@types/ws@npm:^8.2.2":
   version: 8.2.2
   resolution: "@types/ws@npm:8.2.2"
@@ -622,7 +613,6 @@ __metadata:
     "@skyra/discord-components-core": ^3.1.0
     "@types/marked": ^4.0.2
     "@types/node": ^17.0.18
-    "@types/puppeteer": ^5.4.4
     "@types/ws": ^8.2.2
     "@typescript-eslint/eslint-plugin": ^5.12.0
     "@typescript-eslint/parser": ^5.12.0
