@@ -108,6 +108,7 @@ export class UserCommand extends Command {
 		const buffer = (await imageGenerator({
 			html,
 			puppeteerArgs: {
+				// @ts-expect-error There is currently a bug in node-html-to-image but it's a type only bug, args will be passed to puppeteer just fine at runtime
 				args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-translate', '--disable-extensions'],
 				ignoreHTTPSErrors: true
 			}
