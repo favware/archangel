@@ -1,8 +1,9 @@
 import { Quote, quoteCache } from '#lib/quoting/quoteCache';
 import { resolveMessage } from '#lib/quoting/resolveMessage';
 import type { GuildMessage } from '#lib/types/Discord';
-import { getGuildIds, isMessageInstance } from '#utils/util';
+import { getGuildIds } from '#utils/util';
 import { ApplyOptions } from '@sapphire/decorators';
+import { isMessageInstance } from '@sapphire/discord.js-utilities';
 import { ChatInputCommand, Command, isErr, type ContextMenuCommand } from '@sapphire/framework';
 import { inlineCodeBlock } from '@sapphire/utilities';
 import { ApplicationCommandType } from 'discord-api-types/v9';
