@@ -151,6 +151,7 @@ export class UserCommand extends Command {
 			server: false,
 			timestamp: this.timestamp.display(message.createdAt),
 			twentyFour: true,
+			ephemeral: false,
 			verified: message.author.flags?.has(UserFlags.FLAGS.VERIFIED_BOT) ?? false
 		});
 	}
