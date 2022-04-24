@@ -26,7 +26,7 @@
 	"dependencies": {
 		"@sapphire/decorators": "^4.3.4",
 		"@sapphire/discord-utilities": "^2.10.3",
-		"@sapphire/discord.js-utilities": "^4.9.4",
+		"@sapphire/discord.js-utilities": "^4.9.5",
 		"@sapphire/fetch": "^2.3.1",
 		"@sapphire/framework": "next",
 		"@sapphire/plugin-logger": "^2.2.1",
@@ -46,8 +46,8 @@
 		"zlib-sync": "^0.1.7"
 	},
 	"devDependencies": {
-		"@sapphire/eslint-config": "^4.3.3",
-		"@sapphire/prettier-config": "^1.4.2",
+		"@sapphire/eslint-config": "^4.3.4",
+		"@sapphire/prettier-config": "^1.4.3",
 		"@sapphire/ts-config": "^3.3.4",
 		"@skyra/discord-components-core": "^3.3.0",
 		"@types/marked": "^4.0.3",
