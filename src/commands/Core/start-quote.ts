@@ -4,7 +4,7 @@ import type { GuildMessage } from '#lib/types/Discord';
 import { getGuildIds } from '#utils/util';
 import { ApplyOptions } from '@sapphire/decorators';
 import { isMessageInstance } from '@sapphire/discord.js-utilities';
-import { ChatInputCommand, Command, isErr, type ContextMenuCommand } from '@sapphire/framework';
+import { Command, isErr, type ContextMenuCommand } from '@sapphire/framework';
 import { inlineCodeBlock } from '@sapphire/utilities';
 import { ApplicationCommandType } from 'discord-api-types/v9';
 
@@ -12,7 +12,7 @@ import { ApplicationCommandType } from 'discord-api-types/v9';
   description: 'Sets the message at which I will start quoting.'
 })
 export class UserCommand extends Command {
-  public override registerApplicationCommands(...[registry]: Parameters<ContextMenuCommand['registerApplicationCommands']>) {
+  public override registerApplicationCommands(registry: Command.Registry) {
     registry //
       .registerContextMenuCommand(
         (builder) =>
@@ -36,7 +36,7 @@ export class UserCommand extends Command {
       );
   }
 
-  public override async chatInputRun(...[interaction]: Parameters<ChatInputCommand['chatInputRun']>) {
+  public override async chatInputRun(interaction: Command.ChatInputInteraction) {
     const interactionMemberId = interaction.member!.user.id;
     const messageToQuoteFrom = await resolveMessage({ parameter: interaction.options.getString('message', true), interaction });
 

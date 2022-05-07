@@ -5,7 +5,7 @@ import { getAttachment, getGuildIds, oneLine } from '#utils/util';
 import { channelMention } from '@discordjs/builders';
 import { ApplyOptions } from '@sapphire/decorators';
 import { isTextBasedChannel } from '@sapphire/discord.js-utilities';
-import { ApplicationCommandRegistry, ChatInputCommand, Command } from '@sapphire/framework';
+import { Command } from '@sapphire/framework';
 import { Timestamp } from '@sapphire/time-utilities';
 import { Guild, GuildBasedChannel, Message, MessageAttachment, TextBasedChannel, UserFlags } from 'discord.js';
 import imageGenerator from 'node-html-to-image';
@@ -16,7 +16,7 @@ import imageGenerator from 'node-html-to-image';
 export class UserCommand extends Command {
   private readonly timestamp = new Timestamp('MM/DD/YYYY');
 
-  public override registerApplicationCommands(registry: ApplicationCommandRegistry) {
+  public override registerApplicationCommands(registry: Command.Registry) {
     registry //
       .registerChatInputCommand(
         (builder) =>
@@ -33,7 +33,7 @@ export class UserCommand extends Command {
       );
   }
 
-  public override async chatInputRun(...[interaction]: Parameters<ChatInputCommand['chatInputRun']>) {
+  public override async chatInputRun(interaction: Command.ChatInputInteraction) {
     const interactionMemberId = interaction.member!.user.id;
 
     const quoteCacheForUser = quoteCache.get(interactionMemberId);
