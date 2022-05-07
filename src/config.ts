@@ -12,25 +12,25 @@ import { fileURLToPath } from 'url';
 
 // Read config:
 config({
-	debug: process.env.DOTENV_DEBUG_ENABLED ? envParseBoolean('DOTENV_DEBUG_ENABLED') : undefined,
-	path: join(fileURLToPath(srcFolder), '.env')
+  debug: process.env.DOTENV_DEBUG_ENABLED ? envParseBoolean('DOTENV_DEBUG_ENABLED') : undefined,
+  path: join(fileURLToPath(srcFolder), '.env')
 });
 
 function parsePresenceActivity(): ActivitiesOptions[] {
-	const { CLIENT_PRESENCE_NAME } = process.env;
-	if (!CLIENT_PRESENCE_NAME) return [];
+  const { CLIENT_PRESENCE_NAME } = process.env;
+  if (!CLIENT_PRESENCE_NAME) return [];
 
-	return [
-		{
-			name: CLIENT_PRESENCE_NAME,
-			type: envParseString('CLIENT_PRESENCE_TYPE', 'WATCHING') as ExcludeEnum<typeof ActivityTypes, 'CUSTOM'>
-		}
-	];
+  return [
+    {
+      name: CLIENT_PRESENCE_NAME,
+      type: envParseString('CLIENT_PRESENCE_TYPE', 'WATCHING') as ExcludeEnum<typeof ActivityTypes, 'CUSTOM'>
+    }
+  ];
 }
 
 export const CLIENT_OPTIONS: ClientOptions = {
-	intents: ['GUILDS', 'GUILD_MESSAGES'],
-	allowedMentions: { users: [], roles: [] },
-	presence: { activities: parsePresenceActivity() },
-	logger: { level: envParseString('NODE_ENV') === 'production' ? LogLevel.Info : LogLevel.Debug }
+  intents: ['GUILDS', 'GUILD_MESSAGES'],
+  allowedMentions: { users: [], roles: [] },
+  presence: { activities: parsePresenceActivity() },
+  logger: { level: envParseString('NODE_ENV') === 'production' ? LogLevel.Info : LogLevel.Debug }
 };

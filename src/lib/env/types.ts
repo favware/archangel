@@ -7,15 +7,15 @@ export type ArchAngelEnvBoolean = { [K in ArchAngelEnvAny]: ArchAngelEnv[K] exte
 export type ArchAngelEnvInteger = { [K in ArchAngelEnvAny]: ArchAngelEnv[K] extends IntegerString ? K : never }[ArchAngelEnvAny];
 
 export interface ArchAngelEnv {
-	NODE_ENV: 'test' | 'development' | 'production';
-	DOTENV_DEBUG_ENABLED: BooleanString;
+  NODE_ENV: 'test' | 'development' | 'production';
+  DOTENV_DEBUG_ENABLED: BooleanString;
 
-	CLIENT_VERSION: string;
+  CLIENT_VERSION: string;
 
-	CLIENT_PRESENCE_NAME: string;
-	CLIENT_PRESENCE_TYPE: string;
+  CLIENT_PRESENCE_NAME: string;
+  CLIENT_PRESENCE_TYPE: string;
 
-	COMMAND_GUILD_IDS: string;
+  COMMAND_GUILD_IDS: string;
 
-	DISCORD_TOKEN: string;
+  DISCORD_TOKEN: string;
 }

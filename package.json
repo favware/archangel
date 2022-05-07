@@ -1,79 +1,78 @@
 {
-	"name": "archangel",
-	"version": "4.0.0",
-	"description": "Private bot for PopulousGaming",
-	"author": "Jeroen Claassens <support@favware.tech>",
-	"license": "Apache-2.0",
-	"main": "dist/ArchAngel.js",
-	"private": true,
-	"type": "module",
-	"imports": {
-		"#lib/*": "./dist/lib/*.js",
-		"#root/*": "./dist/*.js",
-		"#utils/*": "./dist/lib/util/*.js",
-		"#lib/env": "./dist/lib/env/index.js"
-	},
-	"scripts": {
-		"start": "node --enable-source-maps dist/ArchAngel.js",
-		"lint": "eslint src --ext ts --fix",
-		"format": "prettier --write --loglevel=warn \"src/**/*.ts\"",
-		"build": "tsup",
-		"watch": "tsup --watch",
-		"clean": "node scripts/clean.mjs",
-		"typecheck": "tsc -b src",
-		"dev": "tsup --watch --onSuccess \"yarn start\""
-	},
-	"dependencies": {
-		"@sapphire/decorators": "^4.3.4",
-		"@sapphire/discord-utilities": "^2.10.3",
-		"@sapphire/discord.js-utilities": "^4.9.7",
-		"@sapphire/fetch": "^2.3.1",
-		"@sapphire/framework": "next",
-		"@sapphire/plugin-logger": "^2.2.1",
-		"@sapphire/time-utilities": "^1.7.4",
-		"@sapphire/utilities": "^3.6.2",
-		"bufferutil": "^4.0.6",
-		"colorette": "^2.0.16",
-		"discord-api-types": "0.26.1",
-		"discord.js": "^13.6.0",
-		"dotenv-cra": "^3.0.2",
-		"marked": "^4.0.14",
-		"node-html-to-image": "^3.2.4",
-		"reflect-metadata": "^0.1.13",
-		"tslib": "^2.4.0",
-		"utf-8-validate": "^5.0.9",
-		"ws": "^8.5.0",
-		"zlib-sync": "^0.1.7"
-	},
-	"devDependencies": {
-		"@sapphire/eslint-config": "^4.3.4",
-		"@sapphire/prettier-config": "^1.4.3",
-		"@sapphire/ts-config": "^3.3.4",
-		"@skyra/discord-components-core": "^3.3.1",
-		"@types/marked": "^4.0.3",
-		"@types/node": "^17.0.21",
-		"@types/ws": "^8.5.3",
-		"@typescript-eslint/eslint-plugin": "^5.21.0",
-		"@typescript-eslint/parser": "^5.21.0",
-		"eslint": "^8.14.0",
-		"eslint-config-prettier": "^8.5.0",
-		"eslint-plugin-prettier": "^4.0.0",
-		"prettier": "^2.6.2",
-		"pretty-quick": "^3.1.3",
-		"tsup": "^5.12.6",
-		"typescript": "^4.6.4"
-	},
-	"resolutions": {
-		"ansi-regex": "^5.0.1",
-		"minimist": "^1.2.6"
-	},
-	"engines": {
-		"node": ">=16.6.0",
-		"npm": ">=7.24.2"
-	},
-	"eslintConfig": {
-		"extends": "@sapphire"
-	},
-	"prettier": "@sapphire/prettier-config",
-	"packageManager": "yarn@3.2.0"
+  "name": "archangel",
+  "version": "4.0.0",
+  "description": "Private bot for PopulousGaming",
+  "author": "Jeroen Claassens <support@favware.tech>",
+  "license": "Apache-2.0",
+  "main": "dist/ArchAngel.js",
+  "private": true,
+  "type": "module",
+  "imports": {
+    "#lib/*": "./dist/lib/*.js",
+    "#root/*": "./dist/*.js",
+    "#utils/*": "./dist/lib/util/*.js",
+    "#lib/env": "./dist/lib/env/index.js"
+  },
+  "scripts": {
+    "start": "node --enable-source-maps dist/ArchAngel.js",
+    "lint": "eslint src --ext ts --fix",
+    "format": "prettier --write --loglevel=warn \"src/**/*.ts\"",
+    "build": "tsup",
+    "watch": "tsup --watch",
+    "clean": "node scripts/clean.mjs",
+    "typecheck": "tsc -b src",
+    "dev": "tsup --watch --onSuccess \"yarn start\""
+  },
+  "dependencies": {
+    "@sapphire/decorators": "^4.3.4",
+    "@sapphire/discord-utilities": "^2.10.3",
+    "@sapphire/discord.js-utilities": "^4.9.7",
+    "@sapphire/fetch": "^2.3.1",
+    "@sapphire/framework": "next",
+    "@sapphire/plugin-logger": "^2.2.1",
+    "@sapphire/time-utilities": "^1.7.4",
+    "@sapphire/utilities": "^3.6.2",
+    "bufferutil": "^4.0.6",
+    "colorette": "^2.0.16",
+    "discord-api-types": "0.26.1",
+    "discord.js": "^13.6.0",
+    "dotenv-cra": "^3.0.2",
+    "marked": "^4.0.14",
+    "node-html-to-image": "^3.2.4",
+    "reflect-metadata": "^0.1.13",
+    "tslib": "^2.4.0",
+    "utf-8-validate": "^5.0.9",
+    "ws": "^8.5.0",
+    "zlib-sync": "^0.1.7"
+  },
+  "devDependencies": {
+    "@sapphire/eslint-config": "^4.3.4",
+    "@sapphire/prettier-config": "^1.4.3",
+    "@sapphire/ts-config": "^3.3.4",
+    "@skyra/discord-components-core": "^3.3.1",
+    "@types/marked": "^4.0.3",
+    "@types/node": "^17.0.21",
+    "@types/ws": "^8.5.3",
+    "@typescript-eslint/eslint-plugin": "^5.21.0",
+    "@typescript-eslint/parser": "^5.21.0",
+    "eslint": "^8.14.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.6.2",
+    "pretty-quick": "^3.1.3",
+    "tsup": "^5.12.6",
+    "typescript": "^4.6.4"
+  },
+  "resolutions": {
+    "ansi-regex": "^5.0.1",
+    "minimist": "^1.2.6"
+  },
+  "engines": {
+    "node": ">=16.6.0",
+    "npm": ">=7.24.2"
+  },
+  "eslintConfig": {
+    "extends": "@sapphire"
+  },
+  "packageManager": "yarn@3.2.0"
 }

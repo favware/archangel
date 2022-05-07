@@ -17,9 +17,13 @@
 
 ## Buy us some doughnuts
 
-Favware projects is and always will be open source, even if we don't get donations. That being said, we know there are amazing people who may still want to donate just to show their appreciation. Thank you very much in advance!
+Favware projects is and always will be open source, even if we don't get
+donations. That being said, we know there are amazing people who may still want
+to donate just to show their appreciation. Thank you very much in advance!
 
-We accept donations through Ko-fi, Paypal, Patreon, GitHub Sponsorships, and various crypto currencies. You can use the buttons below to donate through your method of choice.
+We accept donations through Ko-fi, Paypal, Patreon, GitHub Sponsorships, and
+various crypto currencies. You can use the buttons below to donate through your
+method of choice.
 
 |   Donate With   |                      Address                      |
 | :-------------: | :-----------------------------------------------: |

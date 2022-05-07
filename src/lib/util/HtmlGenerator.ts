@@ -4,37 +4,37 @@ import type { Components } from '@skyra/discord-components-core/dist/types/compo
 import { marked as markdownToHtml } from 'marked';
 
 markdownToHtml.setOptions({
-	breaks: false,
-	headerIds: false,
-	smartLists: false,
-	smartypants: true,
-	xhtml: true
+  breaks: false,
+  headerIds: false,
+  smartLists: false,
+  smartypants: true,
+  xhtml: true
 });
 
 export const discordMessageGenerator = ({
-	author,
-	avatar,
-	bot,
-	edited,
-	roleColor,
-	verified,
-	timestamp,
-	content,
-	image
+  author,
+  avatar,
+  bot,
+  edited,
+  roleColor,
+  verified,
+  timestamp,
+  content,
+  image
 }: Omit<DiscordMessageOptions, 'profile'>) => {
-	let htmlContent = markdownToHtml(content);
-	if (image !== null)
-		htmlContent += [
-			`<discord-attachment
+  let htmlContent = markdownToHtml(content);
+  if (image !== null)
+    htmlContent += [
+      `<discord-attachment
 						slot="attachments"
 						url="${image.proxyURL ?? image.url}"
 						height="${image.height}"
 						width="${image.width}"
 						alt="discord-attachment"
 				/>`
-		].join(' ');
+    ].join(' ');
 
-	return oneLine(`
+  return oneLine(`
 		<discord-message
 			author="${author}"
 			avatar="${avatar}"
@@ -128,17 +128,17 @@ export const htmlGenerator = (content: string) => `
 `;
 
 interface DiscordContent {
-	/**
-	 * Content of the Discord Messages component
-	 */
-	content: string;
+  /**
+   * Content of the Discord Messages component
+   */
+  content: string;
 }
 
 interface DiscordMessageExtraData extends DiscordContent {
-	/**
-	 * The image to include in the message
-	 */
-	image: ReturnType<typeof getAttachment>;
+  /**
+   * The image to include in the message
+   */
+  image: ReturnType<typeof getAttachment>;
 }
 
 type DiscordMessageOptions = DiscordMessageExtraData & Components.DiscordMessage;

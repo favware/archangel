@@ -2,7 +2,7 @@ import { envParseArray } from '#lib/env';
 import type { Message } from 'discord.js';
 
 export function getGuildIds(): string[] {
-	return envParseArray('COMMAND_GUILD_IDS', []);
+  return envParseArray('COMMAND_GUILD_IDS', []);
 }
 
 /**
@@ -17,10 +17,10 @@ export function getGuildIds(): string[] {
 export const IMAGE_EXTENSION = /\.(bmp|jpe?g|png|gif|webp)$/i;
 
 export interface ImageAttachment {
-	url: string;
-	proxyURL: string;
-	height: number;
-	width: number;
+  url: string;
+  proxyURL: string;
+  height: number;
+  width: number;
 }
 
 /**
@@ -28,38 +28,38 @@ export interface ImageAttachment {
  * @param message The Message instance to get the image url from
  */
 export function getAttachment(message: Message): ImageAttachment | null {
-	if (message.attachments.size) {
-		const attachment = message.attachments.find((att) => IMAGE_EXTENSION.test(att.url));
-		if (attachment) {
-			return {
-				url: attachment.url,
-				proxyURL: attachment.proxyURL,
-				height: attachment.height!,
-				width: attachment.width!
-			};
-		}
-	}
+  if (message.attachments.size) {
+    const attachment = message.attachments.find((att) => IMAGE_EXTENSION.test(att.url));
+    if (attachment) {
+      return {
+        url: attachment.url,
+        proxyURL: attachment.proxyURL,
+        height: attachment.height!,
+        width: attachment.width!
+      };
+    }
+  }
 
-	for (const embed of message.embeds) {
-		if (embed.type === 'image') {
-			return {
-				url: embed.thumbnail!.url,
-				proxyURL: embed.thumbnail!.proxyURL!,
-				height: embed.thumbnail!.height!,
-				width: embed.thumbnail!.width!
-			};
-		}
-		if (embed.image) {
-			return {
-				url: embed.image.url,
-				proxyURL: embed.image.proxyURL!,
-				height: embed.image.height!,
-				width: embed.image.width!
-			};
-		}
-	}
+  for (const embed of message.embeds) {
+    if (embed.type === 'image') {
+      return {
+        url: embed.thumbnail!.url,
+        proxyURL: embed.thumbnail!.proxyURL!,
+        height: embed.thumbnail!.height!,
+        width: embed.thumbnail!.width!
+      };
+    }
+    if (embed.image) {
+      return {
+        url: embed.image.url,
+        proxyURL: embed.image.proxyURL!,
+        height: embed.image.height!,
+        width: embed.image.width!
+      };
+    }
+  }
 
-	return null;
+  return null;
 }
 
 export const oneLine = (input: string): string => input.replace(/(?:\n(?:\s*))+/g, ' ').trim();

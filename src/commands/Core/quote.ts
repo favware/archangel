@@ -11,152 +11,152 @@ import { Guild, GuildBasedChannel, Message, MessageAttachment, TextBasedChannel,
 import imageGenerator from 'node-html-to-image';
 
 @ApplyOptions<Command.Options>({
-	description: 'Quotes one or more messages given the configuration from "Start quote" and "End quote".'
+  description: 'Quotes one or more messages given the configuration from "Start quote" and "End quote".'
 })
 export class UserCommand extends Command {
-	private readonly timestamp = new Timestamp('MM/DD/YYYY');
+  private readonly timestamp = new Timestamp('MM/DD/YYYY');
 
-	public override registerApplicationCommands(registry: ApplicationCommandRegistry) {
-		registry //
-			.registerChatInputCommand(
-				(builder) =>
-					builder //
-						.setName(this.name)
-						.setDescription(this.description)
-						.addChannelOption((input) =>
-							input //
-								.setName('output-channel')
-								.setDescription('The channel to which the quote should be sent')
-								.setRequired(true)
-						),
-				{ guildIds: getGuildIds(), idHints: ['925552150799601724', '925592923293249606'] }
-			);
-	}
+  public override registerApplicationCommands(registry: ApplicationCommandRegistry) {
+    registry //
+      .registerChatInputCommand(
+        (builder) =>
+          builder //
+            .setName(this.name)
+            .setDescription(this.description)
+            .addChannelOption((input) =>
+              input //
+                .setName('output-channel')
+                .setDescription('The channel to which the quote should be sent')
+                .setRequired(true)
+            ),
+        { guildIds: getGuildIds(), idHints: ['925552150799601724', '925592923293249606'] }
+      );
+  }
 
-	public override async chatInputRun(...[interaction]: Parameters<ChatInputCommand['chatInputRun']>) {
-		const interactionMemberId = interaction.member!.user.id;
+  public override async chatInputRun(...[interaction]: Parameters<ChatInputCommand['chatInputRun']>) {
+    const interactionMemberId = interaction.member!.user.id;
 
-		const quoteCacheForUser = quoteCache.get(interactionMemberId);
+    const quoteCacheForUser = quoteCache.get(interactionMemberId);
 
-		if (!quoteCacheForUser) {
-			return interaction.reply({
-				content:
-					"Looks like you didn't initialise a quote yet using `Start quote` or `End quote` context menu actions. You need to do that before you can quote messages.",
-				ephemeral: true
-			});
-		}
+    if (!quoteCacheForUser) {
+      return interaction.reply({
+        content:
+          "Looks like you didn't initialise a quote yet using `Start quote` or `End quote` context menu actions. You need to do that before you can quote messages.",
+        ephemeral: true
+      });
+    }
 
-		const { startMessage, endMessage } = quoteCacheForUser;
+    const { startMessage, endMessage } = quoteCacheForUser;
 
-		if (!startMessage) {
-			return interaction.reply({
-				content:
-					"Looks like you didn't set the message at which to start quoting yet using the `Start quote` context menu action. You need to do that before you can quote messages.",
-				ephemeral: true
-			});
-		}
+    if (!startMessage) {
+      return interaction.reply({
+        content:
+          "Looks like you didn't set the message at which to start quoting yet using the `Start quote` context menu action. You need to do that before you can quote messages.",
+        ephemeral: true
+      });
+    }
 
-		if (startMessage && endMessage && startMessage.channelId !== endMessage?.channelId) {
-			return interaction.reply({
-				content:
-					'Looks like set a start message in a different channel as the end message. I cannot determine a proper start and end that way. Please set the message in the same channel.',
-				ephemeral: true
-			});
-		}
+    if (startMessage && endMessage && startMessage.channelId !== endMessage?.channelId) {
+      return interaction.reply({
+        content:
+          'Looks like set a start message in a different channel as the end message. I cannot determine a proper start and end that way. Please set the message in the same channel.',
+        ephemeral: true
+      });
+    }
 
-		await interaction.deferReply({ ephemeral: true });
+    await interaction.deferReply({ ephemeral: true });
 
-		const channelForMessages = await interaction.guild!.channels.fetch(startMessage.channelId);
+    const channelForMessages = await interaction.guild!.channels.fetch(startMessage.channelId);
 
-		if (!channelForMessages) {
-			return interaction.editReply({
-				content: 'Could not find the channel where the messages are.'
-			});
-		}
+    if (!channelForMessages) {
+      return interaction.editReply({
+        content: 'Could not find the channel where the messages are.'
+      });
+    }
 
-		// If only start message is provided then we quote just that message
-		let messages: Message[] = [startMessage];
+    // If only start message is provided then we quote just that message
+    let messages: Message[] = [startMessage];
 
-		// If end message is also provided then we want to get all messages in between
-		if (endMessage) {
-			const messagesAfterStart = await (channelForMessages as TextBasedChannel).messages.fetch({ after: startMessage.id });
-			const messagesBeforeEnd = messagesAfterStart.filter((message) => message.createdTimestamp < endMessage.createdTimestamp);
+    // If end message is also provided then we want to get all messages in between
+    if (endMessage) {
+      const messagesAfterStart = await (channelForMessages as TextBasedChannel).messages.fetch({ after: startMessage.id });
+      const messagesBeforeEnd = messagesAfterStart.filter((message) => message.createdTimestamp < endMessage.createdTimestamp);
 
-			messages.push(...messagesBeforeEnd.values(), endMessage);
+      messages.push(...messagesBeforeEnd.values(), endMessage);
 
-			messages = messages.sort((a, b) => a.createdTimestamp - b.createdTimestamp);
-		}
+      messages = messages.sort((a, b) => a.createdTimestamp - b.createdTimestamp);
+    }
 
-		// After determining which messages to include in the quote we can get the content of each
-		const content: string[] = [];
+    // After determining which messages to include in the quote we can get the content of each
+    const content: string[] = [];
 
-		// For every quotable message generate the HTML
-		for (const quotableMessage of messages) {
-			content.push(this.messageToHtml(quotableMessage, interaction.guild!));
-		}
+    // For every quotable message generate the HTML
+    for (const quotableMessage of messages) {
+      content.push(this.messageToHtml(quotableMessage, interaction.guild!));
+    }
 
-		// Generate the HTML
-		const html = oneLine(
-			htmlGenerator(
-				discordMessagesGenerator({
-					content: content.join('')
-				})
-			)
-		);
+    // Generate the HTML
+    const html = oneLine(
+      htmlGenerator(
+        discordMessagesGenerator({
+          content: content.join('')
+        })
+      )
+    );
 
-		// Generate the image
-		const buffer = (await imageGenerator({
-			html,
-			puppeteerArgs: {
-				args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-translate', '--disable-extensions'],
-				ignoreHTTPSErrors: true
-			}
-		})) as Buffer;
+    // Generate the image
+    const buffer = (await imageGenerator({
+      html,
+      puppeteerArgs: {
+        args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-translate', '--disable-extensions'],
+        ignoreHTTPSErrors: true
+      }
+    })) as Buffer;
 
-		try {
-			this.clearUserQuoteData(interactionMemberId);
+    try {
+      this.clearUserQuoteData(interactionMemberId);
 
-			const targetChannel = interaction.options.getChannel('output-channel', true) as GuildBasedChannel;
-			if (isTextBasedChannel(targetChannel)) {
-				await targetChannel.send({ files: [new MessageAttachment(buffer, 'archangel-quote.png')] });
+      const targetChannel = interaction.options.getChannel('output-channel', true) as GuildBasedChannel;
+      if (isTextBasedChannel(targetChannel)) {
+        await targetChannel.send({ files: [new MessageAttachment(buffer, 'archangel-quote.png')] });
 
-				return interaction.editReply({ content: `Successfully sent the quoted messages to ${channelMention(targetChannel.id)}.` });
-			}
+        return interaction.editReply({ content: `Successfully sent the quoted messages to ${channelMention(targetChannel.id)}.` });
+      }
 
-			return interaction.editReply({
-				content:
-					'Sorry, but I was not able to send the quoted messages to the output channel. It appears that you chose a channel that is not a text channel.'
-			});
-		} catch {
-			return interaction.editReply({
-				content:
-					'Sorry, but I was not able to send the quoted messages to the output channel. Do I have sufficient permissions to send messages to that channel?'
-			});
-		}
-	}
+      return interaction.editReply({
+        content:
+          'Sorry, but I was not able to send the quoted messages to the output channel. It appears that you chose a channel that is not a text channel.'
+      });
+    } catch {
+      return interaction.editReply({
+        content:
+          'Sorry, but I was not able to send the quoted messages to the output channel. Do I have sufficient permissions to send messages to that channel?'
+      });
+    }
+  }
 
-	private messageToHtml(message: Message, guild: Guild): string {
-		const member = guild.members.cache.get(message.author.id);
-		const attachment = getAttachment(message);
+  private messageToHtml(message: Message, guild: Guild): string {
+    const member = guild.members.cache.get(message.author.id);
+    const attachment = getAttachment(message);
 
-		return discordMessageGenerator({
-			author: member?.displayName ?? message.author.tag,
-			avatar: message.author.displayAvatarURL({ dynamic: false, format: 'png', size: 128 })!,
-			bot: message.author.bot,
-			content: message.cleanContent,
-			edited: Boolean(message.editedAt),
-			highlight: false,
-			image: attachment,
-			roleColor: member?.displayHexColor ?? `#${BrandingColors.Primary}`,
-			server: false,
-			timestamp: this.timestamp.display(message.createdAt),
-			twentyFour: true,
-			ephemeral: false,
-			verified: message.author.flags?.has(UserFlags.FLAGS.VERIFIED_BOT) ?? false
-		});
-	}
+    return discordMessageGenerator({
+      author: member?.displayName ?? message.author.tag,
+      avatar: message.author.displayAvatarURL({ dynamic: false, format: 'png', size: 128 })!,
+      bot: message.author.bot,
+      content: message.cleanContent,
+      edited: Boolean(message.editedAt),
+      highlight: false,
+      image: attachment,
+      roleColor: member?.displayHexColor ?? `#${BrandingColors.Primary}`,
+      server: false,
+      timestamp: this.timestamp.display(message.createdAt),
+      twentyFour: true,
+      ephemeral: false,
+      verified: message.author.flags?.has(UserFlags.FLAGS.VERIFIED_BOT) ?? false
+    });
+  }
 
-	private clearUserQuoteData(interactionMemberId: string) {
-		quoteCache.delete(interactionMemberId);
-	}
+  private clearUserQuoteData(interactionMemberId: string) {
+    quoteCache.delete(interactionMemberId);
+  }
 }

@@ -1,7 +1,7 @@
 import type { ArchAngelEnv } from './types';
 
 declare global {
-	namespace NodeJS {
-		interface ProcessEnv extends ArchAngelEnv {}
-	}
+  namespace NodeJS {
+    interface ProcessEnv extends ArchAngelEnv {}
+  }
 }
