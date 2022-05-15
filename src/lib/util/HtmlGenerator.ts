@@ -21,7 +21,7 @@ export const discordMessageGenerator = ({
   timestamp,
   content,
   image
-}: Omit<DiscordMessageOptions, 'profile'>) => {
+}: Omit<DiscordMessageOptions, 'profile' | 'op' | 'roleIcon' | 'roleName'>) => {
   let htmlContent = markdownToHtml(content);
   if (image !== null)
     htmlContent += [
