@@ -24,10 +24,10 @@
     "dev": "tsup --watch --onSuccess \"yarn start\""
   },
   "dependencies": {
-    "@sapphire/decorators": "^4.3.4",
-    "@sapphire/discord-utilities": "^2.11.1",
-    "@sapphire/discord.js-utilities": "^4.11.1",
-    "@sapphire/fetch": "^2.3.1",
+    "@sapphire/decorators": "^4.3.5",
+    "@sapphire/discord-utilities": "^2.11.2",
+    "@sapphire/discord.js-utilities": "^4.11.2",
+    "@sapphire/fetch": "^2.4.0",
     "@sapphire/framework": "next",
     "@sapphire/plugin-logger": "^2.2.1",
     "@sapphire/time-utilities": "^1.7.4",
