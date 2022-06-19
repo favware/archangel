@@ -10,6 +10,7 @@ ENV HUSKY=0
 ENV CI=true
 ENV NODE_ENV="development"
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD 1
+ENV FORCE_COLOR=true
 
 RUN apt-get update && \
     apt-get upgrade -y --no-install-recommends && \
