@@ -35,7 +35,7 @@
     "bufferutil": "^4.0.6",
     "colorette": "^2.0.19",
     "discord-api-types": "0.33.5",
-    "discord.js": "^13.8.1",
+    "discord.js": "^13.9.1",
     "dotenv-cra": "^3.0.2",
     "marked": "^4.0.18",
     "node-html-to-image": "^3.2.4",
@@ -53,8 +53,8 @@
     "@types/marked": "^4.0.3",
     "@types/node": "^18.0.0",
     "@types/ws": "^8.5.3",
-    "@typescript-eslint/eslint-plugin": "^5.30.6",
-    "@typescript-eslint/parser": "^5.30.6",
+    "@typescript-eslint/eslint-plugin": "^5.30.7",
+    "@typescript-eslint/parser": "^5.30.7",
     "eslint": "^8.20.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
@@ -74,5 +74,5 @@
   "eslintConfig": {
     "extends": "@sapphire"
   },
-  "packageManager": "yarn@3.2.1"
+  "packageManager": "yarn@3.2.2"
 }
