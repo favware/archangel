@@ -1,6 +1,6 @@
-import { envParseString } from '#lib/env';
 import { ApplyOptions } from '@sapphire/decorators';
 import { Listener, Store } from '@sapphire/framework';
+import { envParseString } from '@skyra/env-utilities';
 import { blue, gray, green, magenta, magentaBright, white, yellow } from 'colorette';
 
 @ApplyOptions<Listener.Options>({ once: true })

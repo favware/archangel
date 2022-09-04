@@ -1,4 +1,4 @@
-import { envParseArray } from '#lib/env';
+import { envParseArray } from '@skyra/env-utilities';
 import type { Message } from 'discord.js';
 
 export function getGuildIds(): string[] {

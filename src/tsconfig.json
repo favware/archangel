@@ -5,6 +5,8 @@
     "rootDir": ".",
     "baseUrl": ".",
     "noEmit": true,
+    "incremental": false,
+    "skipLibCheck": true,
     "paths": {
       "#utils/*": ["lib/util/*"],
       "#lib/*": ["lib/*"],

@@ -4,7 +4,7 @@ import type { GuildMessage } from '#lib/types/Discord';
 import { getGuildIds } from '#utils/util';
 import { ApplyOptions } from '@sapphire/decorators';
 import { isMessageInstance } from '@sapphire/discord.js-utilities';
-import { Command, isErr, RegisterBehavior, type ContextMenuCommand } from '@sapphire/framework';
+import { Command, RegisterBehavior, type ContextMenuCommand } from '@sapphire/framework';
 import { inlineCodeBlock } from '@sapphire/utilities';
 import { ApplicationCommandType } from 'discord-api-types/v9';
 
@@ -44,7 +44,7 @@ export class UserCommand extends Command {
     const interactionMemberId = interaction.member!.user.id;
     const messageToQuoteFrom = await resolveMessage({ parameter: interaction.options.getString('message', true), interaction });
 
-    if (isErr(messageToQuoteFrom)) {
+    if (messageToQuoteFrom.isErr()) {
       return interaction.reply({
         content:
           "I was unable to find a message for the provided argument. Check that it's a message in the current channel, or you've provided a message link.",
@@ -52,7 +52,7 @@ export class UserCommand extends Command {
       });
     }
 
-    const hadAlreadySetQuote = this.setQuoteCache(interactionMemberId, messageToQuoteFrom.value as GuildMessage);
+    const hadAlreadySetQuote = this.setQuoteCache(interactionMemberId, messageToQuoteFrom.unwrap() as GuildMessage);
 
     return interaction.reply({
       content: this.getContent({ hadAlreadySetQuote }),

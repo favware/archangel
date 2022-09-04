@@ -9,12 +9,7 @@ import { MessageActionRow, MessageButton, MessageEmbed, version } from 'discord.
 import { cpus, uptime, type CpuInfo } from 'node:os';
 
 @ApplyOptions<ChatInputCommand.Options>({
-  description: 'Provides information about ArchAngel',
-  chatInputCommand: {
-    register: true,
-    guildIds: getGuildIds(),
-    idHints: ['925521429770960917', '925592925340049478']
-  }
+  description: 'Provides information about ArchAngel'
 })
 export class UserCommand extends Command {
   readonly #sapphireNextVersionRegex = /-next\.[a-z0-9]+\.\d{1,}/i;
@@ -26,6 +21,18 @@ export class UserCommand extends Command {
       hideLinkEmbed('https://discord.js.org')
     )}.`
   ].join('\n');
+
+  public override registerApplicationCommands(registry: Command.Registry) {
+    registry.registerChatInputCommand(
+      (builder) => {
+        builder.setName(this.name).setDescription(this.description);
+      },
+      {
+        guildIds: getGuildIds(),
+        idHints: ['925521429770960917', '925592925340049478']
+      }
+    );
+  }
 
   public override chatInputRun(interaction: ChatInputCommand.Interaction) {
     return interaction.reply({

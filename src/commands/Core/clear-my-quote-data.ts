@@ -4,14 +4,21 @@ import { ApplyOptions } from '@sapphire/decorators';
 import { ChatInputCommand, Command } from '@sapphire/framework';
 
 @ApplyOptions<ChatInputCommand.Options>({
-  description: 'Clears all quoting data that I have on you.',
-  chatInputCommand: {
-    register: true,
-    guildIds: getGuildIds(),
-    idHints: ['925555783981203477', '925592839268761670']
-  }
+  description: 'Clears all quoting data that I have on you.'
 })
 export class UserCommand extends Command {
+  public override registerApplicationCommands(registry: Command.Registry) {
+    registry.registerChatInputCommand(
+      (builder) => {
+        builder.setName(this.name).setDescription(this.description);
+      },
+      {
+        guildIds: getGuildIds(),
+        idHints: ['925555783981203477', '925592839268761670']
+      }
+    );
+  }
+
   public override async chatInputRun(interaction: Command.ChatInputInteraction) {
     const interactionMemberId = interaction.member!.user.id;
 

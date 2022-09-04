@@ -4,14 +4,21 @@ import { ApplyOptions } from '@sapphire/decorators';
 import { ChatInputCommand, Command } from '@sapphire/framework';
 
 @ApplyOptions<ChatInputCommand.Options>({
-  description: 'Retrieves the message you have configured as your end message for quoting.',
-  chatInputCommand: {
-    register: true,
-    guildIds: getGuildIds(),
-    idHints: ['925555784518086657', '925592838622806086']
-  }
+  description: 'Retrieves the message you have configured as your end message for quoting.'
 })
 export class UserCommand extends Command {
+  public override registerApplicationCommands(registry: Command.Registry) {
+    registry.registerChatInputCommand(
+      (builder) => {
+        builder.setName(this.name).setDescription(this.description);
+      },
+      {
+        guildIds: getGuildIds(),
+        idHints: ['925555784518086657', '925592838622806086']
+      }
+    );
+  }
+
   public override async chatInputRun(interaction: Command.ChatInputInteraction) {
     const interactionMemberId = interaction.member!.user.id;
 
