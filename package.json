@@ -42,7 +42,7 @@
     "reflect-metadata": "^0.1.13",
     "tslib": "^2.4.0",
     "utf-8-validate": "^5.0.10",
-    "ws": "^8.9.0",
+    "ws": "^8.10.0",
     "zlib-sync": "^0.1.7"
   },
   "devDependencies": {
@@ -51,10 +51,10 @@
     "@sapphire/ts-config": "^3.3.4",
     "@skyra/discord-components-core": "^3.4.1",
     "@types/marked": "^4.0.7",
-    "@types/node": "^18.7.14",
+    "@types/node": "^18.11.7",
     "@types/ws": "^8.5.3",
-    "@typescript-eslint/eslint-plugin": "^5.40.1",
-    "@typescript-eslint/parser": "^5.40.1",
+    "@typescript-eslint/eslint-plugin": "^5.41.0",
+    "@typescript-eslint/parser": "^5.41.0",
     "eslint": "^8.26.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
