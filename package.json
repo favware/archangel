@@ -43,7 +43,7 @@
     "tslib": "^2.5.0",
     "utf-8-validate": "^6.0.2",
     "ws": "^8.12.0",
-    "zlib-sync": "^0.1.7"
+    "zlib-sync": "^0.1.8"
   },
   "devDependencies": {
     "@sapphire/eslint-config": "^4.3.8",
@@ -51,17 +51,17 @@
     "@sapphire/ts-config": "^3.3.4",
     "@skyra/discord-components-core": "^3.6.0",
     "@types/marked": "^4.0.8",
-    "@types/node": "^18.11.18",
+    "@types/node": "^18.11.19",
     "@types/ws": "^8.5.4",
-    "@typescript-eslint/eslint-plugin": "^5.49.0",
-    "@typescript-eslint/parser": "^5.49.0",
+    "@typescript-eslint/eslint-plugin": "^5.50.0",
+    "@typescript-eslint/parser": "^5.50.0",
     "eslint": "^8.33.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-prettier": "^4.2.1",
     "prettier": "^2.8.3",
     "pretty-quick": "^3.1.3",
     "tsup": "^6.5.0",
-    "typescript": "^4.9.4"
+    "typescript": "^4.9.5"
   },
   "resolutions": {
     "ansi-regex": "^5.0.1",
@@ -74,5 +74,5 @@
   "eslintConfig": {
     "extends": "@sapphire"
   },
-  "packageManager": "yarn@3.3.1"
+  "packageManager": "yarn@3.4.1"
 }
