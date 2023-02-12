@@ -6,7 +6,7 @@ import { ApplyOptions } from '@sapphire/decorators';
 import { isMessageInstance } from '@sapphire/discord.js-utilities';
 import { Command, type ContextMenuCommand } from '@sapphire/framework';
 import { inlineCodeBlock } from '@sapphire/utilities';
-import { ApplicationCommandType } from 'discord-api-types/v9';
+import { ApplicationCommandType } from 'discord.js';
 
 @ApplyOptions<ContextMenuCommand.Options>({
   description: 'Sets the message at which I will start quoting.'
@@ -19,7 +19,7 @@ export class UserCommand extends Command {
           builder //
             .setName('1 - Start quote')
             .setType(ApplicationCommandType.Message),
-        { guildIds: getGuildIds(), idHints: ['925521429368307853', '925592837188354108'] }
+        { guildIds: getGuildIds() }
       )
       .registerChatInputCommand(
         (builder) =>
@@ -32,11 +32,11 @@ export class UserCommand extends Command {
                 .setDescription('The ID or link of the message to start quoting from.')
                 .setRequired(true)
             ),
-        { guildIds: getGuildIds(), idHints: ['925571279803805697', '925592837972693072'] }
+        { guildIds: getGuildIds() }
       );
   }
 
-  public override async chatInputRun(interaction: Command.ChatInputInteraction) {
+  public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
     const interactionMemberId = interaction.member!.user.id;
     const messageToQuoteFrom = await resolveMessage({ parameter: interaction.options.getString('message', true), interaction });
 
@@ -56,8 +56,8 @@ export class UserCommand extends Command {
     });
   }
 
-  public override async contextMenuRun(...[interaction]: Parameters<ContextMenuCommand['contextMenuRun']>) {
-    if (interaction.isMessageContextMenu() && isMessageInstance(interaction.targetMessage)) {
+  public override async contextMenuRun(interaction: Command.ContextMenuCommandInteraction) {
+    if (interaction.isMessageContextMenuCommand() && isMessageInstance(interaction.targetMessage)) {
       const interactionMemberId = interaction.member!.user.id;
 
       const hadAlreadySetQuote = this.setQuoteCache(interactionMemberId, interaction.targetMessage as GuildMessage);
@@ -67,6 +67,11 @@ export class UserCommand extends Command {
         ephemeral: true
       });
     }
+
+    return interaction.reply({
+      content: 'This command can only be used on messages.',
+      ephemeral: true
+    });
   }
 
   private getContent({ hadAlreadySetQuote }: { hadAlreadySetQuote: boolean }) {

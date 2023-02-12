@@ -3,22 +3,24 @@ process.env.NODE_ENV ??= 'development';
 
 // Config must be the first to be loaded, as it sets the env:
 import 'reflect-metadata';
-import '#root/config';
 
 // Import everything else:
 import '@sapphire/plugin-logger/register';
 
-import * as colorette from 'colorette';
-import { inspect } from 'util';
 import { srcFolder } from '#utils/constants';
-import { setup, ArrayString } from '@skyra/env-utilities';
+import { ApplicationCommandRegistries, RegisterBehavior } from '@sapphire/framework';
+import { ArrayString, setup } from '@skyra/env-utilities';
+import * as colorette from 'colorette';
 import { join } from 'path';
 import { fileURLToPath } from 'url';
+import { inspect } from 'util';
 
 setup(join(fileURLToPath(srcFolder), '.env'));
 
 inspect.defaultOptions.depth = 1;
 colorette.createColors({ useColor: true });
+
+ApplicationCommandRegistries.setDefaultBehaviorWhenNotIdentical(RegisterBehavior.BulkOverwrite);
 
 declare module '@skyra/env-utilities' {
   export interface Env {

@@ -9,8 +9,7 @@ import { GuildBasedChannelTypes, isNewsChannel, isTextChannel } from '@sapphire/
 import { err, Identifiers, ok, type Result } from '@sapphire/framework';
 import { container } from '@sapphire/pieces';
 import type { Awaitable } from '@sapphire/utilities';
-import { PermissionFlagsBits } from 'discord-api-types/v9';
-import type { CommandInteraction, Message, Snowflake, User } from 'discord.js';
+import { PermissionFlagsBits, type CommandInteraction, type Message, type Snowflake, type User } from 'discord.js';
 
 interface MessageResolverOptions {
   parameter: string;

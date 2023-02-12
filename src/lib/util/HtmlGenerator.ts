@@ -59,7 +59,7 @@ export const htmlGenerator = (content: string) => `
   <head>
     <script
       type="module"
-      src="https://unpkg.com/@skyra/discord-components-core@3.4.1/dist/skyra-discord-components-core/skyra-discord-components-core.esm.js"
+      src="https://unpkg.com/@skyra/discord-components-core@3.6.0/dist/skyra-discord-components-core/skyra-discord-components-core.esm.js"
     ></script>
     <style>
       .discord-messages {

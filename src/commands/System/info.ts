@@ -5,7 +5,7 @@ import { ApplyOptions } from '@sapphire/decorators';
 import { Command, version as sapphireVersion, type ChatInputCommand } from '@sapphire/framework';
 import { Time } from '@sapphire/time-utilities';
 import { roundNumber } from '@sapphire/utilities';
-import { MessageActionRow, MessageButton, MessageEmbed, version } from 'discord.js';
+import { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder, version } from 'discord.js';
 import { cpus, uptime, type CpuInfo } from 'node:os';
 
 @ApplyOptions<ChatInputCommand.Options>({
@@ -28,8 +28,7 @@ export class UserCommand extends Command {
         builder.setName(this.name).setDescription(this.description);
       },
       {
-        guildIds: getGuildIds(),
-        idHints: ['925521429770960917', '925592925340049478']
+        guildIds: getGuildIds()
       }
     );
   }
@@ -43,16 +42,16 @@ export class UserCommand extends Command {
     });
   }
 
-  private get components(): MessageActionRow[] {
+  private get components(): ActionRowBuilder<ButtonBuilder>[] {
     return [
-      new MessageActionRow().addComponents(
-        new MessageButton()
-          .setStyle('LINK')
+      new ActionRowBuilder<ButtonBuilder>().addComponents(
+        new ButtonBuilder()
+          .setStyle(ButtonStyle.Link)
           .setURL('https://github.com/favware/archangel')
           .setLabel('GitHub Repository')
           .setEmoji('<:github2:950888087188283422>'),
-        new MessageButton() //
-          .setStyle('LINK')
+        new ButtonBuilder() //
+          .setStyle(ButtonStyle.Link)
           .setURL('https://github.com/sponsors/favna')
           .setLabel('Donate')
           .setEmoji('💞')
@@ -60,7 +59,7 @@ export class UserCommand extends Command {
     ];
   }
 
-  private get embed(): MessageEmbed {
+  private get embed(): EmbedBuilder {
     const titles = {
       stats: 'Statistics',
       uptime: 'Uptime',
@@ -93,7 +92,7 @@ export class UserCommand extends Command {
       ].join('\n')
     };
 
-    return new MessageEmbed() //
+    return new EmbedBuilder() //
       .setColor(BrandingColors.Primary)
       .setDescription(this.#descriptionContent)
       .setFields(

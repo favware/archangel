@@ -13,13 +13,12 @@ export class UserCommand extends Command {
         builder.setName(this.name).setDescription(this.description);
       },
       {
-        guildIds: getGuildIds(),
-        idHints: ['925555783981203477', '925592839268761670']
+        guildIds: getGuildIds()
       }
     );
   }
 
-  public override async chatInputRun(interaction: Command.ChatInputInteraction) {
+  public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
     const interactionMemberId = interaction.member!.user.id;
 
     const deleteResult = quoteCache.delete(interactionMemberId);

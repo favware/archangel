@@ -7,7 +7,7 @@ import { ApplyOptions } from '@sapphire/decorators';
 import { isTextBasedChannel } from '@sapphire/discord.js-utilities';
 import { Command } from '@sapphire/framework';
 import { Timestamp } from '@sapphire/time-utilities';
-import { Guild, GuildBasedChannel, Message, MessageAttachment, TextBasedChannel, UserFlags } from 'discord.js';
+import { AttachmentBuilder, Guild, GuildBasedChannel, Message, TextBasedChannelFields, UserFlags } from 'discord.js';
 import imageGenerator from 'node-html-to-image';
 
 @ApplyOptions<Command.Options>({
@@ -29,11 +29,11 @@ export class UserCommand extends Command {
                 .setDescription('The channel to which the quote should be sent')
                 .setRequired(true)
             ),
-        { guildIds: getGuildIds(), idHints: ['925552150799601724', '925592923293249606'] }
+        { guildIds: getGuildIds() }
       );
   }
 
-  public override async chatInputRun(interaction: Command.ChatInputInteraction) {
+  public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
     const interactionMemberId = interaction.member!.user.id;
 
     const quoteCacheForUser = quoteCache.get(interactionMemberId);
@@ -79,7 +79,10 @@ export class UserCommand extends Command {
 
     // If end message is also provided then we want to get all messages in between
     if (endMessage) {
-      const messagesAfterStart = await (channelForMessages as TextBasedChannel).messages.fetch({ after: startMessage.id });
+      const messagesAfterStart = await (channelForMessages as TextBasedChannelFields<true>).messages.fetch({
+        after: startMessage.id
+      });
+
       const messagesBeforeEnd = messagesAfterStart.filter((message) => message.createdTimestamp < endMessage.createdTimestamp);
 
       messages.push(...messagesBeforeEnd.values(), endMessage);
@@ -118,7 +121,9 @@ export class UserCommand extends Command {
 
       const targetChannel = interaction.options.getChannel('output-channel', true) as GuildBasedChannel;
       if (isTextBasedChannel(targetChannel)) {
-        await targetChannel.send({ files: [new MessageAttachment(buffer, 'archangel-quote.png')] });
+        await targetChannel.send({
+          files: [new AttachmentBuilder(buffer).setName('archangel-quote.png')]
+        });
 
         return interaction.editReply({ content: `Successfully sent the quoted messages to ${channelMention(targetChannel.id)}.` });
       }
@@ -141,7 +146,7 @@ export class UserCommand extends Command {
 
     return discordMessageGenerator({
       author: member?.displayName ?? message.author.tag,
-      avatar: message.author.displayAvatarURL({ dynamic: false, format: 'png', size: 128 })!,
+      avatar: message.author.displayAvatarURL({ extension: 'png', size: 128 })!,
       bot: message.author.bot,
       content: message.cleanContent,
       edited: Boolean(message.editedAt),
@@ -152,7 +157,7 @@ export class UserCommand extends Command {
       timestamp: this.timestamp.display(message.createdAt),
       twentyFour: true,
       ephemeral: false,
-      verified: message.author.flags?.has(UserFlags.FLAGS.VERIFIED_BOT) ?? false
+      verified: message.author.flags?.has(UserFlags.VerifiedBot) ?? false
     });
   }
 
