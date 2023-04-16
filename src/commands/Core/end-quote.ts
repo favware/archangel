@@ -1,4 +1,4 @@
-import { Quote, quoteCache } from '#lib/quoting/quoteCache';
+import { quoteCache, type Quote } from '#lib/quoting/quoteCache';
 import { resolveMessage } from '#lib/quoting/resolveMessage';
 import type { GuildMessage } from '#lib/types/Discord';
 import { getGuildIds } from '#utils/util';

@@ -9,7 +9,7 @@ import '@sapphire/plugin-logger/register';
 
 import { srcFolder } from '#utils/constants';
 import { ApplicationCommandRegistries, RegisterBehavior } from '@sapphire/framework';
-import { ArrayString, setup } from '@skyra/env-utilities';
+import { setup, type ArrayString } from '@skyra/env-utilities';
 import * as colorette from 'colorette';
 import { join } from 'path';
 import { fileURLToPath } from 'url';

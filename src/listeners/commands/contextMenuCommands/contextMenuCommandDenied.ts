@@ -1,4 +1,4 @@
-import { ContextMenuCommandDeniedPayload, Events, Listener, UserError } from '@sapphire/framework';
+import { Events, Listener, UserError, type ContextMenuCommandDeniedPayload } from '@sapphire/framework';
 
 export class UserListener extends Listener<typeof Events.ContextMenuCommandDenied> {
   public override run({ context, message: content }: UserError, { interaction }: ContextMenuCommandDeniedPayload) {

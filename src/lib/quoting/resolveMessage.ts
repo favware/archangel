@@ -5,8 +5,8 @@
  */
 
 import { ChannelMessageRegex, MessageLinkRegex, SnowflakeRegex } from '@sapphire/discord-utilities';
-import { GuildBasedChannelTypes, isNewsChannel, isTextChannel } from '@sapphire/discord.js-utilities';
-import { err, Identifiers, ok, type Result } from '@sapphire/framework';
+import { isNewsChannel, isTextChannel, type GuildBasedChannelTypes } from '@sapphire/discord.js-utilities';
+import { Identifiers, err, ok, type Result } from '@sapphire/framework';
 import { container } from '@sapphire/pieces';
 import type { Awaitable } from '@sapphire/utilities';
 import { PermissionFlagsBits, type CommandInteraction, type Message, type Snowflake, type User } from 'discord.js';

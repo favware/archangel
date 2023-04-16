@@ -1,5 +1,5 @@
 import type { GuildMessage } from '#lib/types/Discord';
-import { Collection, Snowflake } from 'discord.js';
+import { Collection, type Snowflake } from 'discord.js';
 
 export const quoteCache = new Collection<Snowflake, Quote>();
 

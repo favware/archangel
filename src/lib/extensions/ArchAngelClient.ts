@@ -1,8 +1,8 @@
 import { ExtendedHandler as EnGbHandler } from '#utils/Intl/EnGbHandler';
 import { LogLevel, SapphireClient } from '@sapphire/framework';
-import { envParseString } from '@skyra/env-utilities';
-import { ActivitiesOptions, ActivityType, GatewayIntentBits } from 'discord.js';
 import { cast } from '@sapphire/utilities';
+import { envParseString } from '@skyra/env-utilities';
+import { ActivityType, GatewayIntentBits, type ActivitiesOptions } from 'discord.js';
 
 export class ArchAngelClient extends SapphireClient {
   public override readonly EnGbHandler = new EnGbHandler();

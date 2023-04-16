@@ -1,7 +1,7 @@
 import { quoteCache } from '#lib/quoting/quoteCache';
 import { getGuildIds } from '#utils/util';
 import { ApplyOptions } from '@sapphire/decorators';
-import { ChatInputCommand, Command } from '@sapphire/framework';
+import { Command, type ChatInputCommand } from '@sapphire/framework';
 
 @ApplyOptions<ChatInputCommand.Options>({
   description: 'Clears all quoting data that I have on you.'

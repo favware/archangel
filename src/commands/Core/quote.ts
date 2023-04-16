@@ -7,7 +7,7 @@ import { ApplyOptions } from '@sapphire/decorators';
 import { isTextBasedChannel } from '@sapphire/discord.js-utilities';
 import { Command } from '@sapphire/framework';
 import { Timestamp } from '@sapphire/time-utilities';
-import { AttachmentBuilder, Guild, GuildBasedChannel, Message, TextBasedChannelFields, UserFlags } from 'discord.js';
+import { AttachmentBuilder, Guild, Message, UserFlags, type GuildBasedChannel, type TextBasedChannelFields } from 'discord.js';
 import imageGenerator from 'node-html-to-image';
 
 @ApplyOptions<Command.Options>({
