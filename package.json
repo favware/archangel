@@ -36,7 +36,7 @@
     "bufferutil": "^4.0.7",
     "colorette": "^2.0.20",
     "discord.js": "^14.11.0",
-    "marked": "^4.3.0",
+    "marked": "^5.0.1",
     "node-html-to-image": "^3.3.0",
     "reflect-metadata": "^0.1.13",
     "tslib": "^2.5.0",
