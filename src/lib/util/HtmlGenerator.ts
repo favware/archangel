@@ -6,7 +6,6 @@ import { marked as markdownToHtml } from 'marked';
 markdownToHtml.setOptions({
   breaks: false,
   headerIds: false,
-  smartLists: false,
   smartypants: true,
   xhtml: true
 });
