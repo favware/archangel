@@ -45,7 +45,7 @@
     "zlib-sync": "^0.1.8"
   },
   "devDependencies": {
-    "@sapphire/eslint-config": "^4.4.3",
+    "@sapphire/eslint-config": "^5.0.0",
     "@sapphire/prettier-config": "^1.4.5",
     "@sapphire/ts-config": "^4.0.1",
     "@skyra/discord-components-core": "^3.6.0",
