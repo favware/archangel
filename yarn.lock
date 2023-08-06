@@ -966,7 +966,7 @@ __metadata:
     eslint: ^8.46.0
     eslint-config-prettier: ^8.10.0
     eslint-plugin-prettier: ^5.0.0
-    marked: ^5.1.2
+    marked: ^6.0.0
     node-html-to-image: ^3.4.0
     prettier: ^3.0.1
     reflect-metadata: ^0.1.13
@@ -2526,12 +2526,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"marked@npm:^5.1.2":
-  version: 5.1.2
-  resolution: "marked@npm:5.1.2"
+"marked@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "marked@npm:6.0.0"
   bin:
     marked: bin/marked.js
-  checksum: fff8741a1dc7313f32bea221079a3d6ff55cd485170fade8841b77b48c89ad5b96676e645636e73e50f4b5b6d65cf9d8821072afb16173822505949df2407ffe
+  checksum: 1b02d4254d8aeec4d54799d2191821fd86da8c743361065b523617d1c226ba14ebd8677dc7bef7fa183a4253217c53d0d56e82d378a78b5a1ebaf8409e90136e
   languageName: node
   linkType: hard
 
