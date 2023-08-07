@@ -38,7 +38,7 @@
     "colorette": "^2.0.20",
     "discord.js": "^14.12.1",
     "marked": "^5.1.2",
-    "node-html-to-image": "^3.4.0",
+    "node-html-to-image": "^4.0.0",
     "reflect-metadata": "^0.1.13",
     "tslib": "^2.6.1",
     "utf-8-validate": "^6.0.3",
