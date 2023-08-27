@@ -29,15 +29,15 @@
     "@sapphire/discord-utilities": "^3.1.0",
     "@sapphire/discord.js-utilities": "^7.0.1",
     "@sapphire/fetch": "^2.4.1",
-    "@sapphire/framework": "^4.5.1",
-    "@sapphire/plugin-logger": "^3.0.5",
+    "@sapphire/framework": "^4.5.3",
+    "@sapphire/plugin-logger": "^3.0.6",
     "@sapphire/time-utilities": "^1.7.10",
     "@sapphire/utilities": "^3.13.0",
     "@skyra/env-utilities": "^1.2.1",
     "bufferutil": "^4.0.7",
     "colorette": "^2.0.20",
     "discord.js": "^14.13.0",
-    "marked": "^7.0.4",
+    "marked": "^7.0.5",
     "node-html-to-image": "^4.0.0",
     "reflect-metadata": "^0.1.13",
     "tslib": "^2.6.2",
@@ -50,17 +50,17 @@
     "@sapphire/prettier-config": "^2.0.0",
     "@sapphire/ts-config": "^4.0.1",
     "@skyra/discord-components-core": "^3.6.1",
-    "@types/node": "^18.17.6",
+    "@types/node": "^18.17.11",
     "@types/ws": "^8.5.5",
-    "@typescript-eslint/eslint-plugin": "^6.4.0",
-    "@typescript-eslint/parser": "^6.4.0",
-    "eslint": "^8.47.0",
+    "@typescript-eslint/eslint-plugin": "^6.4.1",
+    "@typescript-eslint/parser": "^6.4.1",
+    "eslint": "^8.48.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
     "prettier": "^3.0.2",
     "rimraf": "^5.0.1",
     "tsup": "^7.2.0",
-    "typescript": "^5.1.6"
+    "typescript": "^5.2.2"
   },
   "resolutions": {
     "ansi-regex": "^5.0.1",
@@ -73,5 +73,5 @@
   "eslintConfig": {
     "extends": "@sapphire"
   },
-  "packageManager": "yarn@3.6.2"
+  "packageManager": "yarn@3.6.3"
 }
