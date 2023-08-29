@@ -1,9 +1,6 @@
 // Unless explicitly defined, set NODE_ENV as development:
 process.env.NODE_ENV ??= 'development';
 
-// Config must be the first to be loaded, as it sets the env:
-import 'reflect-metadata';
-
 // Import everything else:
 import '@sapphire/plugin-logger/register';
 
