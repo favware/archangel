@@ -733,10 +733,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^18.17.12":
-  version: 18.17.12
-  resolution: "@types/node@npm:18.17.12"
-  checksum: 79f8bcca3067a3c529f30e172df8d14f25ab9e4cd6a05ed897a924ab1dec774e8ea172ef5c4a67ffec433d423a0c81778f17db22606d574bc83871b60aab298e
+"@types/node@npm:^20.5.9":
+  version: 20.5.9
+  resolution: "@types/node@npm:20.5.9"
+  checksum: 717490e94131722144878b4ca1a963ede1673bb8f2ef78c2f5b50b918df6dc9b35e7f8283e5c2a7a9f137730f7c08dc6228e53d4494a94c9ee16881e6ce6caed
   languageName: node
   linkType: hard
 
@@ -1043,7 +1043,7 @@ __metadata:
     "@sapphire/utilities": ^3.13.0
     "@skyra/discord-components-core": ^3.6.1
     "@skyra/env-utilities": ^1.2.1
-    "@types/node": ^18.17.12
+    "@types/node": ^20.5.9
     "@types/ws": ^8.5.5
     "@typescript-eslint/eslint-plugin": ^6.5.0
     "@typescript-eslint/parser": ^6.5.0
@@ -1053,9 +1053,11 @@ __metadata:
     eslint: ^8.48.0
     eslint-config-prettier: ^9.0.0
     eslint-plugin-prettier: ^5.0.0
-    marked: ^7.0.5
+    marked: ^8.0.0
+    marked-smartypants: ^1.1.0
+    marked-xhtml: ^1.0.4
     node-html-to-image: ^4.0.0
-    prettier: ^3.0.2
+    prettier: ^3.0.3
     rimraf: ^5.0.1
     tslib: ^2.6.2
     tsup: ^7.2.0
@@ -2848,12 +2850,43 @@ __metadata:
   languageName: node
   linkType: hard
 
-"marked@npm:^7.0.5":
-  version: 7.0.5
-  resolution: "marked@npm:7.0.5"
+"marked-smartypants@npm:1.1.0":
+  version: 1.1.0
+  resolution: "marked-smartypants@npm:1.1.0"
+  dependencies:
+    smartypants: ^0.2.2
+  peerDependencies:
+    marked: ^4 || ^5 || ^6 || ^7
+  checksum: 3dfcd2d0a982618098382eb2b8612b1b00b9cacc0c8a456b599826735490c283dde26f318a10f00da3604a34bf481c4169ee769ff6bd505031e39c5e04c37ccf
+  languageName: node
+  linkType: hard
+
+"marked-smartypants@patch:marked-smartypants@npm%3A1.1.0#./.yarn/patches/marked-smartypants-npm-1.1.0-81532d1d6c.patch::locator=archangel%40workspace%3A.":
+  version: 1.1.0
+  resolution: "marked-smartypants@patch:marked-smartypants@npm%3A1.1.0#./.yarn/patches/marked-smartypants-npm-1.1.0-81532d1d6c.patch::version=1.1.0&hash=9110a8&locator=archangel%40workspace%3A."
+  dependencies:
+    smartypants: ^0.2.2
+  peerDependencies:
+    marked: ^4 || ^5 || ^6 || ^7
+  checksum: 95541433a666131a113058449e0412812e8512706ca955a684277250e7aa91b90906fb8aa6a9864fd7bfc41f43cb33d7c20d6fde38a56203a0741ae5bd09ad0b
+  languageName: node
+  linkType: hard
+
+"marked-xhtml@npm:^1.0.4":
+  version: 1.0.4
+  resolution: "marked-xhtml@npm:1.0.4"
+  peerDependencies:
+    marked: ^4 || ^5 || ^6|| ^7
+  checksum: 1758017deeb67a287afea33ea5be696eeff4c8487ed5dda8789c2b5258ef6d9dc073112fd46c2cde84ffc8102ae881b476b25e6873d44e9d643e73e2376e25a2
+  languageName: node
+  linkType: hard
+
+"marked@npm:^8.0.0":
+  version: 8.0.0
+  resolution: "marked@npm:8.0.0"
   bin:
     marked: bin/marked.js
-  checksum: e136ab58cffae78e9e661136e8ba51c221aed1a4b7e60dcb9ae7d7241e87869e972b3d352ca3b9b7f56dba85709f848414d33060c4d0e88b3b80e01a3509e2ed
+  checksum: 36675f5985dbeaac043948cdb2af938ae008524ab2c14e1da503234a6a9e4237840ff06f8a7c81d8a9f1d0aa33b96d4ae3a4f6bbd3fba25ab1edbf11a5b6aaee
   languageName: node
   linkType: hard
 
@@ -3467,6 +3500,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"prettier@npm:^3.0.3":
+  version: 3.0.3
+  resolution: "prettier@npm:3.0.3"
+  bin:
+    prettier: bin/prettier.cjs
+  checksum: e10b9af02b281f6c617362ebd2571b1d7fc9fb8a3bd17e371754428cda992e5e8d8b7a046e8f7d3e2da1dcd21aa001e2e3c797402ebb6111b5cd19609dd228e0
+  languageName: node
+  linkType: hard
+
 "progress@npm:2.0.3":
   version: 2.0.3
   resolution: "progress@npm:2.0.3"
@@ -3763,6 +3805,16 @@ __metadata:
   version: 4.2.0
   resolution: "smart-buffer@npm:4.2.0"
   checksum: b5167a7142c1da704c0e3af85c402002b597081dd9575031a90b4f229ca5678e9a36e8a374f1814c8156a725d17008ae3bde63b92f9cfd132526379e580bec8b
+  languageName: node
+  linkType: hard
+
+"smartypants@npm:^0.2.2":
+  version: 0.2.2
+  resolution: "smartypants@npm:0.2.2"
+  bin:
+    smartypants: bin/smartypants.js
+    smartypantsu: bin/smartypantsu.js
+  checksum: 1894cdfbd6c51f8997bf1eda31b02ecdf8eb7d0c1559e9779c9ca9c9ef1c5941ab5d2e998280157dcf64b96a9719f5c230df7062b12f90c8b3d09cefbdaf678f
   languageName: node
   linkType: hard
 

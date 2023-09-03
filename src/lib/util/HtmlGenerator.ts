@@ -2,13 +2,12 @@ import { BrandingColors } from '#utils/constants';
 import { getAttachment, oneLine } from '#utils/util';
 import type { Components } from '@skyra/discord-components-core';
 import { marked as markdownToHtml } from 'marked';
+import { markedSmartypants } from 'marked-smartypants';
+import { markedXhtml } from 'marked-xhtml';
 
-markdownToHtml.setOptions({
-  breaks: false,
-  headerIds: false,
-  smartypants: true,
-  xhtml: true
-});
+markdownToHtml.use(markedXhtml());
+markdownToHtml.use(markedSmartypants());
+markdownToHtml.setOptions({ breaks: false });
 
 export const discordMessageGenerator = ({
   author,

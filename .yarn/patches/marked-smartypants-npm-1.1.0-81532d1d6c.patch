@@ -1,0 +1,18 @@
+diff --git a/package.json b/package.json
+index 492fc6bc1233422bfd2871a293482d5fb15422b2..ee1950bc939079f490845540256be80bec1ab86f 100644
+--- a/package.json
++++ b/package.json
+@@ -17,10 +17,9 @@
+     "src/"
+   ],
+   "exports": {
+-    ".": {
+-      "import": "./lib/index.mjs",
+-      "require": "./lib/index.cjs"
+-    }
++    "types": "./src/index.d.ts",
++    "import": "./lib/index.mjs",
++    "require": "./lib/index.cjs"
+   },
+   "scripts": {
+     "test": "npm run build && cross-env NODE_OPTIONS=--experimental-vm-modules jest --verbose",
