@@ -37,7 +37,7 @@
     "bufferutil": "^4.0.7",
     "colorette": "^2.0.20",
     "discord.js": "^14.13.0",
-    "marked": "^7.0.5",
+    "marked": "^8.0.0",
     "node-html-to-image": "^4.0.0",
     "tslib": "^2.6.2",
     "utf-8-validate": "^6.0.3",
