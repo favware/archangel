@@ -463,16 +463,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/discord-utilities@npm:^3.0.4, @sapphire/discord-utilities@npm:^3.1.0":
-  version: 3.1.0
-  resolution: "@sapphire/discord-utilities@npm:3.1.0"
-  dependencies:
-    discord-api-types: ^0.37.51
-  checksum: a101c3c2a405ba81eae249c985aab3bbe90bfc4be8e34e44b806a064641a147289392026d52fed6fd8af2149f0674cc3b1fba94c2bf7754cb9b904883afa93cc
-  languageName: node
-  linkType: hard
-
-"@sapphire/discord-utilities@npm:^3.1.1":
+"@sapphire/discord-utilities@npm:^3.1.0, @sapphire/discord-utilities@npm:^3.1.1":
   version: 3.1.1
   resolution: "@sapphire/discord-utilities@npm:3.1.1"
   dependencies:
@@ -481,19 +472,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/discord.js-utilities@npm:^7.0.1":
-  version: 7.0.1
-  resolution: "@sapphire/discord.js-utilities@npm:7.0.1"
-  dependencies:
-    "@sapphire/discord-utilities": ^3.0.4
-    "@sapphire/duration": ^1.1.0
-    "@sapphire/utilities": ^3.13.0
-    tslib: ^2.6.0
-  checksum: cbc46da56b32071ba7fd4e2376de8ccf34860fe54aed124791f8eca6a7b73f00c11d659f79f08c2853e6de97b45776e6a58271a45af795f95a20978781a0549c
-  languageName: node
-  linkType: hard
-
-"@sapphire/discord.js-utilities@npm:^7.0.2":
+"@sapphire/discord.js-utilities@npm:^7.0.1, @sapphire/discord.js-utilities@npm:^7.0.2":
   version: 7.0.2
   resolution: "@sapphire/discord.js-utilities@npm:7.0.2"
   dependencies:
@@ -726,14 +705,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*":
-  version: 18.17.11
-  resolution: "@types/node@npm:18.17.11"
-  checksum: c31d9f4a6f7c5c413b6548ded0fab046571832718361c5cda325960f32d6b386dd0a7fa9228911111fee54c180d09df82a622efdabdbef89fa9e1923891892bc
-  languageName: node
-  linkType: hard
-
-"@types/node@npm:^20.5.9":
+"@types/node@npm:*, @types/node@npm:^20.5.9":
   version: 20.5.9
   resolution: "@types/node@npm:20.5.9"
   checksum: 717490e94131722144878b4ca1a963ede1673bb8f2ef78c2f5b50b918df6dc9b35e7f8283e5c2a7a9f137730f7c08dc6228e53d4494a94c9ee16881e6ce6caed
@@ -1054,7 +1026,7 @@ __metadata:
     eslint-config-prettier: ^9.0.0
     eslint-plugin-prettier: ^5.0.0
     marked: ^8.0.0
-    marked-smartypants: ^1.1.0
+    marked-smartypants: ^1.1.1
     marked-xhtml: ^1.0.4
     node-html-to-image: ^4.0.0
     prettier: ^3.0.3
@@ -1569,13 +1541,6 @@ __metadata:
   version: 0.37.50
   resolution: "discord-api-types@npm:0.37.50"
   checksum: 08dc5145dbefda5f52b479cd42d96ac2b8110300861855e1f92cc8a0a6525a4059e32724cd5237490c286f5afd86797a86823238cd5eee016198560bb36f6d43
-  languageName: node
-  linkType: hard
-
-"discord-api-types@npm:^0.37.51":
-  version: 0.37.52
-  resolution: "discord-api-types@npm:0.37.52"
-  checksum: ecd62d054bac7517e58c3229f4f126e88fc228acfadd42cd4121702ae0c60fab809955f195aa49efd381a00e6e99a9c1b86d90157a2cf04d632bf5b6ab5d4d94
   languageName: node
   linkType: hard
 
@@ -2850,25 +2815,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"marked-smartypants@npm:1.1.0":
-  version: 1.1.0
-  resolution: "marked-smartypants@npm:1.1.0"
+"marked-smartypants@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "marked-smartypants@npm:1.1.1"
   dependencies:
     smartypants: ^0.2.2
   peerDependencies:
     marked: ^4 || ^5 || ^6 || ^7
-  checksum: 3dfcd2d0a982618098382eb2b8612b1b00b9cacc0c8a456b599826735490c283dde26f318a10f00da3604a34bf481c4169ee769ff6bd505031e39c5e04c37ccf
-  languageName: node
-  linkType: hard
-
-"marked-smartypants@patch:marked-smartypants@npm%3A1.1.0#./.yarn/patches/marked-smartypants-npm-1.1.0-81532d1d6c.patch::locator=archangel%40workspace%3A.":
-  version: 1.1.0
-  resolution: "marked-smartypants@patch:marked-smartypants@npm%3A1.1.0#./.yarn/patches/marked-smartypants-npm-1.1.0-81532d1d6c.patch::version=1.1.0&hash=9110a8&locator=archangel%40workspace%3A."
-  dependencies:
-    smartypants: ^0.2.2
-  peerDependencies:
-    marked: ^4 || ^5 || ^6 || ^7
-  checksum: 95541433a666131a113058449e0412812e8512706ca955a684277250e7aa91b90906fb8aa6a9864fd7bfc41f43cb33d7c20d6fde38a56203a0741ae5bd09ad0b
+  checksum: 80a5e04d1d69ce647fefe30a7ce5cb07eb3c3d5d771ecc9a3977a7ffe16a36f6a76430d677755d2e13625f91c342ca9897ba00534564c84200579f7a134db7f8
   languageName: node
   linkType: hard
 
@@ -3491,16 +3445,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:^3.0.0, prettier@npm:^3.0.2":
-  version: 3.0.2
-  resolution: "prettier@npm:3.0.2"
-  bin:
-    prettier: bin/prettier.cjs
-  checksum: 118b59ddb6c80abe2315ab6d0f4dd1b253be5cfdb20622fa5b65bb1573dcd362e6dd3dcf2711dd3ebfe64aecf7bdc75de8a69dc2422dcd35bdde7610586b677a
-  languageName: node
-  linkType: hard
-
-"prettier@npm:^3.0.3":
+"prettier@npm:^3.0.0, prettier@npm:^3.0.2, prettier@npm:^3.0.3":
   version: 3.0.3
   resolution: "prettier@npm:3.0.3"
   bin:

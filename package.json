@@ -38,7 +38,7 @@
     "colorette": "^2.0.20",
     "discord.js": "^14.13.0",
     "marked": "^8.0.0",
-    "marked-smartypants": "^1.1.0",
+    "marked-smartypants": "^1.1.1",
     "marked-xhtml": "^1.0.4",
     "node-html-to-image": "^4.0.0",
     "tslib": "^2.6.2",
