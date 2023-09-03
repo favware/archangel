@@ -38,7 +38,7 @@
     "colorette": "^2.0.20",
     "discord.js": "^14.13.0",
     "marked": "^8.0.0",
-    "marked-smartypants": "^1.1.0",
+    "marked-smartypants": "^1.1.1",
     "marked-xhtml": "^1.0.4",
     "node-html-to-image": "^4.0.0",
     "tslib": "^2.6.2",
@@ -65,8 +65,7 @@
   },
   "resolutions": {
     "ansi-regex": "^5.0.1",
-    "minimist": "^1.2.8",
-    "marked-smartypants@^1.1.0": "patch:marked-smartypants@npm%3A1.1.0#./.yarn/patches/marked-smartypants-npm-1.1.0-81532d1d6c.patch"
+    "minimist": "^1.2.8"
   },
   "engines": {
     "node": ">=16.6.0",
