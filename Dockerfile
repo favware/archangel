@@ -6,7 +6,6 @@ FROM node:18-buster-slim as base
 
 WORKDIR /usr/src/app
 
-ENV HUSKY=0
 ENV CI=true
 ENV NODE_ENV="development"
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD 1
@@ -22,8 +21,6 @@ COPY --chown=node:node yarn.lock .
 COPY --chown=node:node package.json .
 COPY --chown=node:node .yarnrc.yml .
 COPY --chown=node:node .yarn/ .yarn/
-
-RUN sed -i 's/"prepare": "husky install .github\/husky"/"prepare": ""/' ./package.json
 
 ENTRYPOINT ["dumb-init", "--"]
 
