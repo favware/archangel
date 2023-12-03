@@ -95,7 +95,7 @@ export class UserCommand extends Command {
 
     // For every quotable message generate the HTML
     for (const quotableMessage of messages) {
-      content.push(this.messageToHtml(quotableMessage, interaction.guild!));
+      content.push(await this.messageToHtml(quotableMessage, interaction.guild!));
     }
 
     // Generate the HTML
@@ -140,7 +140,7 @@ export class UserCommand extends Command {
     }
   }
 
-  private messageToHtml(message: Message, guild: Guild): string {
+  private messageToHtml(message: Message, guild: Guild): Promise<string> {
     const member = guild.members.cache.get(message.author.id);
     const attachment = getAttachment(message);
 
