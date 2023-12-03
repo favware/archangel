@@ -9,7 +9,7 @@ markdownToHtml.use(markedXhtml());
 markdownToHtml.use(markedSmartypants());
 markdownToHtml.setOptions({ breaks: false });
 
-export const discordMessageGenerator = ({
+export async function discordMessageGenerator({
   author,
   avatar,
   bot,
@@ -19,8 +19,8 @@ export const discordMessageGenerator = ({
   timestamp,
   content,
   image
-}: Omit<DiscordMessageOptions, 'profile' | 'op' | 'roleIcon' | 'roleName'>) => {
-  let htmlContent = markdownToHtml(content);
+}: Omit<DiscordMessageOptions, 'profile' | 'op' | 'roleIcon' | 'roleName'>) {
+  let htmlContent = await markdownToHtml(content);
   if (image !== null)
     htmlContent += [
       `<discord-attachment
@@ -43,7 +43,7 @@ export const discordMessageGenerator = ({
 			${verified ? 'verified' : null}
 		>${htmlContent}</discord-message>
 `);
-};
+}
 
 export const discordMessagesGenerator = ({ compactMode, lightTheme, content }: Partial<DiscordMessagesOptions>) => `
 <discord-messages ${compactMode ? 'compact-mode' : null} ${lightTheme ? 'light-theme' : null}>
