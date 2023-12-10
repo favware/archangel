@@ -688,13 +688,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/plugin-logger@npm:^3.0.7":
-  version: 3.0.7
-  resolution: "@sapphire/plugin-logger@npm:3.0.7"
+"@sapphire/plugin-logger@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "@sapphire/plugin-logger@npm:4.0.1"
   dependencies:
-    "@sapphire/timestamp": "npm:^1.0.1"
+    "@sapphire/timestamp": "npm:^1.0.2"
     colorette: "npm:^2.0.20"
-  checksum: d28f2b814a90ad736ac1a5f259ce919de03aa682d5884e3e52662ca10f9778380f92aad9c704a9515357215f7eba70579f37092230b151b847927a49cd400d6f
+  checksum: 45b608e3a6bf8b1e4489d70bfcf107448ea6e5db922c2335859d2fc230126a36c3bed7028903d48143f5fcf5d52acfb25b707918591ae57e808124a3005301c6
   languageName: node
   linkType: hard
 
@@ -766,7 +766,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/timestamp@npm:^1.0.1, @sapphire/timestamp@npm:^1.0.2":
+"@sapphire/timestamp@npm:^1.0.2":
   version: 1.0.2
   resolution: "@sapphire/timestamp@npm:1.0.2"
   checksum: fe26bf81bb146bfcb57b061cb6a4da16f69e5d6a69157ced891f9a5392add1806406d02b82005f67172bdb75603101e9c39dd20f0e4ad151caaba60bd8db30e0
@@ -1128,7 +1128,7 @@ __metadata:
     "@sapphire/eslint-config": "npm:^5.0.3"
     "@sapphire/fetch": "npm:^2.4.2"
     "@sapphire/framework": "npm:^4.8.5"
-    "@sapphire/plugin-logger": "npm:^3.0.7"
+    "@sapphire/plugin-logger": "npm:^4.0.1"
     "@sapphire/prettier-config": "npm:^2.0.0"
     "@sapphire/time-utilities": "npm:^1.7.11"
     "@sapphire/ts-config": "npm:^5.0.0"
