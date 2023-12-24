@@ -642,12 +642,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/fetch@npm:^2.4.2":
-  version: 2.4.2
-  resolution: "@sapphire/fetch@npm:2.4.2"
-  dependencies:
-    cross-fetch: "npm:^4.0.0"
-  checksum: 995c1a9464ca3d7612e2297f85afb78adce20170d229ba251a0cb230fa60ddee1888cf01c12be4725242bdaf4563168e07f5a9f56d80ccd983327f88cec6ea1b
+"@sapphire/fetch@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "@sapphire/fetch@npm:3.0.1"
+  checksum: f7158fe7d205cab876714da8b0358b1ec6ef13f84d7d1a36d336de43e8ba1d914c7f50e633064f7807ff7a2558ea9730b60cbc9c97c402b8f2b140181da6265b
   languageName: node
   linkType: hard
 
@@ -1126,7 +1124,7 @@ __metadata:
     "@sapphire/discord-utilities": "npm:^3.2.1"
     "@sapphire/discord.js-utilities": "npm:^7.1.4"
     "@sapphire/eslint-config": "npm:^5.0.3"
-    "@sapphire/fetch": "npm:^2.4.2"
+    "@sapphire/fetch": "npm:^3.0.1"
     "@sapphire/framework": "npm:^5.0.4"
     "@sapphire/plugin-logger": "npm:^4.0.1"
     "@sapphire/prettier-config": "npm:^2.0.0"
@@ -1491,7 +1489,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cross-fetch@npm:4.0.0, cross-fetch@npm:^4.0.0":
+"cross-fetch@npm:4.0.0":
   version: 4.0.0
   resolution: "cross-fetch@npm:4.0.0"
   dependencies:
