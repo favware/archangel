@@ -1,4 +1,5 @@
 import '#lib/setup';
+
 import { ArchAngelClient } from '#lib/extensions/ArchAngelClient';
 import { green } from 'colorette';
 
