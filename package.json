@@ -25,11 +25,11 @@
     "dev": "tsup --watch --onSuccess \"yarn start\""
   },
   "dependencies": {
-    "@sapphire/decorators": "^6.0.4",
+    "@sapphire/decorators": "^6.1.0",
     "@sapphire/discord-utilities": "^3.2.3",
     "@sapphire/discord.js-utilities": "^7.1.6",
     "@sapphire/fetch": "^3.0.2",
-    "@sapphire/framework": "^5.0.7",
+    "@sapphire/framework": "^5.0.10",
     "@sapphire/plugin-logger": "^4.0.2",
     "@sapphire/time-utilities": "^1.7.12",
     "@sapphire/utilities": "^3.15.3",
@@ -51,17 +51,17 @@
     "@sapphire/prettier-config": "^2.0.0",
     "@sapphire/ts-config": "^5.0.1",
     "@skyra/discord-components-core": "^3.6.1",
-    "@types/node": "^20.11.28",
+    "@types/node": "^20.11.30",
     "@types/ws": "^8.5.10",
-    "@typescript-eslint/eslint-plugin": "^7.2.0",
-    "@typescript-eslint/parser": "^7.2.0",
+    "@typescript-eslint/eslint-plugin": "^7.3.1",
+    "@typescript-eslint/parser": "^7.3.1",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.3",
     "prettier": "^3.2.5",
     "rimraf": "^5.0.5",
     "tsup": "^8.0.2",
-    "typescript": "^5.4.2"
+    "typescript": "^5.4.3"
   },
   "resolutions": {
     "ansi-regex": "^5.0.1",
