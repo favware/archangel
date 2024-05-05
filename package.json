@@ -29,14 +29,14 @@
     "@sapphire/discord-utilities": "^3.2.3",
     "@sapphire/discord.js-utilities": "^7.2.0",
     "@sapphire/fetch": "^3.0.2",
-    "@sapphire/framework": "^5.1.0",
+    "@sapphire/framework": "^5.2.0",
     "@sapphire/plugin-logger": "^4.0.2",
     "@sapphire/time-utilities": "^1.7.12",
     "@sapphire/utilities": "^3.15.3",
     "@skyra/env-utilities": "^1.3.0",
     "bufferutil": "^4.0.8",
     "colorette": "^2.0.20",
-    "discord.js": "^14.14.1",
+    "discord.js": "^14.15.1",
     "marked": "^12.0.2",
     "marked-smartypants": "^1.1.6",
     "marked-xhtml": "^1.0.9",
@@ -51,10 +51,10 @@
     "@sapphire/prettier-config": "^2.0.0",
     "@sapphire/ts-config": "^5.0.1",
     "@skyra/discord-components-core": "^3.6.1",
-    "@types/node": "^20.12.7",
+    "@types/node": "^20.12.8",
     "@types/ws": "^8.5.10",
-    "@typescript-eslint/eslint-plugin": "^7.7.1",
-    "@typescript-eslint/parser": "^7.7.1",
+    "@typescript-eslint/eslint-plugin": "^7.8.0",
+    "@typescript-eslint/parser": "^7.8.0",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.3",
@@ -74,5 +74,5 @@
   "eslintConfig": {
     "extends": "@sapphire"
   },
-  "packageManager": "yarn@4.1.1"
+  "packageManager": "yarn@4.2.1"
 }
