@@ -1116,7 +1116,7 @@ __metadata:
     eslint: "npm:^8.57.0"
     eslint-config-prettier: "npm:^9.1.0"
     eslint-plugin-prettier: "npm:^5.1.3"
-    marked: "npm:^12.0.2"
+    marked: "npm:^13.0.0"
     marked-smartypants: "npm:^1.1.7"
     marked-xhtml: "npm:^1.0.10"
     node-html-to-image: "npm:^4.0.0"
@@ -2829,12 +2829,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"marked@npm:^12.0.2":
-  version: 12.0.2
-  resolution: "marked@npm:12.0.2"
+"marked@npm:^13.0.0":
+  version: 13.0.0
+  resolution: "marked@npm:13.0.0"
   bin:
     marked: bin/marked.js
-  checksum: 10/24d4fc58d37c1779197fa7f93c504d8c71d4df54eb69cbbc14a55ba2a8e2ad83d723801fc25452c21ce74b38a483c5863c53449f130253a597be9e9c1d3e7e2b
+  checksum: 10/7a3c5be69fad09c690f2227dd13a8fd8bb2e0d60a4e4cec934a2a0052e4d6e3540619ce66179a7469e37f33ed29b7541582e3a1d07ddcb69d8259c3b9a80cab8
   languageName: node
   linkType: hard
 
