@@ -43,7 +43,7 @@
     "node-html-to-image": "^4.0.0",
     "tslib": "^2.6.3",
     "utf-8-validate": "^6.0.4",
-    "ws": "^8.17.0",
+    "ws": "^8.17.1",
     "zlib-sync": "^0.1.9"
   },
   "devDependencies": {
