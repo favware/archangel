@@ -7,6 +7,7 @@
     "@sapphire/ts-config/decorators"
   ],
   "compilerOptions": {
-    "lib": ["ESNext", "DOM"]
+    "lib": ["ESNext", "DOM"],
+    "emitDecoratorMetadata": false
   }
 }
