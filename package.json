@@ -37,7 +37,7 @@
     "bufferutil": "^4.0.8",
     "colorette": "^2.0.20",
     "discord.js": "^14.15.3",
-    "marked": "^13.0.2",
+    "marked": "^13.0.3",
     "marked-smartypants": "^1.1.7",
     "marked-xhtml": "^1.0.10",
     "node-html-to-image": "^4.0.0",
@@ -51,8 +51,8 @@
     "@sapphire/prettier-config": "^2.0.0",
     "@sapphire/ts-config": "^5.0.1",
     "@skyra/discord-components-core": "^3.6.1",
-    "@types/node": "^20.14.12",
-    "@types/ws": "^8.5.11",
+    "@types/node": "^20.14.14",
+    "@types/ws": "^8.5.12",
     "@typescript-eslint/eslint-plugin": "^7.13.1",
     "@typescript-eslint/parser": "^7.13.1",
     "eslint": "^8.57.0",
@@ -60,7 +60,7 @@
     "eslint-plugin-prettier": "^5.2.1",
     "prettier": "^3.3.3",
     "rimraf": "^6.0.1",
-    "tsup": "^8.2.3",
+    "tsup": "^8.2.4",
     "typescript": "^5.5.2"
   },
   "resolutions": {
@@ -74,5 +74,5 @@
   "eslintConfig": {
     "extends": "@sapphire"
   },
-  "packageManager": "yarn@4.3.1"
+  "packageManager": "yarn@4.4.0"
 }
