@@ -37,7 +37,7 @@
     "bufferutil": "^4.0.8",
     "colorette": "^2.0.20",
     "discord.js": "^14.15.3",
-    "marked": "^13.0.3",
+    "marked": "^14.0.0",
     "marked-smartypants": "^1.1.8",
     "marked-xhtml": "^1.0.11",
     "node-html-to-image": "^4.0.0",
