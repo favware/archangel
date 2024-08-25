@@ -41,7 +41,7 @@
     "marked-smartypants": "^1.1.8",
     "marked-xhtml": "^1.0.11",
     "node-html-to-image": "^4.0.0",
-    "tslib": "^2.6.3",
+    "tslib": "^2.7.0",
     "utf-8-validate": "^6.0.4",
     "ws": "^8.18.0",
     "zlib-sync": "^0.1.9"
@@ -51,7 +51,7 @@
     "@sapphire/prettier-config": "^2.0.0",
     "@sapphire/ts-config": "^5.0.1",
     "@skyra/discord-components-core": "^3.6.1",
-    "@types/node": "^20.16.0",
+    "@types/node": "^20.16.1",
     "@types/ws": "^8.5.12",
     "@typescript-eslint/eslint-plugin": "^7.13.1",
     "@typescript-eslint/parser": "^7.13.1",
@@ -74,5 +74,5 @@
   "eslintConfig": {
     "extends": "@sapphire"
   },
-  "packageManager": "yarn@4.4.0"
+  "packageManager": "yarn@4.4.1"
 }
