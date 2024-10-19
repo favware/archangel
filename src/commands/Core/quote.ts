@@ -112,7 +112,7 @@ export class UserCommand extends Command {
       html,
       puppeteerArgs: {
         args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-translate', '--disable-extensions'],
-        ignoreHTTPSErrors: true
+        acceptInsecureCerts: true
       }
     })) as Buffer;
 
