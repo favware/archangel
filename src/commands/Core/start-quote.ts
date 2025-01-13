@@ -18,7 +18,6 @@ export class UserCommand extends Command {
         (builder) =>
           builder //
             .setName('1 - Start quote')
-            // @ts-expect-error temporarily ignore the error because discord.js broke types
             .setType(ApplicationCommandType.Message),
         { guildIds: getGuildIds() }
       )
