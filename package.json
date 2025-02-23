@@ -43,7 +43,7 @@
     "node-html-to-image": "^5.0.0",
     "tslib": "^2.8.1",
     "utf-8-validate": "^6.0.5",
-    "ws": "^8.18.0",
+    "ws": "^8.18.1",
     "zlib-sync": "^0.1.9"
   },
   "devDependencies": {
@@ -51,14 +51,14 @@
     "@sapphire/prettier-config": "^2.0.0",
     "@sapphire/ts-config": "^5.0.1",
     "@skyra/discord-components-core": "^3.6.1",
-    "@types/node": "^22.13.4",
+    "@types/node": "^22.13.5",
     "@types/ws": "^8.5.14",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
     "eslint": "^8.57.1",
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-prettier": "^5.2.3",
-    "prettier": "^3.5.1",
+    "prettier": "^3.5.2",
     "rimraf": "^6.0.1",
     "tsup": "^8.3.6",
     "typescript": "^5.6.3"
