@@ -33,7 +33,7 @@
     "@sapphire/plugin-logger": "^4.0.2",
     "@sapphire/time-utilities": "^1.7.14",
     "@sapphire/utilities": "^3.18.2",
-    "@skyra/env-utilities": "^2.0.0",
+    "@skyra/env-utilities": "^2.0.1",
     "bufferutil": "^4.0.9",
     "colorette": "^2.0.20",
     "discord.js": "^14.19.3",
