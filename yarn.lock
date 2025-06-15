@@ -647,12 +647,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/decorators@npm:^6.1.1":
-  version: 6.1.1
-  resolution: "@sapphire/decorators@npm:6.1.1"
+"@sapphire/decorators@npm:^6.2.0":
+  version: 6.2.0
+  resolution: "@sapphire/decorators@npm:6.2.0"
   dependencies:
     tslib: "npm:^2.8.1"
-  checksum: 10/4bcf76b058a030e88f263ac138a7aefcc056f4284f8ab6159912e883a3c03a405fdc94657a3600467fa666c1b71ca6f054011def0400543f6b0245b86cefbbbd
+  checksum: 10/4117bf6ffdb9744eb1f031fcbc8391b56d28f4237c28c1aacf3f41ffac247b9578d38b9f3cda6ee3644815ab12e22de9135bf1a4cd1cc8b2ad222011a3cd94c2
   languageName: node
   linkType: hard
 
@@ -1147,7 +1147,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "archangel@workspace:."
   dependencies:
-    "@sapphire/decorators": "npm:^6.1.1"
+    "@sapphire/decorators": "npm:^6.2.0"
     "@sapphire/discord-utilities": "npm:^3.5.0"
     "@sapphire/discord.js-utilities": "npm:^7.3.3"
     "@sapphire/eslint-config": "npm:^5.0.6"
