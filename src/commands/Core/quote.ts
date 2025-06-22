@@ -146,7 +146,7 @@ export class UserCommand extends Command {
 
     return discordMessageGenerator({
       author: member?.displayName ?? message.author.tag,
-      avatar: message.author.displayAvatarURL({ extension: 'png', size: 128 })!,
+      avatar: message.author.displayAvatarURL({ extension: 'png', size: 128 }),
       bot: message.author.bot,
       content: message.cleanContent,
       edited: Boolean(message.editedAt),

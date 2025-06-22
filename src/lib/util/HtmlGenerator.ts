@@ -1,6 +1,7 @@
 import { BrandingColors } from '#utils/constants';
 import { getAttachment, oneLine } from '#utils/util';
-import type { Components } from '@skyra/discord-components-core';
+import type { DiscordMessage, DiscordMessages } from '@skyra/discord-components-core';
+import type { LitElement } from 'lit';
 import { marked as markdownToHtml } from 'marked';
 import { markedSmartypants } from 'marked-smartypants';
 import { markedXhtml } from 'marked-xhtml';
@@ -57,7 +58,7 @@ export const htmlGenerator = (content: string) => `
   <head>
     <script
       type="module"
-      src="https://unpkg.com/@skyra/discord-components-core@3.6.1/dist/skyra-discord-components-core/skyra-discord-components-core.esm.js"
+      src="https://unpkg.com/@skyra/discord-components-core@4.0.2/dist/index.js"
     ></script>
     <style>
       .discord-messages {
@@ -139,5 +140,11 @@ interface DiscordMessageExtraData extends DiscordContent {
   image: ReturnType<typeof getAttachment>;
 }
 
-type DiscordMessageOptions = DiscordMessageExtraData & Components.DiscordMessage;
-type DiscordMessagesOptions = DiscordContent & Components.DiscordMessages;
+type DiscordMessageOptions = DiscordMessageExtraData & DiscordMessageProperties;
+type DiscordMessagesOptions = DiscordContent & DiscordMessagesProperties;
+
+type ExtractComponentProperties<T> = Partial<Omit<T, keyof LitElement>>;
+
+export type DiscordMessageProperties = ExtractComponentProperties<DiscordMessage>;
+
+export type DiscordMessagesProperties = ExtractComponentProperties<DiscordMessages>;
