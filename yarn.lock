@@ -904,12 +904,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^22.17.0":
-  version: 22.17.0
-  resolution: "@types/node@npm:22.17.0"
+"@types/node@npm:*, @types/node@npm:^22.17.1":
+  version: 22.17.1
+  resolution: "@types/node@npm:22.17.1"
   dependencies:
     undici-types: "npm:~6.21.0"
-  checksum: 10/f77b0e1c3c00e438b56c726d6b1170d4969c600cc8d4ecf2c2aa7692243a8ff455a3d530760da95e0b6aab059c4605a384b43d18f96646c745ff133c00b84875
+  checksum: 10/775d3996693ce2e717267c810669a8122308676487130c91590022ded38a999fef63fd63b4631fdbbceeea9470f0ecf6a2333a3abbc4f917f40b404bbb57e9bc
   languageName: node
   linkType: hard
 
@@ -1182,7 +1182,7 @@ __metadata:
     "@sapphire/utilities": "npm:^3.18.2"
     "@skyra/discord-components-core": "npm:^4.0.2"
     "@skyra/env-utilities": "npm:^2.0.1"
-    "@types/node": "npm:^22.17.0"
+    "@types/node": "npm:^22.17.1"
     "@types/ws": "npm:^8.18.1"
     "@typescript-eslint/eslint-plugin": "npm:^7.18.0"
     "@typescript-eslint/parser": "npm:^7.18.0"
@@ -1191,8 +1191,8 @@ __metadata:
     discord.js: "npm:^14.21.0"
     eslint: "npm:^8.57.1"
     eslint-config-prettier: "npm:^10.1.8"
-    eslint-plugin-prettier: "npm:^5.5.3"
-    marked: "npm:^16.1.1"
+    eslint-plugin-prettier: "npm:^5.5.4"
+    marked: "npm:^16.1.2"
     marked-smartypants: "npm:^1.1.10"
     marked-xhtml: "npm:^1.0.13"
     node-html-to-image: "npm:^5.0.0"
@@ -1881,9 +1881,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-prettier@npm:^5.4.0, eslint-plugin-prettier@npm:^5.5.3":
-  version: 5.5.3
-  resolution: "eslint-plugin-prettier@npm:5.5.3"
+"eslint-plugin-prettier@npm:^5.4.0, eslint-plugin-prettier@npm:^5.5.4":
+  version: 5.5.4
+  resolution: "eslint-plugin-prettier@npm:5.5.4"
   dependencies:
     prettier-linter-helpers: "npm:^1.0.0"
     synckit: "npm:^0.11.7"
@@ -1897,7 +1897,7 @@ __metadata:
       optional: true
     eslint-config-prettier:
       optional: true
-  checksum: 10/0cdb838997440284145ed1e3cfa1502adffa0e92f893c4100cf2af32dff85fa8f1e86c1547c5462ad8126ee89906a9cb6180b87c4f1ad6000e4b04542938eb3c
+  checksum: 10/5e39e3b7046d4ba0e1111cc2048630ee9d0aa5d5bb00d6230bef56893fdae37cbe2261babfb26db350cc2ad517c81d283b3f8b04cfee4e5aef7cd4bee72f90de
   languageName: node
   linkType: hard
 
@@ -2853,12 +2853,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"marked@npm:^16.1.1":
-  version: 16.1.1
-  resolution: "marked@npm:16.1.1"
+"marked@npm:^16.1.2":
+  version: 16.1.2
+  resolution: "marked@npm:16.1.2"
   bin:
     marked: bin/marked.js
-  checksum: 10/9f4d2d8f862e1d874f03f1b8614fbf859ae788b4a1b4174be83a65c8ea5ecabf0c991c455dcb6b650e7106fb5b65a94865b9de45667bb2471ca2272e1798971d
+  checksum: 10/190d9b206f05d87a7acac3b50ab19505878297971a0c5652a9d4fa2b022407f22d2b79e1aa1e9f23a32c0158b1f5852ad33da2e83cc12100116a8fc0afc2b17e
   languageName: node
   linkType: hard
 
