@@ -36,8 +36,8 @@
     "@skyra/env-utilities": "^2.0.1",
     "bufferutil": "^4.0.9",
     "colorette": "^2.0.20",
-    "discord.js": "^14.21.0",
-    "marked": "^16.1.2",
+    "discord.js": "^14.22.1",
+    "marked": "^16.2.1",
     "marked-smartypants": "^1.1.10",
     "marked-xhtml": "^1.0.13",
     "node-html-to-image": "^5.0.0",
@@ -51,7 +51,7 @@
     "@sapphire/prettier-config": "^2.0.0",
     "@sapphire/ts-config": "^5.0.1",
     "@skyra/discord-components-core": "^4.0.2",
-    "@types/node": "^22.17.2",
+    "@types/node": "^22.18.0",
     "@types/ws": "^8.18.1",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
@@ -74,8 +74,8 @@
   "eslintConfig": {
     "extends": "@sapphire"
   },
-  "packageManager": "yarn@4.9.2",
+  "packageManager": "yarn@4.9.4",
   "volta": {
-    "node": "22.18.0"
+    "node": "22.19.0"
   }
 }
