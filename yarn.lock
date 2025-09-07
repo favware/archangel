@@ -78,24 +78,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@discordjs/rest@npm:^2.5.1":
-  version: 2.5.1
-  resolution: "@discordjs/rest@npm:2.5.1"
-  dependencies:
-    "@discordjs/collection": "npm:^2.1.1"
-    "@discordjs/util": "npm:^1.1.1"
-    "@sapphire/async-queue": "npm:^1.5.3"
-    "@sapphire/snowflake": "npm:^3.5.3"
-    "@vladfrangu/async_event_emitter": "npm:^2.4.6"
-    discord-api-types: "npm:^0.38.1"
-    magic-bytes.js: "npm:^1.10.0"
-    tslib: "npm:^2.6.3"
-    undici: "npm:6.21.3"
-  checksum: 10/2bee1f73b0e87de4357af482c95a37db47466b8b855f519b87a0263361f9dafc9cbea7087b91553ed0a8e7202144a73638bbc6d91653464a04babffb72ffe040
-  languageName: node
-  linkType: hard
-
-"@discordjs/rest@npm:^2.6.0":
+"@discordjs/rest@npm:^2.5.1, @discordjs/rest@npm:^2.6.0":
   version: 2.6.0
   resolution: "@discordjs/rest@npm:2.6.0"
   dependencies:
@@ -921,12 +904,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^22.17.2":
-  version: 22.17.2
-  resolution: "@types/node@npm:22.17.2"
+"@types/node@npm:*, @types/node@npm:^22.18.1":
+  version: 22.18.1
+  resolution: "@types/node@npm:22.18.1"
   dependencies:
     undici-types: "npm:~6.21.0"
-  checksum: 10/b830746c65e014d7d47102ab2f24ec74bdb60156b9b75af42e75d81375f211904347125c00543b5fd7119223b3157726bc9814619205571c0a0afd6ce3c43abb
+  checksum: 10/da67f3c3fa4107fbca704e7a71fee36c27f3b6f44af1c466cd5c71eab76a9ffcd6a16f3b97d1e757b9763f1fa1085eebb60cb648c272e36794aca7305b2a15d9
   languageName: node
   linkType: hard
 
@@ -1199,7 +1182,7 @@ __metadata:
     "@sapphire/utilities": "npm:^3.18.2"
     "@skyra/discord-components-core": "npm:^4.0.2"
     "@skyra/env-utilities": "npm:^2.0.1"
-    "@types/node": "npm:^22.17.2"
+    "@types/node": "npm:^22.18.1"
     "@types/ws": "npm:^8.18.1"
     "@typescript-eslint/eslint-plugin": "npm:^7.18.0"
     "@typescript-eslint/parser": "npm:^7.18.0"
@@ -1647,14 +1630,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"discord-api-types@npm:^0.38.1":
-  version: 0.38.4
-  resolution: "discord-api-types@npm:0.38.4"
-  checksum: 10/3c12009985857b686096627a39e277bf26125dedc612ecfdc758e40ea42ee7ff9309a5390b51bee2bd42ec7d86621df26419bdfe4bb8a5003b718f4f862ff4c1
-  languageName: node
-  linkType: hard
-
-"discord-api-types@npm:^0.38.16":
+"discord-api-types@npm:^0.38.1, discord-api-types@npm:^0.38.16":
   version: 0.38.23
   resolution: "discord-api-types@npm:0.38.23"
   checksum: 10/b4777aebe2357b4ca1e2c2269d571e95dd9b3159b736560ca6e852e1d861df389f9427191d821ab89246e559dca2e92d558f991001418311ddaeff4b4fdb990e
