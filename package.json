@@ -36,7 +36,7 @@
     "@skyra/env-utilities": "^2.0.1",
     "bufferutil": "^4.0.9",
     "colorette": "^2.0.20",
-    "discord.js": "^14.23.2",
+    "discord.js": "^14.24.2",
     "marked": "^16.4.1",
     "marked-smartypants": "^1.1.10",
     "marked-xhtml": "^1.0.13",
@@ -51,7 +51,7 @@
     "@sapphire/prettier-config": "^2.0.0",
     "@sapphire/ts-config": "^5.0.1",
     "@skyra/discord-components-core": "^4.0.2",
-    "@types/node": "^22.18.11",
+    "@types/node": "^22.18.13",
     "@types/ws": "^8.18.1",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
@@ -59,7 +59,7 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.4",
     "prettier": "^3.6.2",
-    "rimraf": "^6.0.1",
+    "rimraf": "^6.1.0",
     "tsup": "^8.5.0",
     "typescript": "^5.6.3"
   },
@@ -76,6 +76,6 @@
   },
   "packageManager": "yarn@4.10.3",
   "volta": {
-    "node": "24.10.0"
+    "node": "24.11.0"
   }
 }
