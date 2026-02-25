@@ -706,6 +706,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sapphire/discord-utilities@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "@sapphire/discord-utilities@npm:4.0.0"
+  dependencies:
+    discord-api-types: "npm:^0.38.30"
+  checksum: 10/d7be32d3759913de54fff3be7bdca7f5ebd61ec39c3aef58c182ceba135ede542e2935db22ff7826d5f3552c5b663f6dc4d040b7b6fb46930618c0f527311900
+  languageName: node
+  linkType: hard
+
 "@sapphire/discord.js-utilities@npm:^7.3.3":
   version: 7.3.3
   resolution: "@sapphire/discord.js-utilities@npm:7.3.3"
@@ -920,12 +929,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^22.18.13":
+"@types/node@npm:*":
   version: 22.18.13
   resolution: "@types/node@npm:22.18.13"
   dependencies:
     undici-types: "npm:~6.21.0"
   checksum: 10/a0e8632a3eeeed3986f3b0b170187f67c0f0bb0d4fbbf9627af5c9bf81e2836bb64aa6f3bdab1c00658cb7911d8c231d7d6db853ae643edcd41f383c86f349e6
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^24.10.1":
+  version: 24.10.13
+  resolution: "@types/node@npm:24.10.13"
+  dependencies:
+    undici-types: "npm:~7.16.0"
+  checksum: 10/c779d14cf17758a9d603e0c0978c8045bd070e259617ec16f4ddac419ec11aac0e0cf2bb013dab008fdbd2f46c39f82397884662bbdfabeb19bef0079679ea48
   languageName: node
   linkType: hard
 
@@ -1186,7 +1204,7 @@ __metadata:
   resolution: "archangel@workspace:."
   dependencies:
     "@sapphire/decorators": "npm:^6.2.0"
-    "@sapphire/discord-utilities": "npm:^3.5.0"
+    "@sapphire/discord-utilities": "npm:^4.0.0"
     "@sapphire/discord.js-utilities": "npm:^7.3.3"
     "@sapphire/eslint-config": "npm:^5.0.6"
     "@sapphire/fetch": "npm:^3.0.5"
@@ -1198,7 +1216,7 @@ __metadata:
     "@sapphire/utilities": "npm:^3.18.2"
     "@skyra/discord-components-core": "npm:^4.0.2"
     "@skyra/env-utilities": "npm:^2.0.1"
-    "@types/node": "npm:^22.18.13"
+    "@types/node": "npm:^24.10.1"
     "@types/ws": "npm:^8.18.1"
     "@typescript-eslint/eslint-plugin": "npm:^7.18.0"
     "@typescript-eslint/parser": "npm:^7.18.0"
@@ -1324,9 +1342,9 @@ __metadata:
   linkType: hard
 
 "basic-ftp@npm:^5.0.2":
-  version: 5.0.3
-  resolution: "basic-ftp@npm:5.0.3"
-  checksum: 10/8f69811a7f4088c5ae39025f1a662522aad517b4065365fbbe80676dc9ccf7a188463dfcb2d9573af2af859d7de70015f612c20a04a311b520efbf7c21dc1ff2
+  version: 5.2.0
+  resolution: "basic-ftp@npm:5.2.0"
+  checksum: 10/f5a15d789aa98859af4da9e976154b2aeae19052e1762dc68d259d2bce631dafa40c667aa06d7346cd630aa6f9cc9a26f515b468e0bd24243fbae2149c7d01ad
   languageName: node
   linkType: hard
 
@@ -1650,6 +1668,13 @@ __metadata:
   version: 0.38.31
   resolution: "discord-api-types@npm:0.38.31"
   checksum: 10/7c3439f4e613434a3de50375508a0bf34894ca9079d91edb66d981260734c771fa7388abbfd27b5bbd94693a74e5cadc0c634c1f89121ad6719249cfef7943d0
+  languageName: node
+  linkType: hard
+
+"discord-api-types@npm:^0.38.30":
+  version: 0.38.40
+  resolution: "discord-api-types@npm:0.38.40"
+  checksum: 10/50fedc793209faa989774a16a75ebdb82f2d16efb697da94f65f7e9bd9378f448ad01803a8c6e08585c28113c759697002f886e11c9ae042daf731ce4d40cc25
   languageName: node
   linkType: hard
 
@@ -4175,6 +4200,13 @@ __metadata:
   version: 6.21.0
   resolution: "undici-types@npm:6.21.0"
   checksum: 10/ec8f41aa4359d50f9b59fa61fe3efce3477cc681908c8f84354d8567bb3701fafdddf36ef6bff307024d3feb42c837cf6f670314ba37fc8145e219560e473d14
+  languageName: node
+  linkType: hard
+
+"undici-types@npm:~7.16.0":
+  version: 7.16.0
+  resolution: "undici-types@npm:7.16.0"
+  checksum: 10/db43439f69c2d94cc29f75cbfe9de86df87061d6b0c577ebe9bb3255f49b22c50162a7d7eb413b0458b6510b8ca299ac7cff38c3a29fbd31af9f504bcf7fbc0d
   languageName: node
   linkType: hard
 
