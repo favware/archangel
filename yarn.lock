@@ -1213,7 +1213,7 @@ __metadata:
     "@typescript-eslint/parser": "npm:^7.18.0"
     bufferutil: "npm:^4.1.0"
     colorette: "npm:^2.0.20"
-    discord.js: "npm:^14.26.3"
+    discord.js: "npm:^14.26.4"
     eslint: "npm:^8.57.1"
     eslint-config-prettier: "npm:^10.1.8"
     eslint-plugin-prettier: "npm:^5.5.5"
@@ -1678,9 +1678,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"discord.js@npm:^14.26.3":
-  version: 14.26.3
-  resolution: "discord.js@npm:14.26.3"
+"discord.js@npm:^14.26.4":
+  version: 14.26.4
+  resolution: "discord.js@npm:14.26.4"
   dependencies:
     "@discordjs/builders": "npm:^1.14.1"
     "@discordjs/collection": "npm:1.5.3"
@@ -1695,7 +1695,7 @@ __metadata:
     magic-bytes.js: "npm:^1.13.0"
     tslib: "npm:^2.6.3"
     undici: "npm:6.24.1"
-  checksum: 10/76cf0a6993c43d194c13a4902ac1591ff7a671b995162c925b02ecca6838f5ebdc6998bf51471888d12d86c8fdc20cd412b881928e257bcbabcafaa5328a7a61
+  checksum: 10/bff70f8d00f387bebf24302635910e2f0bc837800fcb6e3a31295842a8dc4809a4cbb7baeda402731c7a7ebcfd450097039dff1019dcaddf35cb8ff7f66be086
   languageName: node
   linkType: hard
 
