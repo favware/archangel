@@ -929,12 +929,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^24.12.3":
-  version: 24.12.3
-  resolution: "@types/node@npm:24.12.3"
+"@types/node@npm:*, @types/node@npm:^24.12.4":
+  version: 24.12.4
+  resolution: "@types/node@npm:24.12.4"
   dependencies:
     undici-types: "npm:~7.16.0"
-  checksum: 10/a7441f1505fee5c049b0c64c70707b5081cdeb945537fd9249a4304d636c27213ee9973bfd68cec5e5326e0cab5506d2a45e60d6528882bc8096c6e1195b661a
+  checksum: 10/4e5ce6faaf0e6f291114d6ac14fe546d491812b306107620802d5bef00ca36fb290637e79ec4fc24f33214f78f58c9b63254bd0ce94788bebfec03f26d45f2ea
   languageName: node
   linkType: hard
 
@@ -1207,7 +1207,7 @@ __metadata:
     "@sapphire/utilities": "npm:^3.18.2"
     "@skyra/discord-components-core": "npm:^4.0.2"
     "@skyra/env-utilities": "npm:^2.0.1"
-    "@types/node": "npm:^24.12.3"
+    "@types/node": "npm:^24.12.4"
     "@types/ws": "npm:^8.18.1"
     "@typescript-eslint/eslint-plugin": "npm:^7.18.0"
     "@typescript-eslint/parser": "npm:^7.18.0"
@@ -1227,7 +1227,7 @@ __metadata:
     tsup: "npm:^8.5.1"
     typescript: "npm:^5.6.3"
     utf-8-validate: "npm:^6.0.6"
-    ws: "npm:^8.20.0"
+    ws: "npm:^8.20.1"
     zlib-sync: "npm:^0.1.10"
   languageName: unknown
   linkType: soft
@@ -4290,9 +4290,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ws@npm:^8.17.0, ws@npm:^8.18.0, ws@npm:^8.20.0":
-  version: 8.20.0
-  resolution: "ws@npm:8.20.0"
+"ws@npm:^8.17.0, ws@npm:^8.18.0, ws@npm:^8.20.1":
+  version: 8.20.1
+  resolution: "ws@npm:8.20.1"
   peerDependencies:
     bufferutil: ^4.0.1
     utf-8-validate: ">=5.0.2"
@@ -4301,7 +4301,7 @@ __metadata:
       optional: true
     utf-8-validate:
       optional: true
-  checksum: 10/b7ab934b21ffdea9f25a5af5097e8c1ec7625db553bca026c5a23e35b7c236f3fb89782f2b57fab9da553864512f9aa7d245827ef998d26ffa1b2187a19a6d10
+  checksum: 10/8c4d2b06dc65381b6bfab1f2e584275dabd30a99a5ce058b4dc76f3d03fad1921cef3a21d8f53127d30a808cfd1864aa2fe6890a5d43359f682457315baec873
   languageName: node
   linkType: hard
 
