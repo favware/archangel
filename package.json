@@ -36,14 +36,14 @@
     "@skyra/env-utilities": "^2.0.1",
     "bufferutil": "^4.1.0",
     "colorette": "^2.0.20",
-    "discord.js": "^14.26.5",
+    "discord.js": "^14.27.0",
     "marked": "^17.0.6",
     "marked-smartypants": "^1.1.12",
     "marked-xhtml": "^1.0.15",
     "node-html-to-image": "^5.0.0",
     "tslib": "^2.8.1",
     "utf-8-validate": "^6.0.6",
-    "ws": "^8.21.0",
+    "ws": "^8.21.1",
     "zlib-sync": "^0.1.10"
   },
   "devDependencies": {
