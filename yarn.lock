@@ -1220,7 +1220,7 @@ __metadata:
     tsup: "npm:^8.5.1"
     typescript: "npm:^5.6.3"
     utf-8-validate: "npm:^6.0.6"
-    ws: "npm:^8.21.1"
+    ws: "npm:^8.21.3"
     zlib-sync: "npm:^0.1.10"
   languageName: unknown
   linkType: soft
@@ -4283,9 +4283,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ws@npm:^8.17.0, ws@npm:^8.18.0, ws@npm:^8.21.1":
-  version: 8.21.1
-  resolution: "ws@npm:8.21.1"
+"ws@npm:^8.17.0, ws@npm:^8.18.0, ws@npm:^8.21.3":
+  version: 8.21.3
+  resolution: "ws@npm:8.21.3"
   peerDependencies:
     bufferutil: ^4.0.1
     utf-8-validate: ">=5.0.2"
@@ -4294,7 +4294,7 @@ __metadata:
       optional: true
     utf-8-validate:
       optional: true
-  checksum: 10/8493bc543072763d7bacffb2282c9d7954dc5c599c9df4c2d15f91c217f63e293a33ffc70756e3f2bf8c5d85bc6069ad7d9983c382d4713c807b083ffb1b1719
+  checksum: 10/8856922c26fd2d106931c16310d9a0bc2d6d37ed8771352bfa0d2a36df0ab5cb1f6528c6db8213f3333cf4ce93925e56f13604df0454cb0d4289fef922bebcdd
   languageName: node
   linkType: hard
 
